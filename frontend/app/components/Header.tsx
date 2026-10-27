@@ -31,12 +31,15 @@ export default function Header() {
           <Link href="#philosophy" className="hover:text-black transition">
             Why Us
           </Link>
+          <Link href="#faq" className="hover:text-black transition">
+            FAQ
+          </Link>
         </nav>
 
         <div className="flex items-center gap-4">
           <Link
             href="#booking"
-            className="px-5 py-2.5 rounded-full bg-black text-white text-xs font-mono tracking-wider uppercase hover:bg-gray-800 transition"
+            className="px-5 py-2.5 rounded-full bg-black text-white text-xs font-mono tracking-wider uppercase hover:bg-gray-800 transition-all duration-200 hover:-translate-y-0.5 shadow-sm"
           >
             Book 15-Min Call
           </Link>

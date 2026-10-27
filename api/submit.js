@@ -207,7 +207,7 @@ module.exports = async function handler(req, res) {
     };
 
     receiptPrefix = 'MVMNT-CALC';
-    successMessage = 'Calculated scope saved. We have recorded your parameters and will prepare a customized technical proposal.';
+    successMessage = 'Calculated scope saved. We have recorded your parameters and will prepare a customised proposal.';
 
   } else {
     return sendJson(res, 400, {

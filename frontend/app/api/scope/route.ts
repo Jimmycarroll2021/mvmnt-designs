@@ -91,7 +91,7 @@ Reassure them on how simple the process is (no endless meetings, everything hand
       `### 3. Patient Experience & Booking Strategy\n\n`,
       `- **Elevated Brand Presence:** A bespoke visual design that immediately positions you as the leading practitioner in your speciality.\n`,
       `- **Compassionate, Clear Words:** We craft every paragraph to answer patient concerns, demystify treatments, and remove the anxiety of reaching out.\n`,
-      `- **Frictionless Booking:** An intuitive appointment inquiry flow that makes booking simple on both mobile and desktop.\n\n`,
+      `- **Frictionless Booking:** An intuitive appointment enquiry flow that makes booking simple on both mobile and desktop.\n\n`,
       `### 4. Next Step & Delivery Timeline\n\n`,
       `We can onboard your practice into our upcoming sprint and have your new site live in approximately **${timeline}**.\n\n`,
       `Click the button below to reserve a relaxed 15-minute discovery call with our team. We've transferred your practice notes into the form so we can jump straight into discussing your vision.\n`

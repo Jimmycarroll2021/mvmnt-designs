@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import StudioScoper from '@/app/components/StudioScoper';
 import BookingForm from '@/app/components/BookingForm';
+import FaqSection from '@/app/components/FaqSection';
 
 export default function Home() {
   return (
@@ -78,7 +79,6 @@ export default function Home() {
           <span className="text-gray-300">/</span>
           <span>High-Trust Clinical Copywriting</span>
           <span className="text-gray-300">/</span>
-          {/* Duplicate set for seamless infinite loop */}
           <span>Private Rooms & Medical Specialists</span>
           <span className="text-gray-300">/</span>
           <span>Restorative & Aesthetic Clinics</span>
@@ -319,42 +319,113 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. WHY PRACTICES CHOOSE US */}
-      <section id="philosophy" className="container max-w-5xl space-y-8">
-        <div className="border-b border-gray-200 pb-6">
-          <span className="text-xs font-mono uppercase tracking-widest text-gray-500 font-semibold">
-            Our Studio Difference
-          </span>
-          <h2 className="text-3xl font-bold tracking-tight text-gray-950 mt-1">
-            Why Practices Choose MVMNT Over Traditional Agencies.
-          </h2>
+      {/* 5. ELEVATED COMPARISON NARRATIVE: WHY MVMNT VS TRADITIONAL AGENCIES */}
+      <section id="philosophy" className="container max-w-5xl space-y-12">
+        <div className="border-b border-gray-200 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <span className="text-xs font-mono uppercase tracking-widest text-gray-500 font-semibold">
+              THE ARCHITECTURAL DIFFERENCE
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-950 mt-1">
+              Why Australia&apos;s Leading Specialists Step Outside the Traditional Agency Model.
+            </h2>
+          </div>
+          <div className="text-xs font-mono text-gray-500">
+            Sovereign Craft vs Legacy Bureaucracy
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs">
-          <div className="p-6 rounded-xl border border-gray-200 bg-white space-y-3 hover:border-gray-400 transition-all duration-300 hover:-translate-y-0.5">
-            <span className="text-base font-bold text-black block">01. Direct Founder Partnership</span>
-            <p className="text-gray-600 leading-relaxed font-sans text-sm">
-              You work directly with the creative leaders who design and build your platform. No junior account managers, no layers of bureaucracy, and no miscommunication.
-            </p>
+        <p className="max-w-3xl text-base sm:text-lg text-gray-600 font-light leading-relaxed">
+          A private practice website is not a generic marketing brochure; it is the digital foyer of your consulting rooms. Discerning patients facing major surgery or specialised restorative care evaluate your clinical authority long before they step foot inside your practice.
+        </p>
+
+        {/* Dual Column Architectural Contrast */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+          {/* Legacy Agency Column */}
+          <div className="p-8 rounded-2xl border border-gray-200 bg-gray-50/60 space-y-6 flex flex-col justify-between">
+            <div className="space-y-4">
+              <div className="font-mono text-xs uppercase tracking-widest text-gray-400 font-semibold">
+                01 // THE TRADITIONAL AGENCY PARADIGM
+              </div>
+              <h3 className="text-xl font-bold text-gray-950 leading-snug">
+                The Hidden Cost of Committee Overhead and Diluted Execution
+              </h3>
+              <p className="text-xs text-gray-600 leading-relaxed font-sans">
+                When a private practice engages a conventional agency, over half the investment funds non-creative overhead: account coordinators, internal WIP meetings, and multi-layered management.
+              </p>
+              <ul className="space-y-3.5 text-xs text-gray-700 pt-2 font-sans">
+                <li className="flex items-start gap-2.5">
+                  <span className="text-gray-400 font-mono text-sm leading-none">•</span>
+                  <span><strong>The Chinese Whispers Dilemma:</strong> You outline your surgical nuances to an account executive, who delegates to a junior writer with zero medical literacy. By launch, your clinical authority is reduced to generic health clichés.</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-gray-400 font-mono text-sm leading-none">•</span>
+                  <span><strong>The Clinical Homework Trap:</strong> Traditional agencies hand you a 40-page questionnaire and demand that you write your own procedural copy—stealing dozens of hours from your theatre and consulting schedules.</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-gray-400 font-mono text-sm leading-none">•</span>
+                  <span><strong>Fragile Templates:</strong> Bloated themes laden with dozens of third-party plugins that drag mobile loading to a crawl, break during software updates, and expose your rooms to frustrating downtime.</span>
+                </li>
+              </ul>
+            </div>
+            <div className="pt-4 border-t border-gray-200 text-[11px] font-mono text-gray-400 uppercase">
+              Average Timeline: 4–6 Months · High Administrative Drag
+            </div>
           </div>
 
-          <div className="p-6 rounded-xl border border-gray-200 bg-white space-y-3 hover:border-gray-400 transition-all duration-300 hover:-translate-y-0.5">
-            <span className="text-base font-bold text-black block">02. Words That Actually Resonate</span>
-            <p className="text-gray-600 leading-relaxed font-sans text-sm">
-              Most agencies give you an empty template and expect you to write your own copy. We take the time to understand your clinical work and write warm, reassuring copy that sounds authentic to you.
+          {/* MVMNT Studio Standard Column */}
+          <div className="p-8 rounded-2xl border-2 border-black bg-white space-y-6 flex flex-col justify-between shadow-sm relative">
+            <div className="space-y-4">
+              <div className="font-mono text-xs uppercase tracking-widest text-black font-semibold">
+                02 // THE MVMNT STUDIO STANDARD
+              </div>
+              <h3 className="text-xl font-bold text-gray-950 leading-snug">
+                Direct Dialogue, Turnkey Clinical Copywriting, and Effortless Reliability
+              </h3>
+              <p className="text-xs text-gray-600 leading-relaxed font-sans">
+                We operate as an unhurried, highly disciplined boutique studio. You work directly with senior creative directors who personally craft and engineer your digital practice home.
+              </p>
+              <ul className="space-y-3.5 text-xs text-gray-700 pt-2 font-sans">
+                <li className="flex items-start gap-2.5">
+                  <span className="text-black font-mono text-sm leading-none">•</span>
+                  <span><strong>Direct Director Partnership:</strong> Zero junior account managers or committee bloat. Direct access to the architectural and editorial leads who understand your diagnostic approach immediately.</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-black font-mono text-sm leading-none">•</span>
+                  <span><strong>Turnkey Clinical Copywriting:</strong> A single 45-minute intake dialogue is all we require. We synthesise your procedural scope into calm, patient-centred prose that resolves anxiety and complies strictly with AHPRA Section 133.</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="text-black font-mono text-sm leading-none">•</span>
+                  <span><strong>Uncompromising Reliability:</strong> Thoughtfully engineered with zero fragile plugins or third-party bloat. Instantaneous, frictionless mobile loading that never breaks and keeps patient confidentiality secure.</span>
+                </li>
+              </ul>
+            </div>
+            <div className="pt-4 border-t border-gray-200 text-[11px] font-mono text-black font-medium uppercase">
+              Turnkey Delivery: 7–14 Business Days · Zero Homework
+            </div>
+          </div>
+        </div>
+
+        {/* Studio Editorial Manifesto Strip */}
+        <div className="p-6 sm:p-8 rounded-xl bg-gray-950 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div className="space-y-1 max-w-2xl">
+            <div className="text-[10px] font-mono uppercase tracking-widest text-gray-400">
+              STUDIO EDITORIAL COMMITMENT
+            </div>
+            <p className="text-sm sm:text-base font-light text-gray-200 italic">
+              &ldquo;We do not build mass-market retail websites. We craft digital sanctuaries for private practitioners who refuse to look, sound, or perform like a commodity.&rdquo;
             </p>
           </div>
-
-          <div className="p-6 rounded-xl border border-gray-200 bg-white space-y-3 hover:border-gray-400 transition-all duration-300 hover:-translate-y-0.5">
-            <span className="text-base font-bold text-black block">03. Respect For Your Time</span>
-            <p className="text-gray-600 leading-relaxed font-sans text-sm">
-              We know your clinical schedule is demanding. We don't drag projects out across endless committee meetings. We execute with precision and launch your new platform in days, not quarters.
-            </p>
+          <div className="text-xs font-mono text-gray-400 whitespace-nowrap">
+            AUSTRALIA-WIDE · BESPOKE PRACTICE STUDIOS
           </div>
         </div>
       </section>
 
-      {/* 6. BOOKING CONSULTATION FORM */}
+      {/* 6. FREQUENTLY ASKED QUESTIONS (SEO & SCHEMA ALIGNED) */}
+      <FaqSection />
+
+      {/* 7. BOOKING CONSULTATION FORM */}
       <section className="container max-w-5xl">
         <BookingForm />
       </section>

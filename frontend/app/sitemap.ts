@@ -4,8 +4,8 @@ import {sitemapData} from '@/sanity/lib/queries'
 import {headers} from 'next/headers'
 
 /**
- * This file creates a sitemap (sitemap.xml) for the application. Learn more about sitemaps in Next.js here: https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap
- * Be sure to update the `changeFrequency` and `priority` values to match your application's content.
+ * This file creates a sitemap (sitemap.xml) for the application.
+ * Fully compatible with Google Search Console and Bing Webmaster Tools.
  */
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -14,46 +14,36 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   })
   const headersList = await headers()
   const sitemap: MetadataRoute.Sitemap = []
-  const domain: string = headersList.get('host') as string
+  const host = headersList.get('host') || 'mvmnt-designs.vercel.app'
+  const domain = host.startsWith('http') ? host : `https://${host}`
+
   sitemap.push({
-    url: domain as string,
+    url: domain,
     lastModified: new Date(),
     priority: 1,
-    changeFrequency: 'monthly',
+    changeFrequency: 'weekly',
   })
 
   if (allPostsAndPages != null && allPostsAndPages.data && allPostsAndPages.data.length != 0) {
-    let priority: number
-    let changeFrequency:
-      | 'monthly'
-      | 'always'
-      | 'hourly'
-      | 'daily'
-      | 'weekly'
-      | 'yearly'
-      | 'never'
-      | undefined
-    let url: string
-
     for (const p of allPostsAndPages.data) {
       switch (p._type) {
         case 'page':
-          priority = 0.8
-          changeFrequency = 'monthly'
-          url = `${domain}/${p.slug}`
+          sitemap.push({
+            url: `${domain}/${p.slug}`,
+            lastModified: p._updatedAt ? new Date(p._updatedAt) : new Date(),
+            priority: 0.8,
+            changeFrequency: 'monthly',
+          })
           break
         case 'post':
-          priority = 0.5
-          changeFrequency = 'never'
-          url = `${domain}/posts/${p.slug}`
+          sitemap.push({
+            url: `${domain}/posts/${p.slug}`,
+            lastModified: p._updatedAt ? new Date(p._updatedAt) : new Date(),
+            priority: 0.6,
+            changeFrequency: 'never',
+          })
           break
       }
-      sitemap.push({
-        lastModified: p._updatedAt || new Date(),
-        priority,
-        changeFrequency,
-        url,
-      })
     }
   }
 
