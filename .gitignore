@@ -1,0 +1,29 @@
+# Environment & OS
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.bak*
+
+# Node & Package Managers
+node_modules/
+.npm/
+.yarn/
+.pnpm-store/
+
+# Local Testing & Playwright Artifacts
+.playwright-mcp/
+preview_*.png
+test-results/
+playwright-report/
+blob-report/
+
+# Python & Cache
+__pycache__/
+*.py[cod]
+
+# Vercel & Build Artifacts
+.vercel/
+.output/
+dist/
+build/
