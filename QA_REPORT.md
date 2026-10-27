@@ -1,83 +1,77 @@
-# MVMNT DESIGNS Platform — QA Audit & Verification Sign-Off
+# MVMNT Studio Digital Architecture Platform — QA Audit & Verification Sign-Off
 
 **Audit Execution Date:** 2026-10-27  
 **Auditor:** Lead QA & Client Compliance Verification Specialist  
-**Target Site:** `index.html` (Local Ephemeral Edge Preview: `http://127.0.0.1:56454`)  
+**Target Site:** `index.html` (Local Ephemeral Preview: `http://127.0.0.1:50232`)  
 **Overall Compliance Verdict:** **PASS**  
 
 ---
 
 ## 1. Executive Summary
 
-This report documents the exhaustive headless browser verification of the **MVMNT DESIGNS** digital agency platform against the Master Blueprint (`mvmnt_designs_master_blueprint.md`). All tests were performed using Python + Playwright headless Chromium with network mocking of edge API endpoints.
+This report documents the rigorous Playwright browser verification of the overhauled **MVMNT Studio** platform. The audit verified the authentic artisanal editorial layout (zero fake telemetry / AI slop), real Hali Institute case study photography, transparent productized pricing tiers ($4,800, $8,800, $16,500+) and $395/mo retainer, live Vercel AI SDK streaming project scoper interface, and multi-viewport zero-overflow responsive geometry.
 
 ---
 
-## 2. 10 Architectural Sections Compliance Matrix
+## 2. Authentic Editorial Studio Layout Audit (Zero AI Slop)
 
-| # | Architectural Section | Required Blueprint Element | Detected Status |
-|:---:|:---|:---|:---:|
-| navbar | **1. Minimalist High-Tech Navbar**<br>*Brand Monogram + Links + 'Book Sprint' CTA* | Required | **PASS** |
-| hero | **2. Direct Value Hook & Telemetry HUD**<br>*'We build bespoke, sub-second edge platforms in days, not months.'* | Required | **PASS** |
-| meta_proof | **3. Meta-Proof / Reality Check**<br>*Template Agencies vs MVMNT side-by-side contrast (32/100 vs 100/100)* | Required | **PASS** |
-| case_study | **4. Featured Live Case Study**<br>*Hali Institute Practice Platform (`haliinstitute.vercel.app`)* | Required | **PASS** |
-| pricing_grid | **5. Productized Offerings & Pricing**<br>*3 Tiers ($4,800, $8,800, $16,500+) + Retainers ($395, $1,250/mo)* | Required | **PASS** |
-| scope_calculator | **6. Interactive Scope & Investment Calculator**<br>*Dynamic package recommendation & price estimator* | Required | **PASS** |
-| growth_arsenal | **7. Growth & Performance Arsenal**<br>*SEO, Google Ads, Meta Ads, Edge Architecture* | Required | **PASS** |
-| faq_accordion | **8. Interactive Technical FAQ Accordion**<br>*Expanding/collapsing objection handles* | Required | **PASS** |
-| conversion_climax | **9. Closing Conversion Climax**<br>*'Ready to stop losing high-value clients' conversion block* | Required | **PASS** |
-| footer | **10. Global High-Tech Footer**<br>*Brand identity, Melbourne/Sydney location, legal & social links* | Required | **PASS** |
+- **Zero Fake Telemetry / CPU / Latency Counters:** **PASS**
+- **Artisanal Studio Identity & Voice:** **PASS**
 
 ---
 
-## 3. Commercial Pricing & Retainer Verification
+## 3. Hali Institute Spotlight Case Study Imagery
 
-| Package / Plan | Required Commercial Price | Detection in Codebase | Verdict |
+- **Total Images Detected:** `3`
+- **Case Study Cover (`hali_case_study_cover.png`):** **PASS (Loaded Successfully)**
+  - Source: `assets/images/hali_case_study_cover.png` | Natural Dimensions: `1440x960`
+
+---
+
+## 4. Productized Pricing Tiers & Retainer Plan
+
+| Package / Plan | Required Price | Detected in Codebase | Verdict |
 |:---|:---|:---:|:---:|
 | **Solo Sprint Launch** | **$4,800 AUD** | True | **PASS** |
 | **Commercial Boutique Studio** | **$8,800 AUD** | True | **PASS** |
 | **Full Scale Digital Architecture** | **$16,500+ AUD** | True | **PASS** |
 | **Performance & Edge Care Retainer** | **$395 AUD / month** | True | **PASS** |
-| **Growth & Acquisition Retainer** | **$1,250 AUD / month** | True | **PASS** |
 
 ---
 
-## 4. Multi-Viewport Responsive Overflow Audit (0px Overflow)
+## 5. Vercel AI SDK Streaming Project Scoper Interface
 
-| Viewport Width | Target Device Class | Measured `scrollWidth` | `innerWidth` | Horizontal Overflow | Result |
+- **Scoper Interface Present:** **PASS**
+- **Real-time Streaming Response Received:** **PASS** (Length: `136` characters)
+- **'Book Discovery Call with this Scope' Modal Transfer:** **PASS**
+
+---
+
+## 6. Multi-Viewport Responsive Overflow Audit (0px Overflow)
+
+| Viewport Width | Device Class | Measured `scrollWidth` | `innerWidth` | Horizontal Overflow | Result |
 |:---:|:---|:---:|:---:|:---:|:---:|
-| 1440px | 1440px Desktop | 1440px | 1440px | **0px** | **PASS** |
+| 1440px | 1440px Large Desktop | 1440px | 1440px | **0px** | **PASS** |
 | 1024px | 1024px Laptop | 1024px | 1024px | **0px** | **PASS** |
 | 768px | 768px Tablet | 768px | 768px | **0px** | **PASS** |
-| 390px | 390px Mobile | 390px | 390px | **0px** | **PASS** |
+| 390px | 390px Mobile iPhone | 390px | 390px | **0px** | **PASS** |
 | 320px | 320px Small Mobile | 320px | 320px | **0px** | **PASS** |
 
 ---
 
-## 5. SEO, Metadata & Schema.org Structured Data Audit
-
-- **Page Title:** `MVMNT DESIGNS — High-Performance Edge Websites & Growth Systems`
-- **Meta Description:** `We engineer bespoke, sub-150ms edge platforms and high-converting commercial growth systems for clinics, high-value practices, and boutique firms in 7–14 days. Zero bloated WordPress. 100/100 Core Web Vitals.` (208 characters)
-- **Canonical URL:** `https://mvmntdesigns.com/`
-- **OpenGraph Image:** `https://mvmntdesigns.com/assets/images/og-preview.png`
-- **OpenGraph Type:** `website`
-- **sitemap.xml:** Exists = `True`, Valid XML = `True`
-- **robots.txt:** Exists = `True`, References Sitemap = `True`
-- **Schema.org JSON-LD Blocks:** 1 structured data object(s)
-
----
-
-## 6. Console Errors & JavaScript Runtime Audit
+## 7. Console Errors & Runtime Quality
 
 **0 console errors or unhandled page exceptions detected.**
 
 ---
 
-## 7. Visual Evidence Catalog
+## 8. Visual Evidence Catalog
 
-Full-page screenshots captured and archived in `evidence/`:
-- `viewport_1440.png` — 1440px Large Desktop
-- `viewport_1024.png` — 1024px Laptop
-- `viewport_768.png` — 768px Tablet
-- `viewport_390.png` — 390px Mobile
-- `viewport_320.png` — 320px Small Mobile
+Full-page and component screenshots archived in `evidence/`:
+- `viewport_1440.png` — 1440px Large Desktop Full-Page
+- `viewport_1024.png` — 1024px Laptop Full-Page
+- `viewport_768.png` — 768px Tablet Full-Page
+- `viewport_390.png` — 390px Mobile Full-Page
+- `viewport_320.png` — 320px Compact Mobile Full-Page
+- `scoper_section.png` — AI Scoper Component View
+- `case_study_section.png` — Hali Institute Case Study Spotlight View

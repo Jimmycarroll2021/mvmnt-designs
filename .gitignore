@@ -22,6 +22,12 @@ blob-report/
 __pycache__/
 *.py[cod]
 
+# Next.js & Turbo
+.next/
+.turbo/
+.env*.local
+.env
+
 # Vercel & Build Artifacts
 .vercel/
 .output/

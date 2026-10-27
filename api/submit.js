@@ -124,10 +124,11 @@ module.exports = async function handler(req, res) {
     const name = sanitizeString(body.name || body.fullName || '', 100);
     const email = sanitizeString(body.email || '', 254);
     const phone = sanitizeString(body.phone || body.telephone || '', 40);
-    const company = sanitizeString(body.company || body.businessName || body.practiceName || '', 120);
-    const packageChoice = sanitizeString(body.package || body.tier || 'Commercial Boutique Studio', 80);
+    const company = sanitizeString(body.company || body.businessName || body.practiceName || body.website || '', 120);
+    const website = sanitizeString(body.website || body.siteUrl || body.company || '', 200);
+    const packageChoice = sanitizeString(body.package || body.tier || 'Studio Build ($8,800 AUD)', 100);
     const timeline = sanitizeString(body.timeline || 'Immediate', 50);
-    const notes = sanitizeString(body.notes || body.message || '', 600);
+    const notes = sanitizeString(body.notes || body.message || '', 3000);
 
     if (!name) {
       return sendJson(res, 400, { ok: false, error: 'Full name is required.' });
@@ -142,6 +143,7 @@ module.exports = async function handler(req, res) {
       email,
       phone,
       company,
+      website,
       packageChoice,
       timeline,
       notes,

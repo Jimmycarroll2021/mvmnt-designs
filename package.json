@@ -1,0 +1,25 @@
+{
+  "name": "mvmnt-designs",
+  "description": "MVMNT Studio — High-Performance Bespoke Digital Architecture (Sanity + Next.js + Vercel AI SDK)",
+  "version": "1.0.0",
+  "workspaces": [
+    "studio",
+    "frontend"
+  ],
+  "scripts": {
+    "test": "python scripts/test_mvmnt_site.py",
+    "dev": "turbo dev",
+    "dev:next": "npm run dev --workspace=frontend",
+    "dev:studio": "npm run dev --workspace=studio",
+    "build": "npm run build --workspace=frontend",
+    "start": "npm run start --workspace=frontend",
+    "format": "prettier --cache --write .",
+    "lint": "npm run lint --workspace=frontend",
+    "type-check": "npm run type-check --workspaces"
+  },
+  "packageManager": "npm@11.6.2",
+  "devDependencies": {
+    "prettier": "^3.8.3",
+    "turbo": "^2.10.2"
+  }
+}
