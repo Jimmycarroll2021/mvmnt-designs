@@ -1,0 +1,227 @@
+{
+  "status": "success",
+  "baseline": "390d0f8e954be97c255e895dcbe2316c4cd0b723",
+  "verified_at_utc": "2026-10-27T21:13:09.343523+00:00",
+  "independent_checks": [
+    {
+      "check": "independent_cli",
+      "status": "pass",
+      "detail": "{\"status\": \"completed_draft_research\", \"opportunities\": 280, \"page_briefs\": 4, \"no_network\": true}"
+    },
+    {
+      "check": "default_expansion_count",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "check": "canonical_group_count",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "check": "city_and_intent_coverage",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "check": "normalised_unique",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "check": "privacy_aggregate_dedupe",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "check": "no_private_record_or_path_export",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "check": "input_immutable",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "check": "default_unknown_metrics_and_planning_only_values",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "check": "brand_review_and_no_affiliation",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "check": "score_explainable_bounded",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "check": "manifest_output_hashes",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "check": "metric_zero_run",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "check": "metric_zero_vs_blank_and_evidence",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "check": "metrics_immutable",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "check": "excluded_irrelevant_intent",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "check": "repeat_deterministic",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "check": "real_output_identities",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "check": "real_105_input_counts_and_unknown_metrics",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "check": "real_input_identity_unchanged",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "check": "real_privacy_independent_scan",
+      "status": "pass",
+      "detail": "{\"name\": {\"distinct_nontrivial_values_checked\": 105, \"exact_values_found\": 0}, \"email\": {\"distinct_nontrivial_values_checked\": 87, \"exact_values_found\": 0}, \"warm_via\": {\"distinct_nontrivial_values_checked\": 6, \"exact_values_found\": 0}, \"hook\": {\"distinct_nontrivial_values_checked\": 18, \"exact_values_found\": 0}, \"notes\": {\"distinct_nontrivial_values_checked\": 2, \"exact_values_found\": 0}}"
+    },
+    {
+      "check": "outside_checkout_outputs",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "check": "no_network_or_credential_modules",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "check": "final_engine_candidate_unchanged",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "check": "final_document_identity",
+      "status": "pass",
+      "detail": ""
+    }
+  ],
+  "synthetic_output_path": "C:\\Users\\Jimmy\\AppData\\Local\\Temp\\mvmnt-independent-verify-011ifny8",
+  "suite": {
+    "command": "python -m unittest discover -s scripts -p test_custom_cycling_keyword_engine.py -v",
+    "passed": 24,
+    "failed": 0,
+    "seconds": 5.296
+  },
+  "candidate_sha256": {
+    "scripts/custom_cycling_keyword_engine.py": "53e93df4617df5c39673e807accb7222d9ce560fdafe90d60f34ed2a7265eb6b",
+    "scripts/custom_cycling/__init__.py": "166c2017d02958e03017250a4ab0c65211e57a8bd9154ffbdd7aef8ccbf9f995",
+    "scripts/custom_cycling/inputs.py": "f08448593f53abab79906fb873e481fef9f350123182e45547408809abbeb959",
+    "scripts/custom_cycling/engine.py": "9b75c1e8c1b23723ee6ee75eae4c2f85a80e4a86b2c06eb0fb9ad3ce5cff9f06",
+    "config/custom_cycling/taxonomy.json": "86001b51f5e04d20fab857d2e34b5be3052125752f21bc279715b212c6312950",
+    "scripts/test_custom_cycling_keyword_engine.py": "ff6ed98ebd218a9fa3c1098e6a18a07a0fe6d0b60d2e72c6fc7e20fce3b681cc",
+    "CUSTOM_CYCLING_ENGINE.md": "723f092448177608e4a49fbbf1eb8eda465aaedbcdd33d5e890e82d50664b665"
+  },
+  "verdict": "PASS",
+  "candidate_worktree": "uncommitted changes atop baseline",
+  "integration_output_path": "C:\\Users\\Jimmy\\.codex\\artifacts\\mvmnt-custom-cycling\\20261027T211222Z\\outputs",
+  "integration_receipt_path": "C:\\Users\\Jimmy\\.codex\\artifacts\\mvmnt-custom-cycling\\20261027T211222Z\\integration-receipt.json",
+  "integration_output_sha256": {
+    "opportunities.csv": "f2d92bd00e530345bdf328b096594610127a5f3f147ab36b3683686d9dd0bc09",
+    "opportunities.json": "0ffd7147a3170a25514d8fffc7229ddf7e240dd69988335fbde6fa4d6c99534d",
+    "page_briefs.json": "47192d23d6e24854a10e4698312ae439edeed8d8635836873a64cc33c4567e6c",
+    "run_manifest.json": "aa65b041e337690c9223c0a9d4048ce45f4d80d032027b8cebd440d929a1a903"
+  },
+  "independent_real_privacy_scan": {
+    "name": {
+      "distinct_nontrivial_values_checked": 105,
+      "exact_values_found": 0
+    },
+    "email": {
+      "distinct_nontrivial_values_checked": 87,
+      "exact_values_found": 0
+    },
+    "warm_via": {
+      "distinct_nontrivial_values_checked": 6,
+      "exact_values_found": 0
+    },
+    "hook": {
+      "distinct_nontrivial_values_checked": 18,
+      "exact_values_found": 0
+    },
+    "notes": {
+      "distinct_nontrivial_values_checked": 2,
+      "exact_values_found": 0
+    }
+  },
+  "acceptance": {
+    "A1": {
+      "status": "pass",
+      "evidence": "Independent synthetic CLI success; real105CSV integration; 24-test suite; stdlib source review and guarded no-external-action test"
+    },
+    "A2": {
+      "status": "pass",
+      "evidence": "35 curated terms across8locations creates280 hypotheses covering4buyer clusters and race/event intent; original fivecity requirement met"
+    },
+    "A3": {
+      "status": "pass",
+      "evidence": "17initial independent checks confirm unique normalized records, buyer intent, canonical target, score sum, provenance, null metrics and planning-only values"
+    },
+    "A4": {
+      "status": "pass",
+      "evidence": "Synthetic and real privacy scans, source immutability, malformed/header-only rejection, duplicate aggregation"
+    },
+    "A5": {
+      "status": "pass",
+      "evidence": "Independent metric import preserves0vsblank, source/date and combined duplicate provenance; suite invalid-metric and join checks"
+    },
+    "A6": {
+      "status": "pass",
+      "evidence": "Independently hashed real JSON/CSV/briefs/manifest; draft and brandreview gates; no active commercial guarantees"
+    },
+    "A7": {
+      "status": "pass",
+      "evidence": "Separate verifier reran24 tests and25independent checks; real integration identity and input preservation confirmed"
+    },
+    "A8": {
+      "status": "pass",
+      "evidence": "Final frozen guide reviewed: commands, schemas, outsidecheckout outputs, scores, unknown metrics, configuration, branding and manualShopify gate"
+    }
+  },
+  "findings": [],
+  "limitations": [
+    "Local research and draft artifacts only; no measured SEO demand, Shopify publishing, customer journey or SEO performance validated.",
+    "Imported metrics are operator-supplied; provider accuracy remains unverified.",
+    "City variants inherit topical cluster order-value assumptions; the separate cityAUD5000?20000 planning band from the seed table is not modeled. Values never influence scores.",
+    "Default terms are curated hypotheses; configured content requires human review.",
+    "Protection against output-to-public-path choice is documented; --output-dir is explicit and the engine does not enforce private-root allowlisting."
+  ],
+  "unexecuted_checks": [
+    "Live Shopify integration/publishing andGoogleAds APIs excluded by authority."
+  ],
+  "next_action": "Coordinator may accept local engine and deliver guide and saved output paths. No release or external action performed.",
+  "independent_check_count": 25
+}

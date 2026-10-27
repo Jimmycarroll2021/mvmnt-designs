@@ -1,0 +1,144 @@
+{
+  "started_at": "20261027T211222Z",
+  "baseline": "390d0f8e954be97c255e895dcbe2316c4cd0b723",
+  "engine_cli": [
+    "python",
+    "scripts/custom_cycling_keyword_engine.py",
+    "--clubs",
+    "C:\\Users\\Jimmy\\Documents\\CLUBS\\AUSTRALIA_CLUBS_PRIORITISED.csv",
+    "--output-dir",
+    "C:\\Users\\Jimmy\\.codex\\artifacts\\mvmnt-custom-cycling\\20261027T211222Z\\outputs"
+  ],
+  "runtime_wrapper": "runpy CLI with script directory on sys.path; Python audit hook denies socket activity, child processes and sensitive credential paths",
+  "exit_code": 0,
+  "stdout": "{\"status\": \"completed_draft_research\", \"opportunities\": 280, \"page_briefs\": 4, \"no_network\": true}\n",
+  "stderr": "",
+  "output_directory": "C:\\Users\\Jimmy\\.codex\\artifacts\\mvmnt-custom-cycling\\20261027T211222Z\\outputs",
+  "input_unchanged": true,
+  "input_sha256": "3a2c4b68f3f744e801cd100f8f6f96710048dc960b4cab47b8e6940b4bccc3d3",
+  "earlier_failed_attempt": "20261027T211209Z/integration-receipt.json; runpy import path corrected; no engine edits",
+  "source_row_count": 105,
+  "output_sha256": {
+    "opportunities.csv": "f2d92bd00e530345bdf328b096594610127a5f3f147ab36b3683686d9dd0bc09",
+    "opportunities.json": "0ffd7147a3170a25514d8fffc7229ddf7e240dd69988335fbde6fa4d6c99534d",
+    "page_briefs.json": "47192d23d6e24854a10e4698312ae439edeed8d8635836873a64cc33c4567e6c",
+    "run_manifest.json": "aa65b041e337690c9223c0a9d4048ce45f4d80d032027b8cebd440d929a1a903"
+  },
+  "privacy_exact_value_scan": {
+    "name": {
+      "distinct_nontrivial_values_checked": 105,
+      "exact_values_found": 0
+    },
+    "email": {
+      "distinct_nontrivial_values_checked": 87,
+      "exact_values_found": 0
+    },
+    "warm_via": {
+      "distinct_nontrivial_values_checked": 6,
+      "exact_values_found": 0
+    },
+    "hook": {
+      "distinct_nontrivial_values_checked": 18,
+      "exact_values_found": 0
+    },
+    "notes": {
+      "distinct_nontrivial_values_checked": 2,
+      "exact_values_found": 0
+    }
+  },
+  "json_shapes": {
+    "opportunities.json": "list length 280",
+    "page_briefs.json": "list length 4",
+    "run_manifest.json": "dict keys schema_version,engine_version,generated_at,status,no_network,publish_status,inputs,input_hashes,row_counts,club_aggregates,metrics_counts,counts,warnings,held_for_review,output_sha256"
+  },
+  "status": "accepted_local_build",
+  "candidate_files": [
+    {
+      "path": "CUSTOM_CYCLING_ENGINE.md",
+      "sha256": "723f092448177608e4a49fbbf1eb8eda465aaedbcdd33d5e890e82d50664b665",
+      "bytes": 8691
+    },
+    {
+      "path": "config/custom_cycling/taxonomy.json",
+      "sha256": "86001b51f5e04d20fab857d2e34b5be3052125752f21bc279715b212c6312950",
+      "bytes": 7014
+    },
+    {
+      "path": "scripts/custom_cycling/__init__.py",
+      "sha256": "166c2017d02958e03017250a4ab0c65211e57a8bd9154ffbdd7aef8ccbf9f995",
+      "bytes": 103
+    },
+    {
+      "path": "scripts/custom_cycling/engine.py",
+      "sha256": "9b75c1e8c1b23723ee6ee75eae4c2f85a80e4a86b2c06eb0fb9ad3ce5cff9f06",
+      "bytes": 15549
+    },
+    {
+      "path": "scripts/custom_cycling/inputs.py",
+      "sha256": "f08448593f53abab79906fb873e481fef9f350123182e45547408809abbeb959",
+      "bytes": 9823
+    },
+    {
+      "path": "scripts/custom_cycling_keyword_engine.py",
+      "sha256": "53e93df4617df5c39673e807accb7222d9ce560fdafe90d60f34ed2a7265eb6b",
+      "bytes": 202
+    },
+    {
+      "path": "scripts/test_custom_cycling_keyword_engine.py",
+      "sha256": "ff6ed98ebd218a9fa3c1098e6a18a07a0fe6d0b60d2e72c6fc7e20fce3b681cc",
+      "bytes": 16178
+    }
+  ],
+  "documentation_identity_pending": false,
+  "focused_suite": {
+    "source": "coordinator-relayed independent test executor evidence",
+    "command": "PYTHONDONTWRITEBYTECODE=1 python -m unittest discover -s scripts -p test_custom_cycling_keyword_engine.py -v",
+    "tests": 24,
+    "passed": 24,
+    "elapsed_seconds": 5.107,
+    "test_sha256": "ff6ed98ebd218a9fa3c1098e6a18a07a0fe6d0b60d2e72c6fc7e20fce3b681cc",
+    "test_hash_matches_candidate": true
+  },
+  "integrated_checks": {
+    "opportunities": 280,
+    "page_briefs": 4,
+    "unique_keyword_location_pairs": 280,
+    "all_metrics_unknown_without_metrics_file": true,
+    "all_briefs_draft_only": true,
+    "manifest_output_hash_matches": {
+      "opportunities.json": true,
+      "opportunities.csv": true,
+      "page_briefs.json": true
+    },
+    "held_for_review": [
+      {
+        "seed": "tour de cure team kit",
+        "reason": "Branded user-supplied seed excluded from expansion pending relevance, rights and no-affiliation review; no partnership or endorsement is implied."
+      }
+    ]
+  },
+  "limitations": [
+    "Exact-value privacy scan covers distinct input field values with at least six characters; synthetic tests and independent verifier supply additional structural evidence.",
+    "Runtime audit denies known socket/process and credential-path operations; it is bounded instrumentation, not OS-level network isolation.",
+    "No external publishing, demand validation, Shopify store journey, business-claim approval or live integration verified.",
+    "Focused suite was executed by separate tester and relayed by coordinator; integration leaf did not duplicate it."
+  ],
+  "next_action": "Local build accepted. Live integration and publication remain outside completed scope.",
+  "candidate_manifest_sha256": "d6e5fb9d47b6857589e550bb7e54e6f89cc23364937c68179d3f73dc79fc5f1f",
+  "completed_at_utc": "2026-10-27T21:12:58.007344+00:00",
+  "independent_verification": {
+    "path": "evidence/custom-cycling-engine/VERIFICATION.json",
+    "sha256": "b7918783e963fcb11e92f942462fa53b38702e370bdeec9cb1921bb8c019a229",
+    "verdict": "PASS",
+    "acceptance": "A1-A8",
+    "focused_suite_tests": 24,
+    "independent_checks": 25,
+    "blockers": [],
+    "source": "coordinator acceptance and verifier evidence metadata"
+  },
+  "coordinator_acceptance": {
+    "decision": "accepted_local_build_requirements",
+    "recorded_at_utc": "2026-10-27T21:13:39.362865+00:00",
+    "scope": "Local build only; no live publishing, SEO outcome or Shopify journey claim."
+  }
+}
