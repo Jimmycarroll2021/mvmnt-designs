@@ -1,13 +1,21 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+const PACKAGES = [
+  { value: 'Not sure yet (Help me choose on our call)', label: 'Not sure yet (Help me choose on our call)' },
+  { value: '01. Solo Specialist Launch ($4,800 AUD)', label: '01. Solo Specialist Launch — $4,800 AUD (5–7 Days)' },
+  { value: '02. Boutique Clinic Studio Build ($8,800 AUD)', label: '02. Boutique Clinic Studio Build — $8,800 AUD (10–14 Days)' },
+  { value: '03. Complete Practice Transformation ($16,500+ AUD)', label: '03. Complete Practice Transformation — $16,500+ AUD (3–4 Weeks)' },
+  { value: 'Studio Care & Peace of Mind ($395/mo)', label: 'Studio Care & Support — $395 AUD / month' },
+];
 
 export default function BookingForm() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     website: '',
-    packageTier: '02. Boutique Clinic Studio Build ($8,800 AUD)',
+    packageTier: 'Not sure yet (Help me choose on our call)',
     scopeNotes: '',
     honeypot: '',
   });
@@ -15,6 +23,24 @@ export default function BookingForm() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [feedback, setFeedback] = useState<string>('');
   const [receipt, setReceipt] = useState<string>('');
+
+  // Listen for package selection events from pricing cards or Studio Scoper
+  useEffect(() => {
+    const handlePackageSelect = (e: CustomEvent) => {
+      if (e.detail) {
+        setFormData((prev) => ({
+          ...prev,
+          packageTier: e.detail.packageTier || prev.packageTier,
+          scopeNotes: e.detail.scopeNotes !== undefined ? e.detail.scopeNotes : prev.scopeNotes,
+        }));
+      }
+    };
+
+    window.addEventListener('mvmnt_select_package' as any, handlePackageSelect);
+    return () => {
+      window.removeEventListener('mvmnt_select_package' as any, handlePackageSelect);
+    };
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,7 +62,7 @@ export default function BookingForm() {
 
       setStatus('success');
       setReceipt(data.receiptId || 'MVMNT-CONFIRMED');
-      setFeedback(data.message || 'Thank you. We have received your inquiry and Jimmy will be in touch within 24 hours to arrange your call.');
+      setFeedback(data.message || 'Thank you. We have received your inquiry. We will review your practice and email you a direct scheduling link within 24 business hours.');
     } catch (err: any) {
       setStatus('error');
       setFeedback(err.message || 'An unexpected error occurred. Please reach out directly.');
@@ -49,12 +75,31 @@ export default function BookingForm() {
         <span className="text-xs uppercase tracking-widest font-mono text-gray-500 font-semibold">
           Direct Studio Conversation
         </span>
-        <h3 className="text-3xl font-semibold text-gray-900 mt-1">
-          Book a 15-Minute Strategy Call with Jimmy
+        <h3 className="text-2xl sm:text-3xl font-semibold text-gray-900 mt-1">
+          Request a 15-Minute Strategy Call with Jimmy
         </h3>
-        <p className="text-sm text-gray-600 mt-2 leading-relaxed">
-          Let’s discuss your practice, the patients you want to attract, and how we can elevate your online presence. No pushy sales pitch—just an honest conversation about what will move the needle for your business.
+        <p className="text-sm text-gray-700 mt-2 leading-relaxed">
+          Let’s discuss your practice, the patients you want to attract, and how we can elevate your online presence. No pushy sales follow-ups—just an honest assessment of what will move the needle for your business.
         </p>
+
+        {/* Clear What Happens Next Timeline */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6 pt-6 border-t border-gray-100 text-left">
+          <div className="p-3 rounded-lg bg-gray-50 border border-gray-200">
+            <div className="text-[10px] font-mono uppercase text-gray-500 font-semibold">Step 1 · 24h</div>
+            <div className="text-xs font-medium text-gray-900 mt-0.5">Clinical Review</div>
+            <div className="text-[11px] text-gray-600 mt-1">We inspect your current site and specialty.</div>
+          </div>
+          <div className="p-3 rounded-lg bg-gray-50 border border-gray-200">
+            <div className="text-[10px] font-mono uppercase text-gray-500 font-semibold">Step 2 · Direct Link</div>
+            <div className="text-xs font-medium text-gray-900 mt-0.5">Calendar Booking</div>
+            <div className="text-[11px] text-gray-600 mt-1">Pick a 15-min call slot that fits your rooms.</div>
+          </div>
+          <div className="p-3 rounded-lg bg-gray-50 border border-gray-200">
+            <div className="text-[10px] font-mono uppercase text-gray-500 font-semibold">Step 3 · Fixed Quote</div>
+            <div className="text-xs font-medium text-gray-900 mt-0.5">Transparent Scope</div>
+            <div className="text-[11px] text-gray-600 mt-1">Written proposal with predictable costs.</div>
+          </div>
+        </div>
       </div>
 
       {status === 'success' ? (
@@ -64,11 +109,14 @@ export default function BookingForm() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
             </svg>
           </div>
-          <h4 className="text-xl font-semibold text-gray-900 mb-2">Discovery Call Request Received</h4>
-          <p className="text-sm text-gray-600 max-w-md mx-auto mb-4">{feedback}</p>
+          <h4 className="text-xl font-semibold text-gray-900 mb-2">Strategy Call Request Received</h4>
+          <p className="text-sm text-gray-700 max-w-md mx-auto mb-4">{feedback}</p>
           <div className="inline-block px-4 py-2 bg-white rounded border border-gray-200 font-mono text-xs text-gray-800">
             Inquiry Reference: <span className="font-semibold text-black">{receipt}</span>
           </div>
+          <p className="text-xs text-gray-500 mt-4 max-w-sm mx-auto">
+            Check your inbox for a confirmation. We will follow up with our direct calendar scheduling link.
+          </p>
           <div className="mt-6">
             <button
               type="button"
@@ -78,7 +126,7 @@ export default function BookingForm() {
                   name: '',
                   email: '',
                   website: '',
-                  packageTier: '02. Boutique Clinic Studio Build ($8,800 AUD)',
+                  packageTier: 'Not sure yet (Help me choose on our call)',
                   scopeNotes: '',
                   honeypot: '',
                 });
@@ -159,10 +207,11 @@ export default function BookingForm() {
                 onChange={(e) => setFormData({ ...formData, packageTier: e.target.value })}
                 className="w-full rounded-lg border border-gray-300 p-3.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition bg-white"
               >
-                <option value="01. Solo Specialist Launch ($4,800 AUD)">01. Solo Specialist Launch — $4,800 AUD (5–7 Days)</option>
-                <option value="02. Boutique Clinic Studio Build ($8,800 AUD)">02. Boutique Clinic Studio Build — $8,800 AUD [Most Popular] (10–14 Days)</option>
-                <option value="03. Complete Practice Transformation ($16,500+ AUD)">03. Complete Practice Transformation — $16,500+ AUD (3–4 Weeks)</option>
-                <option value="Studio Care & Peace of Mind ($395/mo)">Studio Care & Support — $395 AUD / month</option>
+                {PACKAGES.map((pkg) => (
+                  <option key={pkg.value} value={pkg.value}>
+                    {pkg.label}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
@@ -188,15 +237,15 @@ export default function BookingForm() {
           )}
 
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-gray-100">
-            <span className="text-xs text-gray-500 font-sans">
-              Strict confidentiality guaranteed. No pushy sales calls, ever.
+            <span className="text-xs text-gray-600 font-sans">
+              Strict confidentiality assured. No high-pressure sales calls, ever.
             </span>
             <button
               type="submit"
               disabled={status === 'loading'}
               className="w-full sm:w-auto px-8 py-4 rounded-full bg-black text-white text-sm font-medium hover:bg-gray-800 disabled:opacity-50 transition"
             >
-              {status === 'loading' ? 'Sending Request...' : 'Schedule 15-Minute Strategy Call →'}
+              {status === 'loading' ? 'Sending Request...' : 'Request 15-Minute Strategy Call →'}
             </button>
           </div>
         </form>

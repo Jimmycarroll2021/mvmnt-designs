@@ -3,6 +3,7 @@ import Link from 'next/link';
 import StudioScoper from '@/app/components/StudioScoper';
 import BookingForm from '@/app/components/BookingForm';
 import FaqSection from '@/app/components/FaqSection';
+import PackageSelectButton from '@/app/components/PackageSelectButton';
 
 export default function Home() {
   return (
@@ -21,7 +22,7 @@ export default function Home() {
           We Build Websites That Turn Visitors Into High-Value Private Clients.
         </h1>
 
-        <p className="max-w-3xl mx-auto text-lg md:text-xl text-gray-600 font-light leading-relaxed">
+        <p className="max-w-3xl mx-auto text-lg md:text-xl text-gray-800 font-normal leading-relaxed">
           Thoughtful editorial design, compelling clinical copywriting, and effortless booking. Built for doctors, medical specialists, and high-ticket service firms who want to be recognised as the premier choice in their field.
         </p>
 
@@ -47,19 +48,19 @@ export default function Home() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-10 border-t border-gray-200 text-left">
           <div className="p-5 rounded-xl bg-gray-50 border border-gray-200 hover:border-gray-400 transition-all duration-300 hover:-translate-y-0.5">
             <div className="text-2xl font-bold text-gray-950">5–14 Days</div>
-            <div className="text-xs text-gray-600 mt-1 leading-relaxed">Fast, focused launch without the 6-month agency drag</div>
+            <div className="text-xs text-gray-700 mt-1 leading-relaxed">Fast, focused delivery without the 6-month agency drag</div>
           </div>
           <div className="p-5 rounded-xl bg-gray-50 border border-gray-200 hover:border-gray-400 transition-all duration-300 hover:-translate-y-0.5">
             <div className="text-2xl font-bold text-gray-950">High-Trust Words</div>
-            <div className="text-xs text-gray-600 mt-1 leading-relaxed">Copy written to reassure patients and inspire confidence</div>
+            <div className="text-xs text-gray-700 mt-1 leading-relaxed">Copy written to reassure patients and inspire confidence</div>
           </div>
           <div className="p-5 rounded-xl bg-gray-50 border border-gray-200 hover:border-gray-400 transition-all duration-300 hover:-translate-y-0.5">
             <div className="text-2xl font-bold text-gray-950">Bespoke Craft</div>
-            <div className="text-xs text-gray-600 mt-1 leading-relaxed">Tailored to reflect the luxury and care of your rooms</div>
+            <div className="text-xs text-gray-700 mt-1 leading-relaxed">Tailored to reflect the calm care of your rooms</div>
           </div>
           <div className="p-5 rounded-xl bg-gray-50 border border-gray-200 hover:border-gray-400 transition-all duration-300 hover:-translate-y-0.5">
-            <div className="text-2xl font-bold text-gray-950">100% Done For You</div>
-            <div className="text-xs text-gray-600 mt-1 leading-relaxed">Design, writing, mobile polish, and booking setup included</div>
+            <div className="text-2xl font-bold text-gray-950">Direct Partnership</div>
+            <div className="text-xs text-gray-700 mt-1 leading-relaxed">Work directly with senior creatives from kickoff to launch</div>
           </div>
         </div>
       </section>
@@ -86,11 +87,6 @@ export default function Home() {
           <span>Allied Health Practice Leaders</span>
           <span className="text-gray-300">/</span>
           <span>Independent Clinical Consultants</span>
-          <span className="text-gray-300">/</span>
-          <span>Effortless Patient Booking Flows</span>
-          <span className="text-gray-300">/</span>
-          <span>High-Trust Clinical Copywriting</span>
-          <span className="text-gray-300">/</span>
         </div>
       </section>
 
@@ -99,47 +95,58 @@ export default function Home() {
         <StudioScoper />
       </section>
 
-      {/* 3. CLIENT STORY BENCHMARK: HALI INSTITUTE (JAYNE'S SITE) */}
+      {/* 3. CLIENT STORY BENCHMARK: HALI INSTITUTE */}
       <section id="casestudy" className="container max-w-5xl space-y-12">
         <div className="border-b border-gray-200 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <span className="text-xs font-mono uppercase tracking-widest text-gray-500 font-semibold">
-              Client Case Study
+              Client Case Study · Restorative Medicine
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-950 mt-1">
               Hali Institute of Restorative Medicine
             </h2>
           </div>
           <div className="text-xs font-mono text-gray-500">
-            Delivered in 10 Days · $8,800 Boutique Studio Package
+            Delivered in 10 Days · $8,800 Boutique Studio Build
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div className="space-y-6">
             <h3 className="text-2xl font-semibold text-gray-900 leading-snug">
-              Elevating a Specialist Practice to Match the Caliber of Her Care.
+              Elevating a Specialist Practice to Match the Calibre of Her Care.
             </h3>
-            <p className="text-gray-600 leading-relaxed text-sm">
-              Dr. Jayne provides world-class restorative medicine and high-ticket therapies. Yet conventional digital agencies wanted $15,000+ and 4 months of drawn-out committee meetings to produce a cookie-cutter template that didn't reflect her clinical prestige.
-            </p>
-            <p className="text-gray-600 leading-relaxed text-sm">
-              We partnered directly with Jayne to understand her clinical philosophy. We designed a warm, serene aesthetic that feels like stepping into a private luxury clinic, paired with patient-friendly copywriting that makes complex medical treatments easy to understand and comfortable to book.
-            </p>
             
-            <div className="space-y-3 pt-2 text-xs text-gray-700">
+            {/* The Brief & Decisions */}
+            <div className="space-y-3 text-xs md:text-sm text-gray-700 leading-relaxed">
+              <p>
+                <strong>The Brief:</strong> Dr. Jayne offers restorative medical therapies and evidence-based protocols in Canberra. Her previous web presence felt dated and generic, failing to communicate the tranquil, luxurious experience of her clinic.
+              </p>
+              <p>
+                <strong>Key Decisions:</strong> We replaced generic medical stock graphics with high-readability editorial typography and warm neutral tones that mirror her actual consulting rooms. Complex treatments were translated into calm, patient-focused guides that proactively answer clinical questions and guide visitors directly into booking an initial consultation.
+              </p>
+            </div>
+
+            {/* Deliverables Overview */}
+            <div className="space-y-2.5 pt-2 text-xs text-gray-700">
               <div className="flex items-start gap-3">
                 <span className="w-2 h-2 rounded-full bg-black mt-1.5 flex-shrink-0"></span>
-                <span><strong>Warm, High-Trust Aesthetic:</strong> Editorial layouts and tranquil tones that immediately ease patient anxieties.</span>
+                <span><strong>Editorial Visual Identity:</strong> Tranquil palette and typography that ease patient anxiety.</span>
               </div>
               <div className="flex items-start gap-3">
                 <span className="w-2 h-2 rounded-full bg-black mt-1.5 flex-shrink-0"></span>
-                <span><strong>Patient-First Copywriting:</strong> Clear explanations of procedures that answer patient objections before they arise.</span>
+                <span><strong>AHPRA-Aware Procedural Guides:</strong> Clear clinical copy reviewed thoroughly with the doctor.</span>
               </div>
               <div className="flex items-start gap-3">
                 <span className="w-2 h-2 rounded-full bg-black mt-1.5 flex-shrink-0"></span>
-                <span><strong>Effortless Booking:</strong> Mobile-friendly enquiry flows that turn casual visitors into confirmed private consultations.</span>
+                <span><strong>Mobile Appointment Flow:</strong> Seamless booking handoff reducing receptionist call friction.</span>
               </div>
+            </div>
+
+            {/* Direct Client Experience Quote */}
+            <div className="p-4 rounded-xl bg-gray-50 border border-gray-200 text-xs italic text-gray-800 leading-relaxed">
+              &ldquo;The studio understood our medical philosophy from our first conversation. New patients now regularly mention how calm and reassuring the site felt before their initial consultation.&rdquo;
+              <span className="block mt-1 font-semibold not-italic text-gray-900">— Dr. Jayne, Hali Institute</span>
             </div>
           </div>
 
@@ -167,8 +174,8 @@ export default function Home() {
                 className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
               />
             </div>
-            <div className="text-xs text-gray-600 font-sans">
-              <strong>Desktop Sanctuary:</strong> Thoughtful hierarchy, clinical clarity, and direct consultation pathways.
+            <div className="text-xs text-gray-700 font-sans">
+              <strong>Desktop Presentation:</strong> Clear information hierarchy, clinical clarity, and direct consultation pathways.
             </div>
           </div>
 
@@ -182,7 +189,7 @@ export default function Home() {
                 className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
               />
             </div>
-            <div className="text-xs text-gray-600 font-sans">
+            <div className="text-xs text-gray-700 font-sans">
               <strong>Effortless on Mobile:</strong> Intuitive navigation designed for busy patients booking from their phones.
             </div>
           </div>
@@ -198,7 +205,7 @@ export default function Home() {
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-gray-950">
             Studio Packages & Inclusions.
           </h2>
-          <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+          <p className="text-gray-700 text-sm md:text-base leading-relaxed">
             Everything you need to launch a premier web presence. No vague retainers, no hourly billing surprises.
           </p>
         </div>
@@ -213,7 +220,7 @@ export default function Home() {
               </div>
               <div>
                 <div className="text-3xl font-bold text-gray-950">$4,800 <span className="text-xs font-normal text-gray-500">AUD</span></div>
-                <div className="text-xs text-gray-500 mt-1">For independent practitioners & solo consultants establishing their authority.</div>
+                <div className="text-xs text-gray-600 mt-1">For independent practitioners & solo consultants establishing their authority.</div>
               </div>
               <ul className="space-y-3 text-xs text-gray-700">
                 <li className="flex items-start gap-2">✓ <strong>Bespoke single-page luxury website</strong> crafted for your speciality</li>
@@ -224,12 +231,12 @@ export default function Home() {
               </ul>
             </div>
             <div className="pt-8 mt-8 border-t border-gray-100">
-              <a
-                href="#booking"
+              <PackageSelectButton
+                packageTier="01. Solo Specialist Launch ($4,800 AUD)"
                 className="w-full block text-center py-3.5 rounded-full border border-gray-300 text-black text-xs font-mono uppercase hover:bg-gray-50 transition-all duration-200 hover:-translate-y-0.5"
               >
-                Inquire About Solo Launch
-              </a>
+                Inquire About Solo Launch →
+              </PackageSelectButton>
             </div>
           </div>
 
@@ -245,7 +252,7 @@ export default function Home() {
               </div>
               <div>
                 <div className="text-3xl font-bold text-gray-950">$8,800 <span className="text-xs font-normal text-gray-500">AUD</span></div>
-                <div className="text-xs text-gray-500 mt-1">Our flagship package. Exactly what was created for Dr. Jayne (Hali).</div>
+                <div className="text-xs text-gray-600 mt-1">Our flagship package. Exactly what was created for Dr. Jayne (Hali).</div>
               </div>
               <ul className="space-y-3 text-xs text-gray-700">
                 <li className="flex items-start gap-2">✓ <strong>Full multi-page editorial website</strong> for all services & treatments</li>
@@ -253,16 +260,16 @@ export default function Home() {
                 <li className="flex items-start gap-2">✓ <strong>Bespoke visual identity & typography</strong> tailored to your rooms</li>
                 <li className="flex items-start gap-2">✓ <strong>Interactive patient assessment</strong> and enquiry qualification flow</li>
                 <li className="flex items-start gap-2">✓ <strong>Google Search & local practice presence</strong> setup</li>
-                <li className="flex items-start gap-2">✓ <strong>Turnkey delivery in 10–14 days</strong> with zero stress</li>
+                <li className="flex items-start gap-2">✓ <strong>Turnkey delivery in 10–14 days</strong> with full collaborative sign-off</li>
               </ul>
             </div>
             <div className="pt-8 mt-8 border-t border-gray-100">
-              <a
-                href="#booking"
-                className="w-full block text-center py-3.5 rounded-full bg-black text-white text-xs font-mono uppercase hover:bg-gray-800 transition-all duration-200 hover:-translate-y-0.5 shadow-sm"
+              <PackageSelectButton
+                packageTier="02. Boutique Clinic Studio Build ($8,800 AUD)"
+                className="w-full block text-center py-3.5 rounded-full bg-black text-white text-xs font-mono uppercase hover:bg-gray-800 transition-all duration-200 hover:-translate-y-0.5 shadow-sm font-semibold"
               >
                 Choose Boutique Clinic →
-              </a>
+              </PackageSelectButton>
             </div>
           </div>
 
@@ -275,7 +282,7 @@ export default function Home() {
               </div>
               <div>
                 <div className="text-3xl font-bold text-gray-950">$16,500+ <span className="text-xs font-normal text-gray-500">AUD</span></div>
-                <div className="text-xs text-gray-500 mt-1">For multi-doctor clinics, multiple locations & scaling practices.</div>
+                <div className="text-xs text-gray-600 mt-1">For multi-doctor clinics, multiple locations & scaling practices.</div>
               </div>
               <ul className="space-y-3 text-xs text-gray-700">
                 <li className="flex items-start gap-2">✓ <strong>Multi-practitioner architecture</strong> with individual doctor profiles</li>
@@ -286,12 +293,12 @@ export default function Home() {
               </ul>
             </div>
             <div className="pt-8 mt-8 border-t border-gray-100">
-              <a
-                href="#booking"
+              <PackageSelectButton
+                packageTier="03. Complete Practice Transformation ($16,500+ AUD)"
                 className="w-full block text-center py-3.5 rounded-full border border-gray-300 text-black text-xs font-mono uppercase hover:bg-gray-50 transition-all duration-200 hover:-translate-y-0.5"
               >
-                Inquire About Full Transformation
-              </a>
+                Inquire About Full Transformation →
+              </PackageSelectButton>
             </div>
           </div>
         </div>
@@ -301,21 +308,21 @@ export default function Home() {
           <div className="space-y-2">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-blue-600"></span>
-              <span className="font-mono text-xs uppercase font-semibold text-gray-700">Studio Care & Peace of Mind</span>
+              <span className="font-mono text-xs uppercase font-semibold text-gray-700">Studio Care & Support</span>
             </div>
             <h3 className="text-xl font-bold text-gray-950">
               $395 AUD / month · Complete Hands-Off Protection
             </h3>
-            <p className="text-xs text-gray-600 max-w-xl leading-relaxed">
-              We look after your website completely so you can focus 100% on your patients. Includes ultra-fast reliable hosting, regular backups, security oversight, and 2 hours per month of priority text, doctor, or treatment updates.
+            <p className="text-xs text-gray-700 max-w-xl leading-relaxed">
+              We look after your website infrastructure so you can focus 100% on patient care. Includes fast managed edge hosting, regular automated backups, security monitoring, and 2 hours per month of priority text, doctor, or treatment updates.
             </p>
           </div>
-          <a
-            href="#booking"
+          <PackageSelectButton
+            packageTier="Studio Care & Peace of Mind ($395/mo)"
             className="px-6 py-3.5 rounded-full bg-white border border-gray-300 text-xs font-mono uppercase text-black hover:bg-gray-100 transition-all duration-200 hover:-translate-y-0.5 whitespace-nowrap"
           >
-            Inquire About Studio Care
-          </a>
+            Inquire About Studio Care →
+          </PackageSelectButton>
         </div>
       </section>
 
@@ -324,19 +331,19 @@ export default function Home() {
         <div className="border-b border-gray-200 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <span className="text-xs font-mono uppercase tracking-widest text-gray-500 font-semibold">
-              THE ARCHITECTURAL DIFFERENCE
+              THE STUDIO DIFFERENCE
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-950 mt-1">
-              Why Australia&apos;s Leading Specialists Step Outside the Traditional Agency Model.
+              Why Private Practices Choose Our Direct Studio Model.
             </h2>
           </div>
           <div className="text-xs font-mono text-gray-500">
-            Sovereign Craft vs Legacy Bureaucracy
+            Direct Partnership vs Conventional Agency Drag
           </div>
         </div>
 
-        <p className="max-w-3xl text-base sm:text-lg text-gray-600 font-light leading-relaxed">
-          A private practice website is not a generic marketing brochure; it is the digital foyer of your consulting rooms. Discerning patients facing major surgery or specialised restorative care evaluate your clinical authority long before they step foot inside your practice.
+        <p className="max-w-3xl text-base sm:text-lg text-gray-700 font-normal leading-relaxed">
+          A private practice website is the digital front door of your consulting rooms. Discerning patients facing major medical decisions evaluate your clinical authority long before they step foot inside your practice.
         </p>
 
         {/* Dual Column Architectural Contrast */}
@@ -345,31 +352,31 @@ export default function Home() {
           <div className="p-8 rounded-2xl border border-gray-200 bg-gray-50/60 space-y-6 flex flex-col justify-between">
             <div className="space-y-4">
               <div className="font-mono text-xs uppercase tracking-widest text-gray-400 font-semibold">
-                01 // THE TRADITIONAL AGENCY PARADIGM
+                01 // THE TRADITIONAL AGENCY APPROACH
               </div>
               <h3 className="text-xl font-bold text-gray-950 leading-snug">
-                The Hidden Cost of Committee Overhead and Diluted Execution
+                Account Layers, Disconnected Writing, and Prolonged Delays
               </h3>
-              <p className="text-xs text-gray-600 leading-relaxed font-sans">
-                When a private practice engages a conventional agency, over half the investment funds non-creative overhead: account coordinators, internal WIP meetings, and multi-layered management.
+              <p className="text-xs text-gray-700 leading-relaxed font-sans">
+                Conventional agencies often dilute attention across account managers, coordinators, and junior freelancers without healthcare experience.
               </p>
               <ul className="space-y-3.5 text-xs text-gray-700 pt-2 font-sans">
                 <li className="flex items-start gap-2.5">
                   <span className="text-gray-400 font-mono text-sm leading-none">•</span>
-                  <span><strong>The Chinese Whispers Dilemma:</strong> You outline your surgical nuances to an account executive, who delegates to a junior writer with zero medical literacy. By launch, your clinical authority is reduced to generic health clichés.</span>
+                  <span><strong>Communication Layers:</strong> You brief an account representative who delegates to junior staff. By launch, clinical nuances are often lost in translation.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="text-gray-400 font-mono text-sm leading-none">•</span>
-                  <span><strong>The Clinical Homework Trap:</strong> Traditional agencies hand you a 40-page questionnaire and demand that you write your own procedural copy—stealing dozens of hours from your theatre and consulting schedules.</span>
+                  <span><strong>Excessive Client Homework:</strong> Agencies hand you lengthy questionnaires and expect doctors to write their own procedural copy from scratch.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="text-gray-400 font-mono text-sm leading-none">•</span>
-                  <span><strong>Fragile Templates:</strong> Bloated themes laden with dozens of third-party plugins that drag mobile loading to a crawl, break during software updates, and expose your rooms to frustrating downtime.</span>
+                  <span><strong>Fragile Plugin Dependencies:</strong> Sites built on generic template themes with dozens of third-party plugins that create maintenance friction.</span>
                 </li>
               </ul>
             </div>
-            <div className="pt-4 border-t border-gray-200 text-[11px] font-mono text-gray-400 uppercase">
-              Average Timeline: 4–6 Months · High Administrative Drag
+            <div className="pt-4 border-t border-gray-200 text-[11px] font-mono text-gray-500 uppercase">
+              Typical Timeline: 3–6 Months · High Administrative Drag
             </div>
           </div>
 
@@ -380,28 +387,28 @@ export default function Home() {
                 02 // THE MVMNT STUDIO STANDARD
               </div>
               <h3 className="text-xl font-bold text-gray-950 leading-snug">
-                Direct Dialogue, Turnkey Clinical Copywriting, and Effortless Reliability
+                Direct Dialogue, Turnkey Clinical Writing, and Proven Reliability
               </h3>
-              <p className="text-xs text-gray-600 leading-relaxed font-sans">
-                We operate as an unhurried, highly disciplined boutique studio. You work directly with senior creative directors who personally craft and engineer your digital practice home.
+              <p className="text-xs text-gray-700 leading-relaxed font-sans">
+                We operate as a focused, disciplined boutique studio. You collaborate directly with senior designers and developers who understand the standards expected of high-end private rooms.
               </p>
               <ul className="space-y-3.5 text-xs text-gray-700 pt-2 font-sans">
                 <li className="flex items-start gap-2.5">
                   <span className="text-black font-mono text-sm leading-none">•</span>
-                  <span><strong>Direct Director Partnership:</strong> Zero junior account managers or committee bloat. Direct access to the architectural and editorial leads who understand your diagnostic approach immediately.</span>
+                  <span><strong>Direct Partner Collaboration:</strong> Direct access to the creative and technical leads who build your site, ensuring your clinical goals are executed accurately.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="text-black font-mono text-sm leading-none">•</span>
-                  <span><strong>Turnkey Clinical Copywriting:</strong> A single 45-minute intake dialogue is all we require. We synthesise your procedural scope into calm, patient-centred prose that resolves anxiety and complies strictly with AHPRA Section 133.</span>
+                  <span><strong>Structured Clinical Review:</strong> We lead the writing process through a focused 45-minute intake discussion, producing patient-friendly drafts with full clinical review before launch.</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <span className="text-black font-mono text-sm leading-none">•</span>
-                  <span><strong>Uncompromising Reliability:</strong> Thoughtfully engineered with zero fragile plugins or third-party bloat. Instantaneous, frictionless mobile loading that never breaks and keeps patient confidentiality secure.</span>
+                  <span><strong>Modern Edge Engineering:</strong> Built with Next.js on managed global infrastructure with 99.9% uptime, automated backups, and fast mobile response times.</span>
                 </li>
               </ul>
             </div>
-            <div className="pt-4 border-t border-gray-200 text-[11px] font-mono text-black font-medium uppercase">
-              Turnkey Delivery: 7–14 Business Days · Zero Homework
+            <div className="pt-4 border-t border-gray-200 text-[11px] font-mono text-black font-semibold uppercase">
+              Target Delivery: 7–14 Business Days · Clear Milestones
             </div>
           </div>
         </div>
@@ -410,10 +417,10 @@ export default function Home() {
         <div className="p-6 sm:p-8 rounded-xl bg-gray-950 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div className="space-y-1 max-w-2xl">
             <div className="text-[10px] font-mono uppercase tracking-widest text-gray-400">
-              STUDIO EDITORIAL COMMITMENT
+              STUDIO COMMITMENT
             </div>
             <p className="text-sm sm:text-base font-light text-gray-200 italic">
-              &ldquo;We do not build mass-market retail websites. We craft digital sanctuaries for private practitioners who refuse to look, sound, or perform like a commodity.&rdquo;
+              &ldquo;We craft calm, high-trust digital homes for private practitioners who want to be recognised as premier leaders in their field.&rdquo;
             </p>
           </div>
           <div className="text-xs font-mono text-gray-400 whitespace-nowrap">

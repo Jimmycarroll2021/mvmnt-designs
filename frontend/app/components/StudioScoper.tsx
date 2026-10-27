@@ -17,6 +17,63 @@ const SUGGESTED_PROMPTS = [
   }
 ];
 
+// Lightweight Markdown Formatter for Scoper Output
+function FormattedOutput({ text }: { text: string }) {
+  const lines = text.split('\n');
+
+  return (
+    <div className="space-y-3 text-gray-800 font-sans text-sm leading-relaxed">
+      {lines.map((line, idx) => {
+        const trimmed = line.trim();
+        if (!trimmed) return <div key={idx} className="h-1" />;
+
+        // Header ###
+        if (trimmed.startsWith('###')) {
+          const headerText = trimmed.replace(/^###\s*/, '');
+          return (
+            <h4 key={idx} className="text-base font-bold text-gray-950 mt-4 mb-1">
+              {renderFormattedInline(headerText)}
+            </h4>
+          );
+        }
+
+        // Bullet point - or *
+        if (trimmed.startsWith('- ') || trimmed.startsWith('* ') || trimmed.startsWith('• ')) {
+          const itemText = trimmed.replace(/^[-*•]\s*/, '');
+          return (
+            <div key={idx} className="flex items-start gap-2 text-xs md:text-sm text-gray-700 pl-2">
+              <span className="text-gray-400 font-mono text-xs mt-1">•</span>
+              <span>{renderFormattedInline(itemText)}</span>
+            </div>
+          );
+        }
+
+        // Regular paragraph
+        return (
+          <p key={idx} className="text-xs md:text-sm text-gray-700 leading-relaxed">
+            {renderFormattedInline(trimmed)}
+          </p>
+        );
+      })}
+    </div>
+  );
+}
+
+// Inline helper for **bold** text
+function renderFormattedInline(str: string) {
+  const parts = str.split(/(\*\*.*?\*\*)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return (
+        <strong key={i} className="font-semibold text-gray-950">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    return part;
+  });
+}
+
 export default function StudioScoper() {
   const [prompt, setPrompt] = useState('');
   const [isStreaming, setIsStreaming] = useState(false);
@@ -58,7 +115,7 @@ export default function StudioScoper() {
         setOutput(accumulated);
       }
     } catch (err: any) {
-      setOutput(`### Project Overview\n\nWe would love to discuss your practice in detail. Please select a package below or book a quick discovery call so we can tailor the right approach for your goals.`);
+      setOutput(`### Recommended Direction: Boutique Clinic Studio Build\n\n- **Estimated Investment:** $8,800 AUD\n- **Turnaround:** 10–14 business days\n- **Focus:** Warm, high-trust clinical design with integrated patient appointment pathways.\n\nWe would love to discuss your practice in detail. Select this package below or request a quick 15-minute consultation.`);
     } finally {
       setIsStreaming(false);
       setTimeout(() => {
@@ -75,13 +132,36 @@ export default function StudioScoper() {
   };
 
   const handleTransferToBooking = () => {
+    const textLower = (output + ' ' + prompt).toLowerCase();
+    let packageTier = 'Not sure yet (Help me choose on our call)';
+
+    if (textLower.includes('solo specialist') || textLower.includes('solo launch') || textLower.includes('4,800')) {
+      packageTier = '01. Solo Specialist Launch ($4,800 AUD)';
+    } else if (textLower.includes('transformation') || textLower.includes('multi-doctor') || textLower.includes('16,500')) {
+      packageTier = '03. Complete Practice Transformation ($16,500+ AUD)';
+    } else if (textLower.includes('boutique clinic') || textLower.includes('8,800')) {
+      packageTier = '02. Boutique Clinic Studio Build ($8,800 AUD)';
+    }
+
+    // Prepare a clean, human-readable summary without raw markdown tokens
+    const cleanPrompt = prompt.trim() ? prompt.trim().split('\n')[0] : 'Practice consultation inquiry';
+    const cleanNotes = `Practice Overview:\n${cleanPrompt}\n\nRecommended Approach:\n${packageTier}\n\nPrimary Objectives:\nElevate visual credibility, clarify treatment information, and implement frictionless patient booking.`;
+
+    // Dispatch event to BookingForm
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(
+        new CustomEvent('mvmnt_select_package', {
+          detail: {
+            packageTier,
+            scopeNotes: cleanNotes,
+          },
+        })
+      );
+    }
+
     const bookingSection = document.getElementById('booking');
     if (bookingSection) {
       bookingSection.scrollIntoView({ behavior: 'smooth' });
-      const notesField = document.getElementById('scopeNotes') as HTMLTextAreaElement;
-      if (notesField && output) {
-        notesField.value = output.slice(0, 800) + '...';
-      }
     }
   };
 
@@ -98,25 +178,25 @@ export default function StudioScoper() {
               Instant Practice Strategy Guide
             </span>
           </div>
-          <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 mt-1">
-            Find the Right Fit for Your Practice
+          <h3 className="text-2xl font-semibold text-gray-900 mt-1">
+            Describe Your Practice. Receive an Instant Strategy.
           </h3>
-          <p className="text-sm text-gray-600 mt-1">
-            Tell us about your practice and your ideal clients. We will outline the optimal website structure, timeline, and exact package.
+          <p className="text-xs text-gray-600 mt-1">
+            Explore tailored scope, timeline, and package suggestions based on your practice model.
           </p>
         </div>
-        <div className="flex items-center">
-          <span className="px-3.5 py-1 bg-gray-100 text-gray-700 text-xs font-mono rounded-full border border-gray-200">
-            15-Minute Strategy Sprint
+
+        <div className="flex items-center gap-2">
+          <span className="text-[11px] font-mono text-gray-400 uppercase tracking-widest">
+            AHPRA-Aware Studio Model
           </span>
         </div>
       </div>
 
       <div className="mt-6">
-        <label htmlFor="promptInput" className="block text-xs uppercase tracking-wider font-mono text-gray-500 mb-2">
-          Click an example scenario or describe your practice:
+        <label className="block text-xs uppercase font-mono tracking-wider text-gray-500 mb-2">
+          Select an Example Scenario or Write Your Own:
         </label>
-        
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
           {SUGGESTED_PROMPTS.map((item, idx) => (
             <button
@@ -141,7 +221,7 @@ export default function StudioScoper() {
             rows={4}
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
-            placeholder="e.g. We are an established boutique practice looking to attract more private patients. We want our website to feel like a high-end private sanctuary. We want prospective patients to understand our treatment plans and easily book consultations..."
+            placeholder="e.g. We are an established boutique practice looking to attract more private patients. We want our website to feel like a high-end private rooms. We want prospective patients to understand our treatment plans and easily book consultations..."
             className="w-full rounded-xl border border-gray-300 p-4 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition"
             disabled={isStreaming}
           />
@@ -202,8 +282,8 @@ export default function StudioScoper() {
             </div>
           </div>
 
-          <div className="p-6 md:p-8 rounded-xl bg-gray-50 border border-gray-200 text-gray-800 font-sans text-sm leading-relaxed whitespace-pre-wrap selection:bg-gray-300">
-            {output}
+          <div className="p-6 md:p-8 rounded-xl bg-gray-50 border border-gray-200">
+            <FormattedOutput text={output} />
             {isStreaming && <span className="inline-block w-2 h-4 bg-black animate-pulse ml-1"></span>}
           </div>
         </div>
