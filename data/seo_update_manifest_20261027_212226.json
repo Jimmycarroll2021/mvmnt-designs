@@ -1,0 +1,134 @@
+{
+  "timestamp": "2026-10-27T21:22:35.656769",
+  "store": "mvmnt-club.myshopify.com",
+  "plan": {
+    "timestamp": "2026-10-27T21:22:26.535931",
+    "custom_kit_page": {
+      "id": "gid://shopify/Page/165106057456",
+      "url": "https://mvmnt.club/pages/custom-kit",
+      "current": {
+        "title_tag": "Custom Cycling Kit Australia | Club & Team Kit",
+        "description_tag": "Custom cycling kit for Australian clubs and teams. Minimum 5 per style, 6-8 weeks, free delivery to your club, designed in Canberra. Reply within 24 hours."
+      },
+      "proposed": {
+        "title_tag": "Custom Cycling Kit Australia | Club & Team Kit Portals",
+        "description_tag": "Custom cycling kit for Australian clubs & teams. Zero-float member stores, 5-garment minimums, race & masters fit. Free sizing kit. Delivered in 6-8 weeks."
+      },
+      "reasoning": "Targets high-ticket committee searches. Enriches snippet with 'Zero-float member stores' and 'Free sizing kit' addressing top committee pain points and ranking signals."
+    },
+    "aero_collection": {
+      "id": "gid://shopify/Collection/371860209904",
+      "url": "https://mvmnt.club/collections/aero-cycling-jersey",
+      "current": {
+        "seo_title": "Aero Cycling Jerseys - Aerolite Race Fit",
+        "seo_description": "Aerolite aero cycling jerseys in race fit, for men and women. Italian lightweight fabric cut to reduce drag at pace. Designed in Canberra.",
+        "description_html": "<p>The Aerolite range is our aero race jersey, cut close through the shoulder and sleeve and sized 3XS to 3XL in men's and women's fits. Every colourway here is in stock and ships from Canberra.</p><p>The same jersey is the basis of most club kit we produce, so a club can put its own design on this pattern rather than starting from scratch. <a href=\"https://mvmnt.club/pages/custom-kit\">See how custom kit works</a>.</p>"
+      },
+      "proposed": {
+        "seo_title": "Aero Cycling Jerseys Australia | Aerolite Race & Club Fit",
+        "seo_description": "High-performance aerodynamic cycling jerseys engineered in Canberra. Italian technical fabrics, race cut & masters sizing 3XS-3XL. Custom club designs available.",
+        "description_html": "<p>The Aerolite range is our signature aerodynamic cycling jersey, precision cut through the shoulder and sleeve to reduce drag at race pace. Available in men's and women's fits from 3XS to 3XL, crafted from breathable Italian technical textiles.</p><p>Every colourway here ships directly from Canberra. The same aerolite chassis forms the foundation of our <a href=\"https://mvmnt.club/pages/custom-kit\">custom cycling kit for clubs and teams</a>\u2014giving your riders pro-grade aerodynamics with tailored club graphics and zero inventory float.</p>"
+      },
+      "reasoning": "GSC data shows 'aero cycling jersey' at Pos 10.4 and 'aerodynamic cycling jersey' at Pos 12.8. Injecting high-intent Australian keyword modifiers and linking directly to the high-ticket custom kit portal."
+    },
+    "bibs_collection": {
+      "id": "gid://shopify/Collection/397439697136",
+      "url": "https://mvmnt.club/collections/mens-cycling-bib-shorts",
+      "current": {
+        "seo_title": "Men's Bib Shorts for Distance Cycling",
+        "seo_description": "Men's bib shorts built for comfort and support over distance. Find your fit, get fast shipping, and return within 30 days.",
+        "description_html": "<p>Men's bib shorts built for support and comfort over distance. You want stable leg grippers, a chamois that suits your ride length, and straps that disappear on the shoulders. That is the focus here. Use the size guide for waist and hip measurements, and check the product page for the intended ride duration and chamois details.</p>"
+      },
+      "proposed": {
+        "seo_title": "Men's Cycling Bib Shorts Australia | Distance Race Chamois",
+        "seo_description": "High-density Italian chamois and compression support for long days in the saddle. Australian engineered, tested by clubs. Free shipping over $150.",
+        "description_html": "<p>Engineered for endurance races and high-volume training blocks. Our men's cycling bib shorts feature high-density Italian chamois pads, laser-cut silicone grippers, and graduated compression panels that eliminate chafing over distance.</p><p>Also available with bespoke club side panels and gripper bands through the <a href=\"https://mvmnt.club/pages/custom-kit\">MVMNT custom cycling kit program</a>.</p>"
+      },
+      "reasoning": "Expands commercial reach for bib shorts while reinforcing the custom club kit internal linking structure."
+    }
+  },
+  "mutation_results": {
+    "custom_kit_page": {
+      "data": {
+        "metafieldsSet": {
+          "metafields": [
+            {
+              "id": "gid://shopify/Metafield/62485454815472",
+              "key": "title_tag",
+              "value": "Custom Cycling Kit Australia | Club & Team Kit Portals"
+            },
+            {
+              "id": "gid://shopify/Metafield/62485454848240",
+              "key": "description_tag",
+              "value": "Custom cycling kit for Australian clubs & teams. Zero-float member stores, 5-garment minimums, race & masters fit. Free sizing kit. Delivered in 6-8 weeks."
+            }
+          ],
+          "userErrors": []
+        }
+      },
+      "extensions": {
+        "cost": {
+          "requestedQueryCost": 10,
+          "actualQueryCost": 10,
+          "throttleStatus": {
+            "maximumAvailable": 2000,
+            "currentlyAvailable": 1990,
+            "restoreRate": 100
+          }
+        }
+      }
+    },
+    "aero_collection": {
+      "data": {
+        "collectionUpdate": {
+          "collection": {
+            "id": "gid://shopify/Collection/371860209904",
+            "title": "Aero Cycling Jersey",
+            "seo": {
+              "title": "Aero Cycling Jerseys Australia | Aerolite Race & Club Fit",
+              "description": "High-performance aerodynamic cycling jerseys engineered in Canberra. Italian technical fabrics, race cut & masters sizing 3XS-3XL. Custom club designs available."
+            }
+          },
+          "userErrors": []
+        }
+      },
+      "extensions": {
+        "cost": {
+          "requestedQueryCost": 11,
+          "actualQueryCost": 11,
+          "throttleStatus": {
+            "maximumAvailable": 2000,
+            "currentlyAvailable": 1989,
+            "restoreRate": 100
+          }
+        }
+      }
+    },
+    "bibs_collection": {
+      "data": {
+        "collectionUpdate": {
+          "collection": {
+            "id": "gid://shopify/Collection/397439697136",
+            "title": "Men's Bib Shorts",
+            "seo": {
+              "title": "Men's Cycling Bib Shorts Australia | Distance Race Chamois",
+              "description": "High-density Italian chamois and compression support for long days in the saddle. Australian engineered, tested by clubs. Free shipping over $150."
+            }
+          },
+          "userErrors": []
+        }
+      },
+      "extensions": {
+        "cost": {
+          "requestedQueryCost": 11,
+          "actualQueryCost": 11,
+          "throttleStatus": {
+            "maximumAvailable": 2000,
+            "currentlyAvailable": 1989,
+            "restoreRate": 100
+          }
+        }
+      }
+    }
+  }
+}

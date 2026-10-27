@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0",
+  "locations": ["Australia", "Sydney", "Melbourne", "Brisbane", "Adelaide", "Perth", "Canberra", "Gold Coast"],
+  "clusters": [
+    {
+      "id": "core_kit",
+      "name": "Core Custom Cycling Kit",
+      "buyer_role": "club committee, race squad or gran fondo team manager",
+      "source_refs": ["campaign_playbook:heritage_identity_strategy"],
+      "target_page": "/pages/custom-cycling-kit",
+      "assumed_order_value_aud": {"min": 5000, "max": 25000},
+      "terms": [
+        {"phrase": "custom cycling kit", "intent": "commercial_investigation"},
+        {"phrase": "custom cycling kit supplier", "intent": "transactional"},
+        {"phrase": "custom cycling kit quote", "intent": "transactional"},
+        {"phrase": "custom cycling jerseys", "intent": "commercial_investigation"},
+        {"phrase": "bulk custom cycling jerseys", "intent": "transactional"},
+        {"phrase": "custom cycling apparel for teams", "intent": "commercial_investigation"},
+        {"phrase": "bespoke cycling kit", "intent": "commercial_investigation"},
+        {"phrase": "bespoke cycling kits", "intent": "commercial_investigation"},
+        {"phrase": "cycling team kit design", "intent": "commercial_investigation"}
+      ],
+      "buyer_pains": ["Coordinating sizes and design approval across riders", "Comparing total order cost and realistic production timelines"],
+      "proposed_sections": ["Custom kit options and documented fit choices", "Proposed club heritage and identity design concept", "Design approval and quotation process", "Dated production plan with verified delivery estimates"],
+      "evidence_needed": ["Current pricing and minimum order quantities", "Confirmed garment specifications and samples", "Approved production and delivery estimates"]
+    },
+    {
+      "id": "club_stores",
+      "name": "Cycling Club Stores",
+      "buyer_role": "club president, kit secretary or volunteer kit coordinator",
+      "source_refs": ["campaign_playbook:committee_admin_inventory_strategy"],
+      "target_page": "/pages/club-stores",
+      "assumed_order_value_aud": {"min": 8000, "max": 35000},
+      "terms": [
+        {"phrase": "custom cycling kit for clubs", "intent": "commercial_investigation"},
+        {"phrase": "cycling club kit supplier", "intent": "transactional"},
+        {"phrase": "cycling club kit online store", "intent": "commercial_investigation"},
+        {"phrase": "cycling club member ordering portal", "intent": "commercial_investigation"},
+        {"phrase": "cycling club kit preorder", "intent": "commercial_investigation"},
+        {"phrase": "no upfront stock cycling club kit", "intent": "commercial_investigation"},
+        {"phrase": "zero float club store cycling", "intent": "commercial_investigation"},
+        {"phrase": "no minimum custom cycling kit", "intent": "commercial_investigation"},
+        {"phrase": "cycling club kit design", "intent": "commercial_investigation"}
+      ],
+      "buyer_pains": ["Volunteer administration and member payment coordination", "Avoiding surplus stock and clarifying who pays the supplier"],
+      "proposed_sections": ["Proposed member ordering workflow", "Stock, payment and fulfilment responsibilities", "Committee approval checklist"],
+      "evidence_needed": ["Demonstrated member-store workflow", "Confirmed payment and inventory terms before any zero-float claim", "Verified minimums and reorder conditions before any no-minimum claim", "Source playbook is strategy, not operating proof; approve offers and terms before publication"]
+    },
+    {
+      "id": "masters_aero",
+      "name": "Masters and Aero Cycling Apparel",
+      "buyer_role": "masters or veterans racing team manager or race squad captain",
+      "source_refs": ["campaign_playbook:masters_fit_strategy"],
+      "target_page": "/pages/custom-aero-cycling-kit",
+      "assumed_order_value_aud": {"min": 4000, "max": 15000},
+      "terms": [
+        {"phrase": "custom aero cycling jersey", "intent": "commercial_investigation"},
+        {"phrase": "custom cycling bib shorts", "intent": "commercial_investigation"},
+        {"phrase": "masters cycling team kit", "intent": "commercial_investigation"},
+        {"phrase": "custom masters cycling jerseys", "intent": "commercial_investigation"},
+        {"phrase": "masters fit cycling jerseys", "intent": "commercial_investigation"},
+        {"phrase": "custom race fit cycling kit", "intent": "commercial_investigation"},
+        {"phrase": "custom criterium team cycling kit", "intent": "commercial_investigation"},
+        {"phrase": "custom cycling skinsuit supplier", "intent": "transactional"}
+      ],
+      "buyer_pains": ["Selecting a fit that works for different rider shapes", "Assessing race apparel claims against actual garment evidence"],
+      "proposed_sections": ["Proposed sleeve, club cut and size range discussion with documented sizing", "Garment specification comparison", "Sample evaluation and team quotation"],
+      "evidence_needed": ["Confirmed availability of masters and race fit options", "Fit chart and sample feedback", "Independent evidence before aerodynamic or performance claims"]
+    },
+    {
+      "id": "corporate_events",
+      "name": "Corporate Charity and Cycling Events",
+      "buyer_role": "corporate buyer, sponsorship lead, charity event organiser or race director",
+      "source_refs": ["campaign_playbook:sponsor_activation_strategy", "campaign_playbook:season_timing_strategy"],
+      "target_page": "/pages/corporate-custom-cycling",
+      "assumed_order_value_aud": {"min": 10000, "max": 50000},
+      "terms": [
+        {"phrase": "corporate custom cycling jerseys", "intent": "transactional"},
+        {"phrase": "corporate cycling team kit", "intent": "commercial_investigation"},
+        {"phrase": "charity ride custom cycling jerseys", "intent": "commercial_investigation"},
+        {"phrase": "charity ride custom cycling kit", "intent": "commercial_investigation"},
+        {"phrase": "charity cycling event kit supplier", "intent": "transactional"},
+        {"phrase": "gran fondo team kit design", "intent": "commercial_investigation"},
+        {"phrase": "custom cycling race event jerseys", "intent": "commercial_investigation"},
+        {"phrase": "cycling event organiser jersey supplier", "intent": "transactional"},
+        {"phrase": "branded cycling jerseys for corporate teams", "intent": "commercial_investigation"}
+      ],
+      "buyer_pains": ["Coordinating sponsor artwork and purchasing approval", "Aligning participant sizing and realistic event deadlines"],
+      "proposed_sections": ["Corporate, charity and race event use cases", "Proposed sponsor logo and artwork coordination", "Artwork approval and quantity planning", "Dated production plan and event deadline feasibility"],
+      "evidence_needed": ["Approved artwork and sponsor permissions", "Confirmed order quantity, budget and event date", "Verified production capacity and delivery estimate without guarantees"]
+    }
+  ]
+}
