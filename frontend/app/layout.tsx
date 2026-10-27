@@ -82,7 +82,7 @@ export default async function RootLayout({children}: LayoutProps<'/'>) {
             </>
           )}
           {/* The <SanityLive> component is responsible for making all sanityFetch calls in your application live, so should always be rendered. */}
-          <SanityLive onError={handleError} />
+          {isDraftMode && <SanityLive onError={handleError} />}
           <Header />
           <main className="">{children}</main>
           <Footer />

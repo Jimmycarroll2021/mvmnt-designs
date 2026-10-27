@@ -33,3 +33,5 @@ __pycache__/
 .output/
 dist/
 build/
+
+.vercel

@@ -22,7 +22,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: 'monthly',
   })
 
-  if (allPostsAndPages != null && allPostsAndPages.data.length != 0) {
+  if (allPostsAndPages != null && allPostsAndPages.data && allPostsAndPages.data.length != 0) {
     let priority: number
     let changeFrequency:
       | 'monthly'
