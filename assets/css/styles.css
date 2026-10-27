@@ -800,7 +800,8 @@ header.site-header {
   box-shadow: var(--shadow-md), var(--shadow-subtle-glow);
 }
 
-.pricing-index {
+.pricing-index,
+.tier-badge {
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: 0.1em;
@@ -811,7 +812,8 @@ header.site-header {
   justify-content: space-between;
 }
 
-.pricing-featured-tag {
+.pricing-featured-tag,
+.featured-tag {
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.08em;
@@ -823,7 +825,8 @@ header.site-header {
   border-radius: var(--radius-pill);
 }
 
-.pricing-card h3 {
+.pricing-card h3,
+.tier-name {
   font-family: var(--font-display);
   font-size: 22px;
   font-weight: 700;
@@ -832,21 +835,27 @@ header.site-header {
   margin-bottom: 8px;
 }
 
-.pricing-desc {
+.pricing-desc,
+.tier-desc {
   font-size: 14px;
   color: var(--text-secondary);
   line-height: 1.5;
   margin-bottom: 24px;
 }
 
-.pricing-cost-row {
+.pricing-cost-row,
+.price-box {
   padding: 20px 0;
   border-top: 1px solid var(--border-subtle);
   border-bottom: 1px solid var(--border-subtle);
   margin-bottom: 28px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
 }
 
-.pricing-amount {
+.pricing-amount,
+.price-val {
   font-family: var(--font-mono);
   font-size: clamp(32px, 3.8vw, 40px);
   font-weight: 700;
@@ -854,7 +863,8 @@ header.site-header {
   line-height: 1;
 }
 
-.pricing-window {
+.pricing-window,
+.price-cadence {
   font-family: var(--font-mono);
   font-size: 12px;
   color: var(--text-muted);
