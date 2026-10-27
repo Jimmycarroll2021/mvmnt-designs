@@ -9,8 +9,11 @@ export default function Home() {
       {/* 1. HERO SECTION */}
       <section className="container max-w-5xl text-center space-y-8">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gray-100 border border-gray-200 text-xs font-mono text-gray-700">
-          <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-          <span>BOUTIQUE DIGITAL STUDIO · SYDNEY & MELBOURNE</span>
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span>BOUTIQUE DIGITAL STUDIO · AUSTRALIA</span>
         </div>
 
         <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-gray-950 leading-[1.08]">
@@ -18,13 +21,13 @@ export default function Home() {
         </h1>
 
         <p className="max-w-3xl mx-auto text-lg md:text-xl text-gray-600 font-light leading-relaxed">
-          Thoughtful editorial design, compelling clinical copywriting, and effortless booking. Built for doctors, medical specialists, and high-ticket service firms who want to be recognized as the premier choice in their field.
+          Thoughtful editorial design, compelling clinical copywriting, and effortless booking. Built for doctors, medical specialists, and high-ticket service firms who want to be recognised as the premier choice in their field.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
           <a
             href="#scoper"
-            className="w-full sm:w-auto px-8 py-4 rounded-full bg-black text-white text-sm font-medium hover:bg-gray-800 transition flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-8 py-4 rounded-full bg-black text-white text-sm font-medium hover:bg-gray-800 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-sm flex items-center justify-center gap-2"
           >
             Find Your Ideal Package
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -33,7 +36,7 @@ export default function Home() {
           </a>
           <a
             href="#pricing"
-            className="w-full sm:w-auto px-8 py-4 rounded-full bg-white border border-gray-300 text-black text-sm font-medium hover:bg-gray-50 transition"
+            className="w-full sm:w-auto px-8 py-4 rounded-full bg-white border border-gray-300 text-black text-sm font-medium hover:bg-gray-50 transition-all duration-200 hover:-translate-y-0.5"
           >
             View Pricing & Inclusions
           </a>
@@ -41,22 +44,53 @@ export default function Home() {
 
         {/* Real Human Value Proof Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-10 border-t border-gray-200 text-left">
-          <div className="p-5 rounded-xl bg-gray-50 border border-gray-200">
+          <div className="p-5 rounded-xl bg-gray-50 border border-gray-200 hover:border-gray-400 transition-all duration-300 hover:-translate-y-0.5">
             <div className="text-2xl font-bold text-gray-950">5–14 Days</div>
             <div className="text-xs text-gray-600 mt-1 leading-relaxed">Fast, focused launch without the 6-month agency drag</div>
           </div>
-          <div className="p-5 rounded-xl bg-gray-50 border border-gray-200">
+          <div className="p-5 rounded-xl bg-gray-50 border border-gray-200 hover:border-gray-400 transition-all duration-300 hover:-translate-y-0.5">
             <div className="text-2xl font-bold text-gray-950">High-Trust Words</div>
             <div className="text-xs text-gray-600 mt-1 leading-relaxed">Copy written to reassure patients and inspire confidence</div>
           </div>
-          <div className="p-5 rounded-xl bg-gray-50 border border-gray-200">
+          <div className="p-5 rounded-xl bg-gray-50 border border-gray-200 hover:border-gray-400 transition-all duration-300 hover:-translate-y-0.5">
             <div className="text-2xl font-bold text-gray-950">Bespoke Craft</div>
             <div className="text-xs text-gray-600 mt-1 leading-relaxed">Tailored to reflect the luxury and care of your rooms</div>
           </div>
-          <div className="p-5 rounded-xl bg-gray-50 border border-gray-200">
+          <div className="p-5 rounded-xl bg-gray-50 border border-gray-200 hover:border-gray-400 transition-all duration-300 hover:-translate-y-0.5">
             <div className="text-2xl font-bold text-gray-950">100% Done For You</div>
             <div className="text-xs text-gray-600 mt-1 leading-relaxed">Design, writing, mobile polish, and booking setup included</div>
           </div>
+        </div>
+      </section>
+
+      {/* EDITORIAL MOTION: SLOW CONTINUOUS DRIFT MARQUEE RIBBON */}
+      <section className="w-full overflow-hidden border-y border-gray-200 bg-gray-50/70 py-4 select-none">
+        <div className="animate-marquee flex items-center gap-10 font-mono text-xs uppercase tracking-widest text-gray-500 whitespace-nowrap">
+          <span>Private Rooms & Medical Specialists</span>
+          <span className="text-gray-300">/</span>
+          <span>Restorative & Aesthetic Clinics</span>
+          <span className="text-gray-300">/</span>
+          <span>Allied Health Practice Leaders</span>
+          <span className="text-gray-300">/</span>
+          <span>Independent Clinical Consultants</span>
+          <span className="text-gray-300">/</span>
+          <span>Effortless Patient Booking Flows</span>
+          <span className="text-gray-300">/</span>
+          <span>High-Trust Clinical Copywriting</span>
+          <span className="text-gray-300">/</span>
+          {/* Duplicate set for seamless infinite loop */}
+          <span>Private Rooms & Medical Specialists</span>
+          <span className="text-gray-300">/</span>
+          <span>Restorative & Aesthetic Clinics</span>
+          <span className="text-gray-300">/</span>
+          <span>Allied Health Practice Leaders</span>
+          <span className="text-gray-300">/</span>
+          <span>Independent Clinical Consultants</span>
+          <span className="text-gray-300">/</span>
+          <span>Effortless Patient Booking Flows</span>
+          <span className="text-gray-300">/</span>
+          <span>High-Trust Clinical Copywriting</span>
+          <span className="text-gray-300">/</span>
         </div>
       </section>
 
@@ -104,18 +138,18 @@ export default function Home() {
               </div>
               <div className="flex items-start gap-3">
                 <span className="w-2 h-2 rounded-full bg-black mt-1.5 flex-shrink-0"></span>
-                <span><strong>Effortless Booking:</strong> Mobile-friendly inquiry flows that turn casual visitors into confirmed private consultations.</span>
+                <span><strong>Effortless Booking:</strong> Mobile-friendly enquiry flows that turn casual visitors into confirmed private consultations.</span>
               </div>
             </div>
           </div>
 
-          <div className="relative rounded-2xl overflow-hidden border border-gray-200 shadow-md bg-gray-100">
+          <div className="relative rounded-2xl overflow-hidden border border-gray-200 shadow-md bg-gray-100 group">
             <Image
               src="/images/hali_case_study_cover.png"
               alt="Hali Institute Case Study Cover"
               width={900}
               height={600}
-              className="w-full h-auto object-cover"
+              className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
               priority
             />
           </div>
@@ -123,14 +157,14 @@ export default function Home() {
 
         {/* Visual Proof Gallery */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
-          <div className="rounded-xl overflow-hidden border border-gray-200 bg-gray-50 p-4 space-y-3">
+          <div className="rounded-xl overflow-hidden border border-gray-200 bg-gray-50 p-4 space-y-3 group hover:border-gray-400 transition-all duration-300">
             <div className="relative rounded-lg overflow-hidden border border-gray-200">
               <Image
                 src="/images/hali_case_study_hero.png"
                 alt="Hali Institute Desktop Experience"
                 width={800}
                 height={500}
-                className="w-full h-auto object-cover"
+                className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
               />
             </div>
             <div className="text-xs text-gray-600 font-sans">
@@ -138,14 +172,14 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="rounded-xl overflow-hidden border border-gray-200 bg-gray-50 p-4 space-y-3">
+          <div className="rounded-xl overflow-hidden border border-gray-200 bg-gray-50 p-4 space-y-3 group hover:border-gray-400 transition-all duration-300">
             <div className="relative rounded-lg overflow-hidden border border-gray-200">
               <Image
                 src="/images/hali_case_study_menu.png"
                 alt="Hali Institute Mobile Experience"
                 width={800}
                 height={500}
-                className="w-full h-auto object-cover"
+                className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
               />
             </div>
             <div className="text-xs text-gray-600 font-sans">
@@ -155,7 +189,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. PRODUCTIZED PRICING PACKAGES */}
+      {/* 4. PRODUCTISED PRICING PACKAGES */}
       <section id="pricing" className="container max-w-5xl space-y-12">
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <span className="text-xs font-mono uppercase tracking-widest text-gray-500 font-semibold">
@@ -171,7 +205,7 @@ export default function Home() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
           {/* TIER 1 */}
-          <div className="rounded-2xl border border-gray-200 bg-white p-8 flex flex-col justify-between shadow-sm hover:shadow-md transition">
+          <div className="rounded-2xl border border-gray-200 bg-white p-8 flex flex-col justify-between shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
             <div className="space-y-6">
               <div className="flex items-center justify-between font-mono text-xs text-gray-500">
                 <span>01. SOLO SPECIALIST</span>
@@ -182,7 +216,7 @@ export default function Home() {
                 <div className="text-xs text-gray-500 mt-1">For independent practitioners & solo consultants establishing their authority.</div>
               </div>
               <ul className="space-y-3 text-xs text-gray-700">
-                <li className="flex items-start gap-2">✓ <strong>Bespoke single-page luxury website</strong> crafted for your specialty</li>
+                <li className="flex items-start gap-2">✓ <strong>Bespoke single-page luxury website</strong> crafted for your speciality</li>
                 <li className="flex items-start gap-2">✓ <strong>Clear, persuasive copy</strong> written to position your expertise</li>
                 <li className="flex items-start gap-2">✓ <strong>Consultation booking form</strong> integrated directly with your calendar</li>
                 <li className="flex items-start gap-2">✓ <strong>Mobile-first polish</strong> that looks flawless on every device</li>
@@ -192,7 +226,7 @@ export default function Home() {
             <div className="pt-8 mt-8 border-t border-gray-100">
               <a
                 href="#booking"
-                className="w-full block text-center py-3.5 rounded-full border border-gray-300 text-black text-xs font-mono uppercase hover:bg-gray-50 transition"
+                className="w-full block text-center py-3.5 rounded-full border border-gray-300 text-black text-xs font-mono uppercase hover:bg-gray-50 transition-all duration-200 hover:-translate-y-0.5"
               >
                 Inquire About Solo Launch
               </a>
@@ -200,7 +234,7 @@ export default function Home() {
           </div>
 
           {/* TIER 2 - FEATURED SWEET SPOT */}
-          <div className="rounded-2xl border-2 border-black bg-white p-8 flex flex-col justify-between shadow-lg relative">
+          <div className="rounded-2xl border-2 border-black bg-white p-8 flex flex-col justify-between shadow-lg relative hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5">
             <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-black text-white text-[10px] font-mono tracking-widest uppercase font-semibold">
               The Most Popular Choice
             </div>
@@ -217,7 +251,7 @@ export default function Home() {
                 <li className="flex items-start gap-2">✓ <strong>Full multi-page editorial website</strong> for all services & treatments</li>
                 <li className="flex items-start gap-2">✓ <strong>Complete clinical copywriting</strong> that answers patient questions</li>
                 <li className="flex items-start gap-2">✓ <strong>Bespoke visual identity & typography</strong> tailored to your rooms</li>
-                <li className="flex items-start gap-2">✓ <strong>Interactive patient assessment</strong> and inquiry qualification flow</li>
+                <li className="flex items-start gap-2">✓ <strong>Interactive patient assessment</strong> and enquiry qualification flow</li>
                 <li className="flex items-start gap-2">✓ <strong>Google Search & local practice presence</strong> setup</li>
                 <li className="flex items-start gap-2">✓ <strong>Turnkey delivery in 10–14 days</strong> with zero stress</li>
               </ul>
@@ -225,7 +259,7 @@ export default function Home() {
             <div className="pt-8 mt-8 border-t border-gray-100">
               <a
                 href="#booking"
-                className="w-full block text-center py-3.5 rounded-full bg-black text-white text-xs font-mono uppercase hover:bg-gray-800 transition"
+                className="w-full block text-center py-3.5 rounded-full bg-black text-white text-xs font-mono uppercase hover:bg-gray-800 transition-all duration-200 hover:-translate-y-0.5 shadow-sm"
               >
                 Choose Boutique Clinic →
               </a>
@@ -233,7 +267,7 @@ export default function Home() {
           </div>
 
           {/* TIER 3 */}
-          <div className="rounded-2xl border border-gray-200 bg-white p-8 flex flex-col justify-between shadow-sm hover:shadow-md transition">
+          <div className="rounded-2xl border border-gray-200 bg-white p-8 flex flex-col justify-between shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
             <div className="space-y-6">
               <div className="flex items-center justify-between font-mono text-xs text-gray-500">
                 <span>03. FULL PRACTICE TRANSFORMATION</span>
@@ -247,14 +281,14 @@ export default function Home() {
                 <li className="flex items-start gap-2">✓ <strong>Multi-practitioner architecture</strong> with individual doctor profiles</li>
                 <li className="flex items-start gap-2">✓ <strong>Direct practice management integration</strong> (Cliniko, Halaxy, Stripe)</li>
                 <li className="flex items-start gap-2">✓ <strong>Dedicated service landing pages</strong> built for referral & ad campaigns</li>
-                <li className="flex items-start gap-2">✓ <strong>Multi-location practice pages</strong> optimized for local search</li>
+                <li className="flex items-start gap-2">✓ <strong>Multi-location practice pages</strong> optimised for local search</li>
                 <li className="flex items-start gap-2">✓ <strong>Easy content studio</strong> allowing your staff to update articles & bios</li>
               </ul>
             </div>
             <div className="pt-8 mt-8 border-t border-gray-100">
               <a
                 href="#booking"
-                className="w-full block text-center py-3.5 rounded-full border border-gray-300 text-black text-xs font-mono uppercase hover:bg-gray-50 transition"
+                className="w-full block text-center py-3.5 rounded-full border border-gray-300 text-black text-xs font-mono uppercase hover:bg-gray-50 transition-all duration-200 hover:-translate-y-0.5"
               >
                 Inquire About Full Transformation
               </a>
@@ -263,7 +297,7 @@ export default function Home() {
         </div>
 
         {/* ONGOING CARE BANNER */}
-        <div className="rounded-2xl border border-gray-200 bg-gray-50 p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="rounded-2xl border border-gray-200 bg-gray-50 p-8 flex flex-col md:flex-row items-center justify-between gap-6 hover:border-gray-400 transition-all duration-300">
           <div className="space-y-2">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-blue-600"></span>
@@ -278,7 +312,7 @@ export default function Home() {
           </div>
           <a
             href="#booking"
-            className="px-6 py-3.5 rounded-full bg-white border border-gray-300 text-xs font-mono uppercase text-black hover:bg-gray-100 transition whitespace-nowrap"
+            className="px-6 py-3.5 rounded-full bg-white border border-gray-300 text-xs font-mono uppercase text-black hover:bg-gray-100 transition-all duration-200 hover:-translate-y-0.5 whitespace-nowrap"
           >
             Inquire About Studio Care
           </a>
@@ -297,21 +331,21 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs">
-          <div className="p-6 rounded-xl border border-gray-200 bg-white space-y-3">
+          <div className="p-6 rounded-xl border border-gray-200 bg-white space-y-3 hover:border-gray-400 transition-all duration-300 hover:-translate-y-0.5">
             <span className="text-base font-bold text-black block">01. Direct Founder Partnership</span>
             <p className="text-gray-600 leading-relaxed font-sans text-sm">
               You work directly with the creative leaders who design and build your platform. No junior account managers, no layers of bureaucracy, and no miscommunication.
             </p>
           </div>
 
-          <div className="p-6 rounded-xl border border-gray-200 bg-white space-y-3">
+          <div className="p-6 rounded-xl border border-gray-200 bg-white space-y-3 hover:border-gray-400 transition-all duration-300 hover:-translate-y-0.5">
             <span className="text-base font-bold text-black block">02. Words That Actually Resonate</span>
             <p className="text-gray-600 leading-relaxed font-sans text-sm">
               Most agencies give you an empty template and expect you to write your own copy. We take the time to understand your clinical work and write warm, reassuring copy that sounds authentic to you.
             </p>
           </div>
 
-          <div className="p-6 rounded-xl border border-gray-200 bg-white space-y-3">
+          <div className="p-6 rounded-xl border border-gray-200 bg-white space-y-3 hover:border-gray-400 transition-all duration-300 hover:-translate-y-0.5">
             <span className="text-base font-bold text-black block">03. Respect For Your Time</span>
             <p className="text-gray-600 leading-relaxed font-sans text-sm">
               We know your clinical schedule is demanding. We don't drag projects out across endless committee meetings. We execute with precision and launch your new platform in days, not quarters.

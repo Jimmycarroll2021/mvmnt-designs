@@ -7,13 +7,13 @@ export default function Footer() {
         <div className="space-y-3 md:col-span-2">
           <div className="flex items-center gap-2">
             <span className="font-semibold text-black tracking-tight text-sm">MVMNT STUDIO</span>
-            <span className="px-2 py-0.5 rounded bg-gray-200 text-gray-700 text-[10px]">AUSTRALIA</span>
+            <span className="px-2.5 py-0.5 rounded bg-gray-200 text-gray-700 text-[10px]">AUSTRALIA</span>
           </div>
           <p className="max-w-md text-gray-500 leading-relaxed font-sans text-sm">
-            We design elevated, high-converting websites and write patient-centered copy for private practices, medical specialists, and boutique high-ticket service firms.
+            We design elevated, high-converting websites and write patient-centred copy for private practices, medical specialists, and boutique high-ticket service firms.
           </p>
           <div className="text-[11px] text-gray-400">
-            Based in Sydney & Melbourne, Australia · Direct Studio Partnership · Full Turnkey Delivery
+            Independent Australian Studio · Direct Partner Involvement · Full Turnkey Delivery
           </div>
         </div>
 

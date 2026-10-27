@@ -15,10 +15,11 @@ export async function POST(req: Request) {
       });
     }
 
-    const systemPrompt = `You are the Creative Director and Founding Partner at MVMNT Studio, a boutique digital studio based in Melbourne & Sydney, Australia.
-You specialize in designing elevated, high-converting websites for medical practices, private specialists, clinics, and premium service firms.
+    const systemPrompt = `You are the Creative Director and Founding Partner at MVMNT Studio, an independent boutique digital studio based in Australia.
+You specialise in designing elevated, high-converting websites for medical practices, private specialists, clinics, and premium service firms.
 Your tone is warm, thoughtful, reassuring, and commercially sharp.
 CRITICAL RULE: DO NOT use technical jargon, speed metrics, server terms, acronyms, or engineering talk (NO "TTFB", "milliseconds", "edge nodes", "Vercel SDK", "WCAG", "CSS", "serverless", "APIs", or "plugins").
+Use Australian/British English spelling strictly (e.g. specialise, optimise, recognise, prioritise, analyse).
 Speak entirely about:
 - Patient and client psychology (how visitors perceive authority, trust, and quality of care)
 - Clear positioning (standing out from generic competitors)
@@ -32,7 +33,7 @@ A thoughtful reflection on their practice model, who their ideal patients or cli
 ### 2. Recommended Studio Package
 Recommend the best fit from our three studio offerings:
 - **01. Solo Specialist Launch ($4,800 AUD)** — 5–7 days. Ideal for independent consultants and solo practitioners establishing their private authority.
-- **02. Boutique Clinic Studio Build ($8,800 AUD)** — 10–14 days. [Most Popular] The complete transformation we crafted for Dr. Jayne at Hali Institute. Full multi-page presence, patient-centered copywriting, and intake flow.
+- **02. Boutique Clinic Studio Build ($8,800 AUD)** — 10–14 days. [Most Popular] The complete transformation we crafted for Dr. Jayne at Hali Institute. Full multi-page presence, patient-centred copywriting, and intake flow.
 - **03. Complete Practice Transformation ($16,500+ AUD)** — 3–4 weeks. Ideal for multi-practitioner clinics, multiple locations, or practices scaling with advertising.
 Explain why this package suits their exact stage and goals.
 
@@ -47,7 +48,7 @@ Reassure them on how simple the process is (no endless meetings, everything hand
       const result = streamText({
         model: google('gemini-1.5-flash'),
         system: systemPrompt,
-        prompt: `Client Practice Inquiry:\n"${prompt}"`,
+        prompt: `Client Practice Enquiry:\n"${prompt}"`,
       });
       return result.toTextStreamResponse();
     }
@@ -57,7 +58,7 @@ Reassure them on how simple the process is (no endless meetings, everything hand
       const result = streamText({
         model: openai('gpt-4o-mini'),
         system: systemPrompt,
-        prompt: `Client Practice Inquiry:\n"${prompt}"`,
+        prompt: `Client Practice Enquiry:\n"${prompt}"`,
       });
       return result.toTextStreamResponse();
     }
@@ -88,7 +89,7 @@ Reassure them on how simple the process is (no endless meetings, everything hand
       `- **Core Focus:** ${focus}\n`,
       `- **Why this fit:** This gives you a completely tailored digital home—with all the design, layout, and words crafted specifically for your practice—without the months of waiting or bloated agency retainers.\n\n`,
       `### 3. Patient Experience & Booking Strategy\n\n`,
-      `- **Elevated Brand Presence:** A bespoke visual design that immediately positions you as the leading practitioner in your specialty.\n`,
+      `- **Elevated Brand Presence:** A bespoke visual design that immediately positions you as the leading practitioner in your speciality.\n`,
       `- **Compassionate, Clear Words:** We craft every paragraph to answer patient concerns, demystify treatments, and remove the anxiety of reaching out.\n`,
       `- **Frictionless Booking:** An intuitive appointment inquiry flow that makes booking simple on both mobile and desktop.\n\n`,
       `### 4. Next Step & Delivery Timeline\n\n`,
@@ -111,7 +112,7 @@ Reassure them on how simple the process is (no endless meetings, everything hand
 
   } catch (error: any) {
     console.error('Error in /api/scope:', error);
-    return new Response(JSON.stringify({ error: 'Unable to process project diagnostic.' }), {
+    return new Response(JSON.stringify({ error: 'Unable to process project enquiry.' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });

@@ -5,7 +5,7 @@ import React, { useState, useRef } from 'react';
 const SUGGESTED_PROMPTS = [
   {
     label: 'Boutique Cosmetic / Medical Clinic',
-    text: 'We run an established private clinic in Melbourne. We want a warm, luxury web presence that reflects the quality of our care and makes it effortless for new patients to book private consultations.'
+    text: 'We run an established private clinic in Australia. We want a warm, luxury web presence that reflects the quality of our care and makes it effortless for new patients to book private consultations.'
   },
   {
     label: 'Independent Specialist / Consultant',
@@ -13,7 +13,7 @@ const SUGGESTED_PROMPTS = [
   },
   {
     label: 'Growing Multi-Doctor Practice',
-    text: 'We are expanding our allied health practice with several practitioners. We need clear treatment guides, practitioner profiles, and a straightforward booking system for our patients.'
+    text: 'We are expanding our practice with several doctors. We need clear treatment guides, practitioner profiles, and an organised booking system for our patients.'
   }
 ];
 
@@ -86,11 +86,14 @@ export default function StudioScoper() {
   };
 
   return (
-    <div id="scoper" className="rounded-2xl border border-gray-200 bg-white p-6 md:p-10 shadow-sm">
+    <div id="scoper" className="rounded-2xl border border-gray-200 bg-white p-6 md:p-10 shadow-sm transition-all duration-300 hover:shadow-md">
       <div className="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-gray-100 gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
             <span className="text-xs uppercase tracking-widest font-mono text-gray-500 font-semibold">
               Instant Practice Strategy Guide
             </span>
@@ -103,7 +106,7 @@ export default function StudioScoper() {
           </p>
         </div>
         <div className="flex items-center">
-          <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-mono rounded-full border border-gray-200">
+          <span className="px-3.5 py-1 bg-gray-100 text-gray-700 text-xs font-mono rounded-full border border-gray-200">
             15-Minute Strategy Sprint
           </span>
         </div>
@@ -124,7 +127,7 @@ export default function StudioScoper() {
                 handleScope(item.text);
               }}
               disabled={isStreaming}
-              className="text-left p-4 rounded-xl border border-gray-200 hover:border-black bg-gray-50 hover:bg-white text-xs text-gray-700 transition duration-150 disabled:opacity-50"
+              className="text-left p-4 rounded-xl border border-gray-200 hover:border-black bg-gray-50 hover:bg-white text-xs text-gray-700 transition duration-200 hover:-translate-y-0.5 disabled:opacity-50"
             >
               <span className="font-semibold block text-gray-900 mb-1 text-sm">{item.label}</span>
               <span className="line-clamp-2 text-gray-500 leading-relaxed">{item.text}</span>
@@ -138,7 +141,7 @@ export default function StudioScoper() {
             rows={4}
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
-            placeholder="e.g. We are a boutique dermatology clinic in Sydney. We want our website to feel like a high-end private sanctuary. We want prospective patients to understand our treatment plans and easily book consultations..."
+            placeholder="e.g. We are an established boutique practice looking to attract more private patients. We want our website to feel like a high-end private sanctuary. We want prospective patients to understand our treatment plans and easily book consultations..."
             className="w-full rounded-xl border border-gray-300 p-4 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition"
             disabled={isStreaming}
           />
@@ -152,7 +155,7 @@ export default function StudioScoper() {
             type="button"
             onClick={() => handleScope()}
             disabled={!prompt.trim() || isStreaming}
-            className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-black text-white text-sm font-medium hover:bg-gray-800 disabled:opacity-40 transition flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-black text-white text-sm font-medium hover:bg-gray-800 disabled:opacity-40 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 shadow-sm"
           >
             {isStreaming ? (
               <>
@@ -185,14 +188,14 @@ export default function StudioScoper() {
               <button
                 type="button"
                 onClick={handleCopyScope}
-                className="text-xs px-3 py-1.5 rounded border border-gray-200 hover:bg-gray-100 text-gray-600 font-mono transition"
+                className="text-xs px-3.5 py-1.5 rounded border border-gray-200 hover:bg-gray-100 text-gray-600 font-mono transition"
               >
                 {copied ? 'Copied' : 'Copy Summary'}
               </button>
               <button
                 type="button"
                 onClick={handleTransferToBooking}
-                className="text-xs px-3.5 py-1.5 rounded bg-black text-white hover:bg-gray-800 font-mono transition"
+                className="text-xs px-4 py-1.5 rounded bg-black text-white hover:bg-gray-800 font-mono transition-all duration-200 hover:-translate-y-0.5"
               >
                 Transfer to Booking Form ↓
               </button>

@@ -18,7 +18,7 @@ When diagnosing a client's inquiry, provide a direct, intelligent, and honest te
 1. ### Technical & Commercial Diagnosis
    Analyze what is broken, inefficient, or missing in their current approach or proposed project.
 2. ### Recommended Architecture & Package
-   Recommend the optimal tier from MVMNT Studio's productized offerings:
+   Recommend the optimal tier from MVMNT Studio's productised offerings:
    - **01. Sprint Launch — $4,800 AUD** (5–7 business days turnaround: solo specialists, single practitioners, launching high-trust landing platforms).
    - **02. Studio Build — $8,800 AUD [Recommended Standard]** (10–14 business days: multi-practitioner practices, clinical intake, Cliniko/Halaxy EHR integration, custom calculators).
    - **03. Custom Architecture — $16,500+ AUD** (3–4 weeks: multi-location practices, enterprise patient workflows, bespoke web apps).
@@ -40,7 +40,7 @@ function getDeterministicScope(promptText = '') {
 
   if (p.includes('medical') || p.includes('practice') || p.includes('clinic') || p.includes('health') || p.includes('psych') || p.includes('booking') || p.includes('solo')) {
     return `### 1. Technical & Clinical Diagnosis
-Your practice requires an intimate, high-trust digital environment rather than a generic medical directory template. Most healthcare websites lose prospective patients due to three friction points: slow mobile page loads (> 3.5s), confusing navigation structures, and high-friction booking embeds that redirect to detached third-party portals. For a specialized clinical practice, building instant credibility and emotional safety in the first 2 seconds is paramount.
+Your practice requires an intimate, high-trust digital environment rather than a generic medical directory template. Most healthcare websites lose prospective patients due to three friction points: slow mobile page loads (> 3.5s), confusing navigation structures, and high-friction booking embeds that redirect to detached third-party portals. For a specialised clinical practice, building instant credibility and emotional safety in the first 2 seconds is paramount.
 
 ### 2. Recommended Package: **02. Studio Build — $8,800 AUD**
 - **Turnaround:** 10–14 Business Days
@@ -133,7 +133,7 @@ Based on your project outline: "${promptText.trim().slice(0, 120)}...", your dig
 - **Sub-150ms TTFB:** Globally distributed edge execution via Vercel Edge Network.
 - **Clean Semantic Code:** Zero React/Vue bloat; pure HTML5, modern CSS3 custom properties, and modular Vanilla ES6.
 - **Pristine Core Web Vitals:** 100/100 score across Performance, Accessibility, Best Practices, and Technical SEO.
-- **Custom Integrations:** Serverless form intake with honeypot security, CRM/email forwarding, and booking synchronization.
+- **Custom Integrations:** Serverless form intake with honeypot security, CRM/email forwarding, and booking synchronisation.
 
 ### 4. Visual Craft & Experience
 A tailored, editorial design language that treats typography, spacing, and micro-interactions with obsessive care. No template artifacts or generic corporate stock graphics.
