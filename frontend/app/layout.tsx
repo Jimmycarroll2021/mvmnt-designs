@@ -103,6 +103,9 @@ export async function generateMetadata(): Promise<Metadata> {
         'max-snippet': -1,
       },
     },
+    verification: {
+      google: '8lrCgZDiITHc_HBdQmzBrc-JKwjHJk_2N6B7hNJeJJU',
+    },
   };
 }
 
