@@ -13,35 +13,32 @@ export default function Header() {
               MVMNT STUDIO
             </span>
             <span className="text-[10px] tracking-widest uppercase text-gray-500 font-mono">
-              Bespoke Digital Architecture
+              Bespoke Websites for Practices & Specialists
             </span>
           </div>
         </Link>
 
         <nav className="hidden md:flex items-center gap-8 text-xs font-mono tracking-wider uppercase text-gray-600">
           <Link href="#scoper" className="hover:text-black transition">
-            AI Scoper
+            Strategy Guide
           </Link>
           <Link href="#casestudy" className="hover:text-black transition">
-            Case Study
+            Client Story
           </Link>
           <Link href="#pricing" className="hover:text-black transition">
-            Pricing
+            Packages
           </Link>
-          <Link href="#architecture" className="hover:text-black transition">
-            Architecture
-          </Link>
-          <Link href="/studio" className="hover:text-black transition text-gray-400">
-            Sanity CMS
+          <Link href="#philosophy" className="hover:text-black transition">
+            Why Us
           </Link>
         </nav>
 
         <div className="flex items-center gap-4">
           <Link
             href="#booking"
-            className="px-4 py-2 rounded-full bg-black text-white text-xs font-mono tracking-wider uppercase hover:bg-gray-800 transition"
+            className="px-5 py-2.5 rounded-full bg-black text-white text-xs font-mono tracking-wider uppercase hover:bg-gray-800 transition"
           >
-            Book Discovery
+            Book 15-Min Call
           </Link>
         </div>
       </div>

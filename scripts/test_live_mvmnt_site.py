@@ -42,12 +42,12 @@ def test_live_site():
             
             h1_text = page.locator("h1").first.inner_text()
             print(f"  [PASS] H1: '{h1_text}'")
-            assert "Digital Architecture" in h1_text, "H1 does not match expected branding!"
+            assert "High-Value Private Clients" in h1_text, "H1 does not match expected client-focused copy!"
             
             # Check Scoper component is present
             scoper = page.locator("#scoper")
-            assert scoper.count() > 0, "AI Scoper section not found!"
-            print("  [PASS] AI Scoper component verified present")
+            assert scoper.count() > 0, "Practice Strategy section not found!"
+            print("  [PASS] Practice Strategy component verified present")
             
             # Check Case Study Images
             cover_img = page.locator("img[alt='Hali Institute Case Study Cover']")
@@ -57,9 +57,9 @@ def test_live_site():
             # Check Pricing Packages
             pricing_section = page.locator("#pricing")
             assert pricing_section.count() > 0, "Pricing section not found!"
-            assert "4,800" in pricing_section.inner_text(), "Sprint Launch price ($4,800) not found!"
-            assert "8,800" in pricing_section.inner_text(), "Studio Build price ($8,800) not found!"
-            assert "16,500" in pricing_section.inner_text(), "Custom Architecture price ($16,500) not found!"
+            assert "4,800" in pricing_section.inner_text(), "Solo Specialist price ($4,800) not found!"
+            assert "8,800" in pricing_section.inner_text(), "Boutique Clinic price ($8,800) not found!"
+            assert "16,500" in pricing_section.inner_text(), "Full Transformation price ($16,500) not found!"
             print("  [PASS] All 3 productized tiers ($4,800 / $8,800 / $16,500) verified")
             
             # Check Booking Form
@@ -75,33 +75,32 @@ def test_live_site():
             
             page.close()
             
-        # Test Live AI Scoper Interaction on Desktop
-        print("\n=== Testing Live Interactive Scoper on Desktop ===")
+        # Test Live Practice Strategy Interaction on Desktop
+        print("\n=== Testing Live Strategy Guide on Desktop ===")
         interactive_page = context.new_page()
         interactive_page.set_viewport_size({"width": 1440, "height": 900})
         interactive_page.goto(LIVE_URL, wait_until="networkidle")
         
         # Click on the first suggested prompt button
-        sample_btn = interactive_page.locator("button:has-text('Cosmetic Dermatology Clinic')").first
+        sample_btn = interactive_page.locator("button:has-text('Boutique Cosmetic / Medical Clinic')").first
         sample_btn.click()
-        print("  [PASS] Clicked 'Cosmetic Dermatology Clinic' preset button")
+        print("  [PASS] Clicked 'Boutique Cosmetic / Medical Clinic' preset button")
         
         # Wait for diagnostic output container and wait for streaming text to arrive
-        interactive_page.wait_for_selector("#scoper .whitespace-pre-wrap:has-text('Architectural Diagnosis')", timeout=20000)
-        print("  [PASS] Streaming diagnosis output received in real-time UI!")
+        interactive_page.wait_for_selector("#scoper .whitespace-pre-wrap:has-text('Practice & Client Overview')", timeout=20000)
+        print("  [PASS] Streaming strategy output received in real-time UI!")
         
-        # Allow stream to fully finish
         time.sleep(1.5)
         output_box = interactive_page.locator("#scoper .whitespace-pre-wrap")
         output_text = output_box.inner_text()
-        print(f"  [PASS] Scoper Output Length: {len(output_text)} chars")
-        assert "Studio Build" in output_text or "Architectural Diagnosis" in output_text, "Expected package or diagnosis in output"
-        print("  [PASS] Scoper response contains verified diagnosis & package recommendations")
+        print(f"  [PASS] Strategy Output Length: {len(output_text)} chars")
+        assert "Boutique Clinic" in output_text or "Practice" in output_text, "Expected package or practice in output"
+        print("  [PASS] Strategy response contains verified practice positioning & recommendations")
         
         interactive_page.close()
         browser.close()
         
-    print("\nALL LIVE PRODUCTION VERIFICATION CHECKS PASSED PERFECTLY!\n")
+    print("\nALL LIVE PRODUCTION CHECKS PASSED WITH CLIENT-FOCUSED COPY!\n")
 
 if __name__ == "__main__":
     test_live_site()

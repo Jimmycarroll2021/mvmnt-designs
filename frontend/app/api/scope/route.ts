@@ -9,39 +9,45 @@ export async function POST(req: Request) {
     const { prompt } = await req.json();
 
     if (!prompt || typeof prompt !== 'string') {
-      return new Response(JSON.stringify({ error: 'Please provide a project description or URL to scope.' }), {
+      return new Response(JSON.stringify({ error: 'Please share a brief description of your practice or goals.' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' },
       });
     }
 
-    const systemPrompt = `You are the Senior Technical Director & Design Partner at MVMNT Studio, a high-performance digital architecture and web engineering studio based in Melbourne & Sydney, Australia.
-You are directly scoping a new project inquiry with an ambitious founder or practice owner.
-Speak with quiet, authoritative confidence, warmth, and complete honesty. NO corporate fluff, NO fake buzzwords (no "synergistic", "unleash", "revolutionary").
+    const systemPrompt = `You are the Creative Director and Founding Partner at MVMNT Studio, a boutique digital studio based in Melbourne & Sydney, Australia.
+You specialize in designing elevated, high-converting websites for medical practices, private specialists, clinics, and premium service firms.
+Your tone is warm, thoughtful, reassuring, and commercially sharp.
+CRITICAL RULE: DO NOT use technical jargon, speed metrics, server terms, acronyms, or engineering talk (NO "TTFB", "milliseconds", "edge nodes", "Vercel SDK", "WCAG", "CSS", "serverless", "APIs", or "plugins").
+Speak entirely about:
+- Patient and client psychology (how visitors perceive authority, trust, and quality of care)
+- Clear positioning (standing out from generic competitors)
+- Human outcomes (higher consultation bookings, attracting ideal clients, saving practice staff time)
+- Seamless patient experience from reading to booking.
 
-Analyze their inquiry and provide a clear, structured Markdown response with these exact sections:
-### 1. Architectural Diagnosis
-Direct assessment of their project, user experience priorities, and why conventional agency templates fail for this specific challenge.
+Provide a clear, beautifully structured Markdown response with these exact sections:
+### 1. Practice & Client Overview
+A thoughtful reflection on their practice model, who their ideal patients or clients are, and what emotional reassurance they need before reaching out.
 
-### 2. Recommended MVMNT Studio Package
-Choose the exact best fit from our productized offerings:
-- **01. Sprint Launch ($4,800 AUD)** — 5–7 business days. Best for solo practitioners, independent specialists, and consultants needing a high-converting, sub-second single-page presence.
-- **02. Studio Build ($8,800 AUD)** — 10–14 business days. [Most Popular] Best for established clinics, allied health practices, and boutique service firms needing brand identity, clinical copywriting, and multi-step intake flows.
-- **03. Custom Architecture ($16,500+ AUD)** — 3–4 weeks. Best for multi-location practices, complex integrations (Cliniko, Stripe, Halaxy), and paid traffic conversion funnels.
-Explain specifically why this tier matches their timeline and business model.
+### 2. Recommended Studio Package
+Recommend the best fit from our three studio offerings:
+- **01. Solo Specialist Launch ($4,800 AUD)** — 5–7 days. Ideal for independent consultants and solo practitioners establishing their private authority.
+- **02. Boutique Clinic Studio Build ($8,800 AUD)** — 10–14 days. [Most Popular] The complete transformation we crafted for Dr. Jayne at Hali Institute. Full multi-page presence, patient-centered copywriting, and intake flow.
+- **03. Complete Practice Transformation ($16,500+ AUD)** — 3–4 weeks. Ideal for multi-practitioner clinics, multiple locations, or practices scaling with advertising.
+Explain why this package suits their exact stage and goals.
 
-### 3. Engineering & Growth Strategy
-Key technical elements: edge performance (sub-150ms TTFB), conversion-focused copy architecture, WCAG AAA accessibility, and Google Search Console indexation.
+### 3. Patient Experience & Booking Strategy
+How the website will guide prospective patients: addressing common hesitations, explaining treatments in welcoming plain English, and making consultation booking completely effortless.
 
-### 4. Turnaround & Next Step
-Explicit delivery timeline and an invitation to lock in a 15-minute discovery call to finalize their sprint schedule.`;
+### 4. Next Step & Timeline
+Reassure them on how simple the process is (no endless meetings, everything handled for them), and invite them to schedule a friendly 15-minute discovery call to discuss their launch date.`;
 
     // 1. Try Google Gemini if key is available
     if (process.env.GOOGLE_GENERATIVE_AI_API_KEY || process.env.GEMINI_API_KEY) {
       const result = streamText({
         model: google('gemini-1.5-flash'),
         system: systemPrompt,
-        prompt: `Client Project Inquiry:\n"${prompt}"`,
+        prompt: `Client Practice Inquiry:\n"${prompt}"`,
       });
       return result.toTextStreamResponse();
     }
@@ -51,49 +57,49 @@ Explicit delivery timeline and an invitation to lock in a 15-minute discovery ca
       const result = streamText({
         model: openai('gpt-4o-mini'),
         system: systemPrompt,
-        prompt: `Client Project Inquiry:\n"${prompt}"`,
+        prompt: `Client Practice Inquiry:\n"${prompt}"`,
       });
       return result.toTextStreamResponse();
     }
 
-    // 3. Resilient Smart Stream Fallback (Simulated Vercel AI SDK stream for unkeyed/dev environments)
+    // 3. Resilient Warm Client-Focused Stream Fallback
     const lower = prompt.toLowerCase();
-    let packageRec = '02. Studio Build ($8,800 AUD)';
+    let packageRec = '02. Boutique Clinic Studio Build ($8,800 AUD)';
     let timeline = '10–14 business days';
-    let focus = 'Full brand identity, high-trust copywriting, and structured patient booking flows.';
+    let focus = 'Complete custom design, compassionate patient copywriting, and seamless consultation booking.';
 
     if (lower.includes('solo') || lower.includes('simple') || lower.includes('consultant') || lower.includes('single') || lower.includes('fast')) {
-      packageRec = '01. Sprint Launch ($4,800 AUD)';
+      packageRec = '01. Solo Specialist Launch ($4,800 AUD)';
       timeline = '5–7 business days';
-      focus = 'Bespoke edge single-page platform with zero bloat and streamlined discovery booking.';
-    } else if (lower.includes('multi') || lower.includes('integration') || lower.includes('app') || lower.includes('portal') || lower.includes('custom') || lower.includes('ads')) {
-      packageRec = '03. Custom Architecture ($16,500+ AUD)';
+      focus = 'A refined, high-trust single-page presence that introduces your expertise and books intro calls.';
+    } else if (lower.includes('multi') || lower.includes('practice') || lower.includes('doctors') || lower.includes('locations') || lower.includes('ads')) {
+      packageRec = '03. Complete Practice Transformation ($16,500+ AUD)';
       timeline = '3–4 weeks';
-      focus = 'Multi-page architecture with direct practice management/EHR integration and paid acquisition funnels.';
+      focus = 'Multi-service clinical architecture, team profiles, location pages, and patient acquisition funnels.';
     }
 
     const chunks = [
-      `### 1. Architectural Diagnosis\n\n`,
-      `Thank you for sharing your project brief. Looking at what you've described—*"${prompt.slice(0, 120)}${prompt.length > 120 ? '...' : ''}"*—your primary operational risk is the common agency trap: spending four to six months in committee meetings only to end up with a sluggish, plugin-heavy template.\n\n`,
-      `For your use case, trust is earned in milliseconds. You need a platform that feels weightless, respects patient/client privacy, and guides high-value visitors directly toward booking without cognitive friction.\n\n`,
-      `### 2. Recommended MVMNT Studio Package\n\n`,
-      `We recommend **${packageRec}**.\n\n`,
-      `- **Turnaround:** ${timeline}\n`,
+      `### 1. Practice & Client Overview\n\n`,
+      `Thank you for sharing your practice background. When patients or clients are looking for a trusted specialist—especially for private consultations—they make their decision within seconds of landing on your page.\n\n`,
+      `Most practice websites feel either sterile and clinical, or like generic corporate templates. Your practice deserves an online presence that reflects the warmth, discretion, and prestige of your real-world care, giving prospective patients total confidence to book.\n\n`,
+      `### 2. Recommended Studio Package\n\n`,
+      `Based on what you've described, our **${packageRec}** is the ideal fit.\n\n`,
+      `- **Turnaround Time:** ${timeline}\n`,
       `- **Core Focus:** ${focus}\n`,
-      `- **Why this fit:** This tier gives you a bespoke, hand-crafted digital foundation without bloated recurring software overhead, engineered specifically for high conversion rates.\n\n`,
-      `### 3. Engineering & Growth Strategy\n\n`,
-      `- **Sub-Second Edge Infrastructure:** Hosted on global edge nodes with sub-150ms TTFB, ensuring instant mobile page loads across Australia and globally.\n`,
-      `- **Editorial Information Architecture:** Deconstructing your core services into clear, high-trust client pathways (similar to our recent clinical transformation for Hali Institute).\n`,
-      `- **Search & Conversion Foundations:** Pre-configured with Schema.org structured data, WCAG AAA contrast compliance, and Google Search Console indexation.\n\n`,
-      `### 4. Turnaround & Immediate Next Step\n\n`,
-      `We can onboard your project into our current production sprint. Delivery will take approximately **${timeline}** from kickoff.\n\n`,
-      `Click the button below to reserve your 15-minute technical discovery call with our team. We've pre-filled your scope details so we can jump straight into architectural planning.\n`
+      `- **Why this fit:** This gives you a completely tailored digital home—with all the design, layout, and words crafted specifically for your practice—without the months of waiting or bloated agency retainers.\n\n`,
+      `### 3. Patient Experience & Booking Strategy\n\n`,
+      `- **Elevated Brand Presence:** A bespoke visual design that immediately positions you as the leading practitioner in your specialty.\n`,
+      `- **Compassionate, Clear Words:** We craft every paragraph to answer patient concerns, demystify treatments, and remove the anxiety of reaching out.\n`,
+      `- **Frictionless Booking:** An intuitive appointment inquiry flow that makes booking simple on both mobile and desktop.\n\n`,
+      `### 4. Next Step & Delivery Timeline\n\n`,
+      `We can onboard your practice into our upcoming sprint and have your new site live in approximately **${timeline}**.\n\n`,
+      `Click the button below to reserve a relaxed 15-minute discovery call with our team. We've transferred your practice notes into the form so we can jump straight into discussing your vision.\n`
     ];
 
     const stream = simulateReadableStream({
       chunks,
-      initialDelayInMs: 150,
-      chunkDelayInMs: 80,
+      initialDelayInMs: 120,
+      chunkDelayInMs: 70,
     });
 
     return new Response(stream, {
@@ -103,9 +109,9 @@ Explicit delivery timeline and an invitation to lock in a 15-minute discovery ca
       },
     });
 
-  } catch (err: any) {
-    console.error('Error in /api/scope:', err);
-    return new Response(JSON.stringify({ error: err.message || 'Failed to generate scope.' }), {
+  } catch (error: any) {
+    console.error('Error in /api/scope:', error);
+    return new Response(JSON.stringify({ error: 'Unable to process project diagnostic.' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });

@@ -4,16 +4,16 @@ import React, { useState, useRef } from 'react';
 
 const SUGGESTED_PROMPTS = [
   {
-    label: 'Cosmetic Dermatology Clinic',
-    text: 'We are an established cosmetic dermatology clinic in Melbourne with 3 doctors. Our current WordPress site is slow and bloated. We need bespoke branding, sub-second edge performance, and seamless patient consultation bookings.'
+    label: 'Boutique Cosmetic / Medical Clinic',
+    text: 'We run an established private clinic in Melbourne. We want a warm, luxury web presence that reflects the quality of our care and makes it effortless for new patients to book private consultations.'
   },
   {
-    label: 'Solo Consultant / Specialist',
-    text: 'I am a solo clinical psychologist launching my private consultancy. I need a clean, authoritative single-page presence that looks high-end, loads instantly on mobile, and lets clients schedule introductory calls.'
+    label: 'Independent Specialist / Consultant',
+    text: 'I am a solo medical specialist launching my private rooms. I need a refined, highly credible website that puts prospective patients at ease and allows them to schedule their initial appointment.'
   },
   {
-    label: 'Multi-Location Allied Health Practice',
-    text: 'We run a 2-location physiotherapy and sports medicine practice. We need custom booking integration with Cliniko/Halaxy, localized search SEO, and paid ad acquisition landing funnels.'
+    label: 'Growing Multi-Doctor Practice',
+    text: 'We are expanding our allied health practice with several practitioners. We need clear treatment guides, practitioner profiles, and a straightforward booking system for our patients.'
   }
 ];
 
@@ -58,7 +58,7 @@ export default function StudioScoper() {
         setOutput(accumulated);
       }
     } catch (err: any) {
-      setOutput(`### Diagnostic Notice\n\nUnable to stream diagnostic directly: ${err.message}. Please select a package below or schedule a direct architectural discovery call.`);
+      setOutput(`### Project Overview\n\nWe would love to discuss your practice in detail. Please select a package below or book a quick discovery call so we can tailor the right approach for your goals.`);
     } finally {
       setIsStreaming(false);
       setTimeout(() => {
@@ -90,31 +90,31 @@ export default function StudioScoper() {
       <div className="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-gray-100 gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span className="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
             <span className="text-xs uppercase tracking-widest font-mono text-gray-500 font-semibold">
-              Vercel AI SDK Real-Time Scoper
+              Instant Practice Strategy Guide
             </span>
           </div>
           <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 mt-1">
-            Studio Project Diagnostic & Scoper
+            Find the Right Fit for Your Practice
           </h3>
           <p className="text-sm text-gray-600 mt-1">
-            Provide your practice model, goals, or current URL. Our edge model diagnoses the scope and identifies the exact package.
+            Tell us about your practice and your ideal clients. We will outline the optimal website structure, timeline, and exact package.
           </p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center">
           <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-mono rounded-full border border-gray-200">
-            Node.js / Edge Runtime
+            15-Minute Strategy Sprint
           </span>
         </div>
       </div>
 
       <div className="mt-6">
         <label htmlFor="promptInput" className="block text-xs uppercase tracking-wider font-mono text-gray-500 mb-2">
-          Select a sample brief or type your own requirements:
+          Click an example scenario or describe your practice:
         </label>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
           {SUGGESTED_PROMPTS.map((item, idx) => (
             <button
               key={idx}
@@ -124,10 +124,10 @@ export default function StudioScoper() {
                 handleScope(item.text);
               }}
               disabled={isStreaming}
-              className="text-left p-3 rounded-lg border border-gray-200 hover:border-black bg-gray-50 hover:bg-white text-xs text-gray-700 transition duration-150 disabled:opacity-50"
+              className="text-left p-4 rounded-xl border border-gray-200 hover:border-black bg-gray-50 hover:bg-white text-xs text-gray-700 transition duration-150 disabled:opacity-50"
             >
-              <span className="font-semibold block text-gray-900 mb-1">{item.label}</span>
-              <span className="line-clamp-2 text-gray-500">{item.text}</span>
+              <span className="font-semibold block text-gray-900 mb-1 text-sm">{item.label}</span>
+              <span className="line-clamp-2 text-gray-500 leading-relaxed">{item.text}</span>
             </button>
           ))}
         </div>
@@ -138,7 +138,7 @@ export default function StudioScoper() {
             rows={4}
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
-            placeholder="e.g. We are a boutique fertility clinic in Sydney. We need an editorial rebrand, patient self-assessment questionnaires, and 100% WCAG AAA accessibility. We want to launch in under 3 weeks."
+            placeholder="e.g. We are a boutique dermatology clinic in Sydney. We want our website to feel like a high-end private sanctuary. We want prospective patients to understand our treatment plans and easily book consultations..."
             className="w-full rounded-xl border border-gray-300 p-4 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition"
             disabled={isStreaming}
           />
@@ -146,13 +146,13 @@ export default function StudioScoper() {
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-4">
           <span className="text-xs text-gray-500 font-mono">
-            Direct streaming inference via Vercel AI SDK
+            Get an instant recommendation tailored to your practice
           </span>
           <button
             type="button"
             onClick={() => handleScope()}
             disabled={!prompt.trim() || isStreaming}
-            className="w-full sm:w-auto px-6 py-3 rounded-full bg-black text-white text-sm font-medium hover:bg-gray-800 disabled:opacity-40 transition flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-black text-white text-sm font-medium hover:bg-gray-800 disabled:opacity-40 transition flex items-center justify-center gap-2"
           >
             {isStreaming ? (
               <>
@@ -160,11 +160,11 @@ export default function StudioScoper() {
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
                 </svg>
-                Streaming Architectural Scope...
+                Crafting Your Practice Strategy...
               </>
             ) : (
               <>
-                Diagnose Project Scope
+                Get Instant Practice Recommendation
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
@@ -179,27 +179,27 @@ export default function StudioScoper() {
           <div className="flex items-center justify-between mb-4">
             <span className="text-xs uppercase font-mono tracking-widest text-emerald-600 font-semibold flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-              Architectural Diagnostic Output
+              Your Practice Strategy Summary
             </span>
             <div className="flex gap-2">
               <button
                 type="button"
                 onClick={handleCopyScope}
-                className="text-xs px-3 py-1 rounded border border-gray-200 hover:bg-gray-100 text-gray-600 font-mono transition"
+                className="text-xs px-3 py-1.5 rounded border border-gray-200 hover:bg-gray-100 text-gray-600 font-mono transition"
               >
-                {copied ? 'Copied' : 'Copy Scope'}
+                {copied ? 'Copied' : 'Copy Summary'}
               </button>
               <button
                 type="button"
                 onClick={handleTransferToBooking}
-                className="text-xs px-3 py-1 rounded bg-black text-white hover:bg-gray-800 font-mono transition"
+                className="text-xs px-3.5 py-1.5 rounded bg-black text-white hover:bg-gray-800 font-mono transition"
               >
-                Transfer to Booking ↓
+                Transfer to Booking Form ↓
               </button>
             </div>
           </div>
 
-          <div className="p-6 rounded-xl bg-gray-50 border border-gray-200 text-gray-800 font-mono text-xs leading-relaxed whitespace-pre-wrap selection:bg-gray-300">
+          <div className="p-6 md:p-8 rounded-xl bg-gray-50 border border-gray-200 text-gray-800 font-sans text-sm leading-relaxed whitespace-pre-wrap selection:bg-gray-300">
             {output}
             {isStreaming && <span className="inline-block w-2 h-4 bg-black animate-pulse ml-1"></span>}
           </div>
