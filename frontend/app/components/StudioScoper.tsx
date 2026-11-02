@@ -4,16 +4,16 @@ import React, { useState, useRef } from 'react';
 
 const SUGGESTED_PROMPTS = [
   {
-    label: 'Boutique Cosmetic / Medical Clinic',
-    text: 'We run an established private clinic in Australia. We want a warm, luxury web presence that reflects the quality of our care and makes it effortless for new patients to book private consultations.'
+    label: 'Brand Identity & Digital Flagship',
+    text: 'We are launching a new company or rebranding an established business. We need an authoritative visual identity, bespoke Next.js digital flagship, and high-converting editorial copywriting to lead our market.'
   },
   {
-    label: 'Independent Specialist / Consultant',
-    text: 'I am a solo medical specialist launching my private rooms. I need a refined, highly credible website that puts prospective patients at ease and allows them to schedule their initial appointment.'
+    label: 'Specialist Practice & Private Rooms',
+    text: 'We run a boutique clinic or specialist medical practice. We need high-trust clinical copywriting, calm editorial aesthetics, and frictionless appointment booking to attract high-value private patients.'
   },
   {
-    label: 'Growing Multi-Doctor Practice',
-    text: 'We are expanding our practice with several doctors. We need clear treatment guides, practitioner profiles, and an organised booking system for our patients.'
+    label: 'Headless Commerce & Custom Apparel',
+    text: 'We operate a high-growth brand or sports organization. We need custom Shopify architecture, 3D product visualization, sub-second edge speeds, and automated on-demand fulfillment.'
   }
 ];
 
@@ -175,20 +175,20 @@ export default function StudioScoper() {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
             <span className="text-xs uppercase tracking-widest font-mono text-gray-500 font-semibold">
-              Instant Practice Strategy Guide
+              Instant Studio Scoper & Estimator
             </span>
           </div>
           <h3 className="text-2xl font-semibold text-gray-900 mt-1">
-            Describe Your Practice. Receive an Instant Strategy.
+            Describe Your Project. Receive an Instant Scope.
           </h3>
           <p className="text-xs text-gray-600 mt-1">
-            Explore tailored scope, timeline, and package suggestions based on your practice model.
+            Explore tailored scope, timeline, and package suggestions for your brand, platform, or specialist rooms.
           </p>
         </div>
 
         <div className="flex items-center gap-2">
           <span className="text-[11px] font-mono text-gray-400 uppercase tracking-widest">
-            AHPRA-Aware Studio Model
+            Direct Senior Strategy · No Retainer Drag
           </span>
         </div>
       </div>
@@ -221,7 +221,7 @@ export default function StudioScoper() {
             rows={4}
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
-            placeholder="e.g. We are an established boutique practice looking to attract more private patients. We want our website to feel like a high-end private rooms. We want prospective patients to understand our treatment plans and easily book consultations..."
+            placeholder="e.g. We are launching a high-performance digital flagship and brand identity to accelerate growth. We need sub-second edge performance, persuasive editorial copywriting, and bespoke Swiss minimalist aesthetics..."
             className="w-full rounded-xl border border-gray-300 p-4 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition"
             disabled={isStreaming}
           />
@@ -229,7 +229,7 @@ export default function StudioScoper() {
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-4">
           <span className="text-xs text-gray-500 font-mono">
-            Get an instant recommendation tailored to your practice
+            Get an instant recommendation tailored to your project goals
           </span>
           <button
             type="button"

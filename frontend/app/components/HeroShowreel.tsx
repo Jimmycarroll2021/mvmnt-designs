@@ -9,29 +9,41 @@ interface ShowreelSlide {
   alt: string;
   caption: string;
   discipline: string;
+  objectPosition?: string;
 }
 
 const SHOWREEL_SLIDES: ShowreelSlide[] = [
   {
-    id: 'hali-cover',
+    id: 'mvmnt-club',
+    src: '/images/mvmnt_club_solo.png',
+    alt: 'MVMNT Club Performance Apparel & Digital Flagship',
+    caption: 'MVMNT Club · Performance Apparel & Digital Flagship',
+    discipline: 'Headless Commerce & Digital Product Design',
+    objectPosition: 'object-[center_28%]',
+  },
+  {
+    id: 'hali-use-case',
     src: '/images/hali_case_study_cover.png',
-    alt: 'Hali Institute of Restorative Medicine Canberra',
+    alt: 'Hali Institute Restorative Medicine Case Study',
     caption: 'Hali Institute · Restorative Medicine Consulting Rooms',
-    discipline: 'Brand Identity & Editorial Web Architecture',
+    discipline: 'Featured Use Case: Brand Identity & Clinical Architecture',
+    objectPosition: 'object-center',
   },
   {
-    id: 'hali-desktop',
-    src: '/images/hali_case_study_hero.png',
-    alt: 'Desktop Experience Preview',
-    caption: 'Clinical Service Directories & Procedure Guides',
-    discipline: 'High-Trust Clinical Copywriting & Layout',
+    id: 'cartel-racing',
+    src: '/images/cartel_kit_design.png',
+    alt: 'Cartel 2025 Spatial Racing Kit Design',
+    caption: 'Cartel 2025 · Aerodynamic Race Kit & Spatial Identity',
+    discipline: 'Sports Brand Identity & Spatial Apparel Design',
+    objectPosition: 'object-center',
   },
   {
-    id: 'hali-menu',
-    src: '/images/hali_case_study_menu.png',
-    alt: 'Mobile Experience Preview',
-    caption: 'Frictionless Mobile Patient Booking Journeys',
-    discipline: 'Modern Edge Engineering · Sub-Second Speed',
+    id: 'peloton-community',
+    src: '/images/mvmnt_club_group.png',
+    alt: 'MVMNT Community Peloton & Custom Kits',
+    caption: 'MVMNT Peloton · Club Custom Kit Platforms',
+    discipline: 'Brand Systems & Modern Edge Engineering',
+    objectPosition: 'object-center',
   },
 ];
 
@@ -62,7 +74,7 @@ export default function HeroShowreel() {
                 src={slide.src}
                 alt={slide.alt}
                 fill
-                className="object-cover"
+                className={`object-cover ${slide.objectPosition || 'object-center'}`}
                 priority={idx === 0}
                 sizes="(max-width: 1400px) 100vw, 1400px"
               />

@@ -9,41 +9,42 @@ interface FaqItem {
 
 const FAQS: FaqItem[] = [
   {
-    q: 'How much time will this take away from my patient schedule?',
+    q: 'How much time is required from our team during the engagement?',
     a: [
-      'Virtually none. We recognise that your clinical diary is dedicated to patient care, surgical lists, and multidisciplinary meetings. Your total direct commitment is strictly limited to a single 45-minute clinical intake conversation with our studio director.',
-      'During this focused dialogue, we capture your diagnostic approach, referral criteria, procedural nuances, and practice tone. From that point forward, our team handles everything: architectural wireframing, bespoke editorial copywriting, visual art direction, and technical systems integration. You are presented with a refined, staging-ready platform for final clinical sign-off, without having to attend endless committee meetings or manage digital minutiae.',
+      'Virtually none. We recognise that founders, business leaders, and medical specialists have intense schedules. Your total direct commitment is strictly limited to a single 45-minute discovery and intake conversation with our studio directors.',
+      'During this focused dialogue, we capture your commercial positioning, aesthetic preferences, service offerings, and brand tone. From that point forward, our senior team handles everything: architectural wireframing, bespoke editorial copywriting, visual art direction, and modern edge engineering. You receive a refined, staging-ready platform for final sign-off, without endless committee meetings or administrative drag.',
     ],
   },
   {
-    q: 'Do I have to write my own clinical copy?',
+    q: 'Do we have to write our own website copy?',
     a: [
-      'No. The single greatest frustration specialists experience with traditional marketing agencies is being handed a blank document and told to write their own procedural pages. At MVMNT Studio, you will never be asked to write a single paragraph.',
-      'Our editorial copywriters specialise exclusively in medical and health communication. We conduct independent literature reviews on your subspecialities, review your existing referral collateral, and synthesise your exact diagnostic philosophy into clear, patient-centred language. We articulate complex clinical pathways in a manner that calms patient apprehension, establishes immediate authority, and earns the respect of referring general practitioners. You retain full editorial approval, but the heavy lifting is entirely ours.',
+      'No. The single greatest frustration clients experience with traditional agencies is being handed a blank questionnaire and told to write their own pages. At MVMNT Studio, you will never be asked to write a single paragraph.',
+      'Our senior editorial copywriters craft every line of text to articulate your value proposition, build deep credibility, and persuade discerning visitors. For our specialist medical and clinical engagements (such as our Hali Institute use case), all copy is strictly researched, patient-centred, and engineered within AHPRA medical advertising guidelines. You retain full editorial sign-off, but the heavy lifting is entirely ours.',
     ],
   },
   {
-    q: 'How does this comply with AHPRA medical advertising rules?',
+    q: 'How does MVMNT compare to $20k+ traditional agencies or $2k cheap template freelancers?',
     a: [
-      'Every line of copy and visual element we produce is engineered strictly within the statutory boundaries of the Health Practitioner Regulation National Law (Section 133), the AHPRA Guidelines for Advertising Regulated Health Services, and the Therapeutic Goods Advertising Code.',
-      'We never publish prohibited patient testimonials regarding clinical outcomes, never make misleading claims of guaranteed results, and never advertise scheduled prescription medications or restricted therapeutic substances by brand name. Furthermore, we ensure your accredited medical titles and post-nominal qualifications (e.g. FRACS, FRANZCP, FACD) are represented with complete regulatory integrity.',
+      'We occupy a deliberate sweet spot of uncompromising design craft, modern technology, and surgical efficiency.',
+      'Budget $2,000 WordPress freelancers rely on recycled templates, 30+ fragile plugins, and generic stock imagery that drag page speed down and break regularly.',
+      'Conversely, $20,000 to $35,000 legacy agencies burden you with heavy account management layers, junior delegates, and prolonged 4-to-6-month timelines.',
+      'MVMNT Studio ($4,800 to $16,500 AUD) pairs you directly with senior creative and technical partners. By building on modern Next.js edge architecture rather than bloated templates, we deploy a bespoke, sub-second digital flagship in 7 to 14 business days at a fixed, transparent investment.',
     ],
   },
   {
-    q: 'How does this compare to $20k+ traditional agencies or $2k cheap WordPress templates?',
+    q: 'What technology stack do you build on?',
     a: [
-      'We occupy a deliberate middle ground of uncompromising quality and surgical efficiency.',
-      'Budget $2,000 WordPress templates rely on recycled layouts, 30+ unstable plugins, and generic stock photography. They load sluggishly on mobile devices, suffer frequent database crashes, and force your reception staff to write the clinical copy.',
-      'Conversely, $20,000 to $35,000 traditional agencies burden you with heavy account management overhead, layers of junior staff, and drawn-out 4-to-6-month timelines.',
-      'MVMNT Studio ($4,800 to $16,500 AUD) pairs you directly with senior design and editorial directors. By building on clean, modern architecture rather than fragile plugin monoliths, we launch a bespoke, fast-loading digital platform in 7 to 14 business days at a fixed, predictable investment.',
+      'We engineer on modern edge architecture: Next.js with Turbopack, Sanity Headless CMS, and managed global infrastructure with 99.9% uptime.',
+      'For e-commerce and sports platforms (like MVMNT Club), we integrate high-performance Shopify Admin GraphQL pipelines. For specialist practices, we provide seamless zero-redirect booking integrations with Cliniko, Halaxy, and modern calendar software.',
+      'This eliminates vulnerable WordPress plugins, database crashes, and slow mobile loading.',
     ],
   },
   {
-    q: 'Can my staff update the site after launch?',
+    q: 'Can our internal team update content after launch?',
     a: [
-      'Yes, effortlessly and without any risk of breaking your typography or mobile layouts.',
-      'For practices preferring direct internal control, we provide a secure, intuitive content studio (powered by Sanity CMS). Your practice manager can update consulting hours, add associate doctors, amend room locations, or publish clinical announcements within protected, structured fields.',
-      'Alternatively, most of our specialist practices utilise our Studio Care Retainer ($395 AUD / month). With this service, your reception staff simply email our dedicated studio desk whenever fees, schedules, or team profiles change. We test and publish the update within 24 business hours, giving you total peace of mind.',
+      'Yes, effortlessly and without any risk of breaking typography or mobile layouts.',
+      'For teams preferring internal control, we deliver an intuitive, clean content studio (powered by Sanity CMS). Your staff can update news, team bios, fees, schedules, and service guides in seconds.',
+      'Alternatively, most clients utilise our Studio Care Retainer ($395 AUD / month). With this service, your team simply emails our studio whenever changes are needed, and we test and publish within 24 business hours.',
     ],
   },
 ];
@@ -60,14 +61,14 @@ export default function FaqSection() {
       <div className="border-b border-gray-200 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <span className="text-xs font-mono uppercase tracking-widest text-gray-500 font-semibold">
-            PRACTICE GOVERNANCE & METHODOLOGY
+            STUDIO STANDARDS & METHODOLOGY
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-950 mt-1">
             Frequently Addressed Questions.
           </h2>
         </div>
         <div className="text-xs font-mono text-gray-500">
-          Direct Answers for Discerning Practice Leaders
+          Direct Answers for Founders, Specialists & Practice Leaders
         </div>
       </div>
 

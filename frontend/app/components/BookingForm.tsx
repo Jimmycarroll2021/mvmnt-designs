@@ -4,10 +4,10 @@ import React, { useState, useEffect } from 'react';
 
 const PACKAGES = [
   { value: 'Not sure yet (Help me choose on our call)', label: 'Not sure yet (Help me choose on our call)' },
-  { value: '01. Solo Specialist Launch ($4,800 AUD)', label: '01. Solo Specialist Launch — $4,800 AUD (5–7 Days)' },
-  { value: '02. Boutique Clinic Studio Build ($8,800 AUD)', label: '02. Boutique Clinic Studio Build — $8,800 AUD (10–14 Days)' },
-  { value: '03. Complete Practice Transformation ($16,500+ AUD)', label: '03. Complete Practice Transformation — $16,500+ AUD (3–4 Weeks)' },
-  { value: 'Studio Care & Peace of Mind ($395/mo)', label: 'Studio Care & Support — $395 AUD / month' },
+  { value: '01. Digital Launch / Solo Specialist ($4,800 AUD)', label: '01. Digital Launch / Solo Specialist — $4,800 AUD (5–7 Days)' },
+  { value: '02. Flagship Studio Build ($8,800 AUD)', label: '02. Flagship Studio Build — $8,800 AUD (10–14 Days)' },
+  { value: '03. Enterprise & Custom Systems ($16,500+ AUD)', label: '03. Enterprise & Custom Systems — $16,500+ AUD (3–4 Weeks)' },
+  { value: 'Studio Care & Support ($395/mo)', label: 'Studio Care & Support — $395 AUD / month' },
 ];
 
 export default function BookingForm() {
@@ -159,7 +159,7 @@ export default function BookingForm() {
                 id="name"
                 required
                 type="text"
-                placeholder="Dr. Julian Vance"
+                placeholder="Julian Vance"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className="w-full rounded-lg border border-gray-300 p-3.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition"
@@ -168,13 +168,13 @@ export default function BookingForm() {
 
             <div>
               <label htmlFor="email" className="block text-xs uppercase font-mono tracking-wider text-gray-600 mb-2">
-                Practice or Work Email *
+                Work or Business Email *
               </label>
               <input
                 id="email"
                 required
                 type="email"
-                placeholder="julian@vanceclinic.com.au"
+                placeholder="julian@company.com.au"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 className="w-full rounded-lg border border-gray-300 p-3.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition"

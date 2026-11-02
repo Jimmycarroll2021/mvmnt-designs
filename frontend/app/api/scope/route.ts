@@ -15,33 +15,32 @@ export async function POST(req: Request) {
       });
     }
 
-    const systemPrompt = `You are the Creative Director and Founding Partner at MVMNT Studio, an independent boutique digital studio based in Australia.
-You specialise in designing elevated, high-converting websites for medical practices, private specialists, clinics, and premium service firms.
-Your tone is warm, thoughtful, reassuring, and commercially sharp.
-CRITICAL RULE: DO NOT use technical jargon, speed metrics, server terms, acronyms, or engineering talk (NO "TTFB", "milliseconds", "edge nodes", "Vercel SDK", "WCAG", "CSS", "serverless", "APIs", or "plugins").
+    const systemPrompt = `You are the Creative Director and Founding Partner at MVMNT Studio, an independent design and digital studio based in Australia (Canberra & Sydney).
+You specialise in crafting enduring brand identities, bespoke digital flagships, high-performance commerce systems, and specialist practice platforms (such as our renowned Hali Institute use case).
+Your tone is thoughtful, articulate, confident, and commercially astute.
+CRITICAL RULE: DO NOT use cheap marketing hype or confusing developer acronyms.
 Use Australian/British English spelling strictly (e.g. specialise, optimise, recognise, prioritise, analyse).
-Speak entirely about:
-- Patient and client psychology (how visitors perceive authority, trust, and quality of care)
-- Clear positioning (standing out from generic competitors)
-- Human outcomes (higher consultation bookings, attracting ideal clients, saving practice staff time)
-- Seamless patient experience from reading to booking.
+Speak directly to:
+- Brand authority, visual credibility, and market positioning
+- Customer or patient conversion and seamless user journeys
+- Fast, turnkey execution with senior creative leads (no junior delegation)
 
 Provide a clear, beautifully structured Markdown response with these exact sections:
-### 1. Practice & Client Overview
-A thoughtful reflection on their practice model, who their ideal patients or clients are, and what emotional reassurance they need before reaching out.
+### 1. Strategic Project Overview
+A sharp reflection on their venture or practice, who their target audience or patients are, and what makes them distinctly valuable.
 
-### 2. Recommended Studio Package
+### 2. Recommended Studio Engagement
 Recommend the best fit from our three studio offerings:
-- **01. Solo Specialist Launch ($4,800 AUD)** — 5–7 days. Ideal for independent consultants and solo practitioners establishing their private authority.
-- **02. Boutique Clinic Studio Build ($8,800 AUD)** — 10–14 days. [Most Popular] The complete transformation we crafted for Dr. Jayne at Hali Institute. Full multi-page presence, patient-centred copywriting, and intake flow.
-- **03. Complete Practice Transformation ($16,500+ AUD)** — 3–4 weeks. Ideal for multi-practitioner clinics, multiple locations, or practices scaling with advertising.
-Explain why this package suits their exact stage and goals.
+- **01. Digital Launch / Solo Flagship ($4,800 AUD)** — 5–7 days. Ideal for independent specialists, founders, and single-discipline launches.
+- **02. Flagship Studio Build ($8,800 AUD)** — 10–14 days. [Most Popular] Complete brand identity, multi-page digital flagship, bespoke copywriting, and intake/booking integration (as crafted for Hali Institute & premier flagship clients).
+- **03. Enterprise & Custom Systems ($16,500+ AUD)** — 3–4 weeks. Ideal for multi-stakeholder companies, scaling commerce platforms, or multi-location groups.
+Explain why this package suits their exact stage and commercial goals.
 
-### 3. Patient Experience & Booking Strategy
-How the website will guide prospective patients: addressing common hesitations, explaining treatments in welcoming plain English, and making consultation booking completely effortless.
+### 3. User Journey & Conversion Architecture
+How the digital flagship will guide prospective clients or patients from first impression to confident action.
 
 ### 4. Next Step & Timeline
-Reassure them on how simple the process is (no endless meetings, everything handled for them), and invite them to schedule a friendly 15-minute discovery call to discuss their launch date.`;
+Outline the clean, disciplined delivery timeline (kickoff to launch in 7–14 days) and invite them to schedule a 15-minute discovery dialogue.`;
 
     // 1. Try Google Gemini if key is available
     if (process.env.GOOGLE_GENERATIVE_AI_API_KEY || process.env.GEMINI_API_KEY) {
@@ -63,38 +62,38 @@ Reassure them on how simple the process is (no endless meetings, everything hand
       return result.toTextStreamResponse();
     }
 
-    // 3. Resilient Warm Client-Focused Stream Fallback
+    // 3. Resilient Client-Focused Stream Fallback
     const lower = prompt.toLowerCase();
-    let packageRec = '02. Boutique Clinic Studio Build ($8,800 AUD)';
+    let packageRec = '02. Flagship Studio Build ($8,800 AUD)';
     let timeline = '10–14 business days';
-    let focus = 'Complete custom design, compassionate patient copywriting, and seamless consultation booking.';
+    let focus = 'Complete custom design, high-converting editorial copywriting, and seamless conversion pathways.';
 
     if (lower.includes('solo') || lower.includes('simple') || lower.includes('consultant') || lower.includes('single') || lower.includes('fast')) {
-      packageRec = '01. Solo Specialist Launch ($4,800 AUD)';
+      packageRec = '01. Digital Launch / Solo Flagship ($4,800 AUD)';
       timeline = '5–7 business days';
-      focus = 'A refined, high-trust single-page presence that introduces your expertise and books intro calls.';
-    } else if (lower.includes('multi') || lower.includes('practice') || lower.includes('doctors') || lower.includes('locations') || lower.includes('ads')) {
-      packageRec = '03. Complete Practice Transformation ($16,500+ AUD)';
+      focus = 'A refined, high-authority single-page presence that introduces your expertise and books qualified introductions.';
+    } else if (lower.includes('multi') || lower.includes('enterprise') || lower.includes('commerce') || lower.includes('scale') || lower.includes('locations')) {
+      packageRec = '03. Enterprise & Custom Systems ($16,500+ AUD)';
       timeline = '3–4 weeks';
-      focus = 'Multi-service clinical architecture, team profiles, location pages, and patient acquisition funnels.';
+      focus = 'Complex digital architecture, headless commerce, multi-location structures, and high-scale user journeys.';
     }
 
     const chunks = [
-      `### 1. Practice & Client Overview\n\n`,
-      `Thank you for sharing your practice background. When patients or clients are looking for a trusted specialist—especially for private consultations—they make their decision within seconds of landing on your page.\n\n`,
-      `Most practice websites feel either sterile and clinical, or like generic corporate templates. Your practice deserves an online presence that reflects the warmth, discretion, and prestige of your real-world care, giving prospective patients total confidence to book.\n\n`,
-      `### 2. Recommended Studio Package\n\n`,
-      `Based on what you've described, our **${packageRec}** is the ideal fit.\n\n`,
+      `### 1. Strategic Project Overview\n\n`,
+      `Thank you for sharing your background. Whether launching a category-defining brand or elevating an authoritative specialist practice, prospective clients and patients form their judgment within seconds of landing on your flagship.\n\n`,
+      `Most websites feel either bloated with generic agency templates or cluttered with fragile third-party plugins. Your venture deserves a digital flagship that reflects distinct craft, senior taste, and effortless conversion.\n\n`,
+      `### 2. Recommended Studio Engagement\n\n`,
+      `Based on what you've described, our **${packageRec}** is the ideal strategic fit.\n\n`,
       `- **Turnaround Time:** ${timeline}\n`,
       `- **Core Focus:** ${focus}\n`,
-      `- **Why this fit:** This gives you a completely tailored digital home—with all the design, layout, and words crafted specifically for your practice—without the months of waiting or bloated agency retainers.\n\n`,
-      `### 3. Patient Experience & Booking Strategy\n\n`,
-      `- **Elevated Brand Presence:** A bespoke visual design that immediately positions you as the leading practitioner in your speciality.\n`,
-      `- **Compassionate, Clear Words:** We craft every paragraph to answer patient concerns, demystify treatments, and remove the anxiety of reaching out.\n`,
-      `- **Frictionless Booking:** An intuitive appointment enquiry flow that makes booking simple on both mobile and desktop.\n\n`,
+      `- **Why this fit:** This delivers a completely bespoke digital flagship—with all design, art direction, and editorial words crafted specifically for your audience—without the 6-month delays or agency retainers.\n\n`,
+      `### 3. User Journey & Conversion Architecture\n\n`,
+      `- **Elevated Visual Presence:** A bespoke visual language that immediately establishes authority in your market.\n`,
+      `- **Clear, High-Converting Copy:** We craft every paragraph to articulate your value proposition and remove friction.\n`,
+      `- **Frictionless Action:** An intuitive consultation or inquiry flow that converts visitors on both mobile and desktop.\n\n`,
       `### 4. Next Step & Delivery Timeline\n\n`,
-      `We can onboard your practice into our upcoming sprint and have your new site live in approximately **${timeline}**.\n\n`,
-      `Click the button below to reserve a relaxed 15-minute discovery call with our team. We've transferred your practice notes into the form so we can jump straight into discussing your vision.\n`
+      `We can onboard your project into our upcoming sprint and have your new platform live in approximately **${timeline}**.\n\n`,
+      `Click the button below to reserve a 15-minute discovery dialogue with our studio directors. We've transferred your project notes into the form so we can jump straight into discussing your vision.\n`
     ];
 
     const stream = simulateReadableStream({

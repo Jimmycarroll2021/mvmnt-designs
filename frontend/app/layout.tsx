@@ -28,9 +28,9 @@ export async function generateMetadata(): Promise<Metadata> {
     stega: false,
   });
 
-  const defaultTitle = 'MVMNT STUDIO | Boutique Medical & Practice Web Design Australia';
+  const defaultTitle = 'MVMNT STUDIO | Independent Design & Digital Studio Australia';
   const defaultDesc =
-    'Bespoke digital design, clinical copywriting, and patient booking platforms for medical practices, private specialists, and boutique clinics across Australia.';
+    'We create enduring brand identities, digital flagships, and high-performance platforms for ambitious brands, innovative companies, and specialist leaders. Canberra & Sydney.';
 
   const title = settings?.title || defaultTitle;
   const description = settings?.description ? toPlainText(settings.description) : defaultDesc;
