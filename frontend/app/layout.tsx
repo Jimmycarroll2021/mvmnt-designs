@@ -131,7 +131,7 @@ export default async function RootLayout({ children }: LayoutProps<'/'>) {
         <JsonLd />
       </head>
       <body>
-        <section className="min-h-screen pt-24">
+        <section className="min-h-screen">
           <Toaster />
           {isDraftMode && (
             <>
@@ -141,7 +141,7 @@ export default async function RootLayout({ children }: LayoutProps<'/'>) {
           )}
           {isDraftMode && <SanityLive onError={handleError} />}
           <Header />
-          <main>{children}</main>
+          <main className="pt-16 lg:pt-20">{children}</main>
           <Footer />
         </section>
         <SpeedInsights />
