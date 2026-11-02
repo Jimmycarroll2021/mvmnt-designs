@@ -1,349 +1,552 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import HeroShowreel from '@/app/components/HeroShowreel';
-import BookingForm from '@/app/components/BookingForm';
 import StudioScoper from '@/app/components/StudioScoper';
-
-interface WorkItem {
-  id: string;
-  title: string;
-  category: string;
-  bgColor: string;
-  imageSrc?: string;
-  tag?: string;
-}
-
-const RECENT_WORK: WorkItem[] = [
-  {
-    id: 'hali',
-    title: 'Hali Institute',
-    category: 'Brand, Restorative Medicine, Clinical Architecture',
-    bgColor: '#b8a99a',
-    imageSrc: '/images/hali_case_study_cover.png',
-  },
-  {
-    id: 'mvmnt-club',
-    title: 'MVMNT Club',
-    category: 'Digital Flagship, Headless Commerce, Sport',
-    bgColor: '#171717',
-    imageSrc: '/images/hali_case_study_hero.png',
-  },
-  {
-    id: 'kingston-suite',
-    title: 'The Kingston Suite',
-    category: 'Spatial, Brand, Wayfinding · Canberra',
-    bgColor: '#2a3b4c',
-    imageSrc: '/images/hali_case_study_menu.png',
-  },
-  {
-    id: 'canberra-restorative',
-    title: 'Canberra Restorative',
-    category: 'Brand, Digital, Clinical Experience',
-    bgColor: '#3f4e43',
-    imageSrc: '/images/hali_case_study_cover.png',
-  },
-  {
-    id: 'aero-lab',
-    title: 'Aero Performance Lab',
-    category: 'Digital, Product Engineering, Apparel',
-    bgColor: '#303030',
-    imageSrc: '/images/hali_case_study_hero.png',
-  },
-  {
-    id: 'foreshore-health',
-    title: 'Foreshore Health',
-    category: 'Mobile Architecture, Patient Intake',
-    bgColor: '#7a5a4c',
-    imageSrc: '/images/hali_case_study_menu.png',
-  },
-];
+import BookingForm from '@/app/components/BookingForm';
+import FaqSection from '@/app/components/FaqSection';
+import PackageSelectButton from '@/app/components/PackageSelectButton';
+import HeroShowreel from '@/app/components/HeroShowreel';
 
 export default function Home() {
   return (
-    <div className="space-y-24 md:space-y-36 pb-20">
-      {/* 1. SWELL SHOWREEL HERO (Zero Marketing Fluff, Pure Editorial Visuals) */}
-      <h1 className="sr-only">Home — MVMNT</h1>
-      <HeroShowreel />
-
-      {/* 2. RECENT WORK (Swell Grid Architecture) */}
-      <section id="work" className="container" data-block="work">
-        <header className="mb-8">
-          <h2 className="text-2xl sm:text-3xl font-medium tracking-tight text-neutral-950">
-            Recent Work
-          </h2>
-        </header>
-
-        <div className="grid grid-cols-6 gap-x-4 gap-y-12 lg:grid-cols-12 lg:gap-x-8">
-          {RECENT_WORK.map((item) => (
-            <div key={item.id} className="col-span-6 lg:col-span-6 2xl:col-span-4">
-              <article className="group/card">
-                <a href="#contact" className="block group">
-                  {/* Media Wrapper with Solid Swell Accent Background */}
-                  <div
-                    className="w-full relative overflow-hidden transition-opacity duration-300 group-hover:opacity-95"
-                    style={{ backgroundColor: item.bgColor }}
-                  >
-                    <div className="relative aspect-[0.92] w-full overflow-hidden flex items-center justify-center p-6 sm:p-8">
-                      {item.imageSrc && (
-                        <div className="relative w-full h-full shadow-2xl transition-transform duration-700 ease-out group-hover:scale-[1.03]">
-                          <Image
-                            src={item.imageSrc}
-                            alt={item.title}
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          />
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Metadata below media (Exact Swell Typography) */}
-                  <div className="mt-4 space-y-1">
-                    <h3 className="text-base sm:text-lg font-medium text-neutral-950 group-hover:text-neutral-600 transition-colors">
-                      {item.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-neutral-500 font-sans">
-                      {item.category}
-                    </p>
-                  </div>
-                </a>
-              </article>
+    <div className="space-y-24 sm:space-y-36 pb-24">
+      {/* 1. HERO SECTION (Swell-Calibre Monumental Grotesque Opening) */}
+      <section className="container pt-6 sm:pt-10">
+        <div className="border-b border-black pb-12 sm:pb-16 space-y-8">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+            <div className="max-w-4xl space-y-4">
+              <div className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-neutral-500">
+                <span className="w-2 h-2 rounded-full bg-[#f0ff50] ring-4 ring-[#f0ff50]/20"></span>
+                <span>MVMNT STUDIO // CANBERRA & SYDNEY · AUSTRALIA</span>
+              </div>
+              <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.25rem] font-medium tracking-tight text-black leading-[1.02]">
+                Bespoke digital design for private practices and ambitious brands.
+              </h1>
             </div>
-          ))}
+
+            <div className="max-w-sm space-y-4 font-sans text-sm text-neutral-600 leading-relaxed">
+              <p>
+                We build high-trust digital flagships, clinical copywriting, and frictionless patient booking systems. Built for doctors, specialists, and leaders who want to be recognised as premier authorities in their field.
+              </p>
+              <div className="font-mono text-xs uppercase tracking-wider text-black flex items-center gap-2 pt-2">
+                <span className="text-neutral-400">→</span>
+                <span>Direct Partner Collaboration · 5–14 Day Turnaround</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Nav Anchors */}
+          <div className="flex flex-wrap items-center gap-3 pt-4 font-mono text-xs uppercase tracking-wider">
+            <a
+              href="#work"
+              className="px-5 py-2.5 rounded-full bg-black text-white hover:bg-[#f0ff50] hover:text-black transition-colors"
+            >
+              Recent Work ↓
+            </a>
+            <a
+              href="#pricing"
+              className="px-5 py-2.5 rounded-full border border-neutral-300 text-black hover:bg-neutral-100 transition-colors"
+            >
+              Studio Packages & Rates
+            </a>
+            <a
+              href="#scoper"
+              className="px-5 py-2.5 rounded-full border border-neutral-300 text-black hover:bg-neutral-100 transition-colors"
+            >
+              Instant Strategy Guide
+            </a>
+            <a
+              href="#contact"
+              className="px-5 py-2.5 rounded-full border border-neutral-300 text-black hover:bg-neutral-100 transition-colors"
+            >
+              Request 15-Min Call
+            </a>
+          </div>
+        </div>
+
+        {/* Visual Showreel Stage */}
+        <div className="pt-10">
+          <HeroShowreel />
         </div>
       </section>
 
-      {/* 3. LATEST (Swell's Editorial Work-in-Progress & Journal) */}
-      <section className="container space-y-8" data-block="latest">
-        <header>
-          <h2 className="text-2xl sm:text-3xl font-medium tracking-tight text-neutral-950">
-            Latest
-          </h2>
-        </header>
+      {/* CONTINUOUS MARQUEE STRIP */}
+      <section className="w-full overflow-hidden border-y border-black bg-neutral-50 py-3.5 select-none font-mono text-xs uppercase tracking-widest text-neutral-600">
+        <div className="animate-marquee flex items-center gap-10 whitespace-nowrap">
+          <span>Brand Identities</span>
+          <span className="text-[#f0ff50] font-bold">♥</span>
+          <span>Medical Specialists & Private Rooms</span>
+          <span className="text-neutral-300">/</span>
+          <span>High-Performance Digital Flagships</span>
+          <span className="text-[#f0ff50] font-bold">♥</span>
+          <span>Canberra & Sydney</span>
+          <span className="text-neutral-300">/</span>
+          <span>AHPRA-Aware Clinical Copywriting</span>
+          <span className="text-[#f0ff50] font-bold">♥</span>
+          <span>Effortless Mobile Booking Journeys</span>
+          <span className="text-neutral-300">/</span>
+          <span>5–14 Day Delivery</span>
+          <span className="text-[#f0ff50] font-bold">♥</span>
+          <span>Next.js Edge Architecture</span>
+          <span className="text-neutral-300">/</span>
+          <span>Brand Identities</span>
+          <span className="text-[#f0ff50] font-bold">♥</span>
+          <span>Medical Specialists & Private Rooms</span>
+        </div>
+      </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Latest 1 */}
-          <article className="flex flex-col gap-y-6 group">
-            <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100 grayscale hover:grayscale-0 transition-all duration-500">
-              <Image
-                src="/images/hali_case_study_cover.png"
-                alt="Hali Institute"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="space-y-3 prose pr-4">
-              <h3 className="text-base uppercase tracking-wider font-medium text-neutral-950">
+      {/* 2. RECENT WORK (Swell Showcase Grid with Real Project Evidence) */}
+      <section id="work" className="container space-y-12" data-block="work">
+        <div className="border-b border-black pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <span className="font-mono text-xs uppercase tracking-widest text-neutral-400">
+              01 // PORTFOLIO
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-medium tracking-tight text-neutral-950 mt-1">
+              Recent Work
+            </h2>
+          </div>
+          <div className="font-mono text-xs text-neutral-500">
+            Selected Digital Flagships & Clinical Environments
+          </div>
+        </div>
+
+        {/* WORK CARD 1: HALI INSTITUTE (Major Case Study) */}
+        <article className="border border-neutral-200 bg-white overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-8 sm:p-12">
+            <div className="lg:col-span-5 space-y-6">
+              <div className="flex items-center gap-3">
+                <span className="px-2.5 py-1 rounded bg-neutral-100 font-mono text-[10px] uppercase tracking-wider text-neutral-800 font-semibold">
+                  Brand · Digital · Clinical Experience
+                </span>
+                <span className="text-neutral-400 font-mono text-xs">Canberra, ACT</span>
+              </div>
+
+              <h3 className="text-2xl sm:text-3xl font-bold text-neutral-950 leading-tight">
                 Hali Institute of Restorative Medicine
               </h3>
-              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-sans">
-                Work in progress for Dr. Jayne’s specialist rooms in Canberra. We replaced generic medical stock graphics with high-readability editorial typography and tranquil tones mirroring her physical practice.
-              </p>
-              <p>
-                <a
-                  href="#contact"
-                  className="text-xs font-mono uppercase tracking-wider text-neutral-900 underline hover:text-neutral-500 transition-colors"
-                >
-                  View Case Study →
-                </a>
-              </p>
-            </div>
-          </article>
 
-          {/* Latest 2 */}
-          <article className="flex flex-col gap-y-6 group">
-            <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100 grayscale hover:grayscale-0 transition-all duration-500">
-              <Image
-                src="/images/hali_case_study_hero.png"
-                alt="MVMNT Club Kit Engine"
-                fill
-                className="object-cover"
-              />
+              <p className="text-sm text-neutral-600 leading-relaxed font-sans">
+                Elevating a specialist practice in Canberra to match the calibre of her care. Dr. Jayne offers restorative medical therapies and evidence-based protocols. We replaced generic medical stock graphics with high-readability editorial typography and tranquil tones mirroring her physical consulting rooms.
+              </p>
+
+              <div className="space-y-2 pt-2 text-xs font-mono text-neutral-700">
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#f0ff50]"></span>
+                  <span>Delivered in 10 Days · $8,800 Boutique Studio Build</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-black"></span>
+                  <span>AHPRA-Aware Procedural Guides & Direct Patient Intake</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-black"></span>
+                  <span>Mobile-First Booking Flow Reducing Receptionist Drag</span>
+                </div>
+              </div>
+
+              <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-200 text-xs italic text-neutral-800 leading-relaxed font-sans">
+                &ldquo;The studio understood our medical philosophy from our first conversation. New patients now regularly mention how calm and reassuring the site felt before their initial consultation.&rdquo;
+                <span className="block mt-1 font-semibold not-italic font-mono text-[11px] text-neutral-900">
+                  — Dr. Jayne, Founder
+                </span>
+              </div>
             </div>
-            <div className="space-y-3 prose pr-4">
-              <h3 className="text-base uppercase tracking-wider font-medium text-neutral-950">
+
+            <div className="lg:col-span-7">
+              <div className="relative aspect-[16/10] overflow-hidden border border-neutral-200 bg-[#c4b5a5]">
+                <Image
+                  src="/images/hali_case_study_cover.png"
+                  alt="Hali Institute Case Study Cover"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Visual Gallery Preview */}
+          <div className="grid grid-cols-1 md:grid-cols-2 border-t border-neutral-200">
+            <div className="p-8 border-b md:border-b-0 md:border-r border-neutral-200 space-y-4">
+              <div className="relative aspect-[16/10] overflow-hidden border border-neutral-200 bg-neutral-100">
+                <Image
+                  src="/images/hali_case_study_hero.png"
+                  alt="Hali Desktop View"
+                  fill
+                  className="object-cover hover:scale-[1.02] transition-transform duration-500"
+                />
+              </div>
+              <div className="text-xs text-neutral-600 font-mono">
+                [ Desktop Presentation ] Clear clinical hierarchy and direct consultation pathways.
+              </div>
+            </div>
+
+            <div className="p-8 space-y-4">
+              <div className="relative aspect-[16/10] overflow-hidden border border-neutral-200 bg-neutral-100">
+                <Image
+                  src="/images/hali_case_study_menu.png"
+                  alt="Hali Mobile View"
+                  fill
+                  className="object-cover hover:scale-[1.02] transition-transform duration-500"
+                />
+              </div>
+              <div className="text-xs text-neutral-600 font-mono">
+                [ Mobile Polish ] Streamlined navigation designed for busy patients booking on phones.
+              </div>
+            </div>
+          </div>
+        </article>
+
+        {/* WORK CARD 2: MVMNT CLUB CYCLING APPAREL */}
+        <article className="border border-neutral-200 bg-white p-8 sm:p-12 space-y-6">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div className="space-y-2 max-w-2xl">
+              <div className="flex items-center gap-3">
+                <span className="px-2.5 py-1 rounded bg-neutral-100 font-mono text-[10px] uppercase tracking-wider text-neutral-800 font-semibold">
+                  Digital Flagship · Headless Commerce · Sport
+                </span>
+                <span className="text-neutral-400 font-mono text-xs">Australia</span>
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-bold text-neutral-950">
                 MVMNT Club Custom Apparel Engine
               </h3>
-              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-sans">
-                We engineered a headless custom apparel platform for Australian cycling clubs, standardising 3D kit visualization, sizing, and automated on-demand Shopify fulfillment without club financial float.
-              </p>
-              <p>
-                <a
-                  href="#contact"
-                  className="text-xs font-mono uppercase tracking-wider text-neutral-900 underline hover:text-neutral-500 transition-colors"
-                >
-                  Visit Platform →
-                </a>
+              <p className="text-sm text-neutral-600 leading-relaxed font-sans">
+                Headless high-performance custom kit engine for Australian cycling clubs. Standardising 3D kit visualization, sizing, and automated on-demand Shopify fulfillment without club financial float.
               </p>
             </div>
-          </article>
+            <div className="font-mono text-xs text-neutral-500 space-y-1">
+              <div>Next.js Edge + Shopify Admin GraphQL</div>
+              <div>Sub-second Page Response</div>
+            </div>
+          </div>
+        </article>
+      </section>
 
-          {/* Latest 3 */}
-          <article className="flex flex-col gap-y-6 group">
-            <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100 grayscale hover:grayscale-0 transition-all duration-500">
-              <Image
-                src="/images/hali_case_study_menu.png"
-                alt="Wayfinding & Mobile Intake"
-                fill
-                className="object-cover"
-              />
+      {/* 3. DISCIPLINES (Swell Triad: Brand, Digital, Spatial) */}
+      <section id="disciplines" className="container space-y-12">
+        <div className="border-b border-black pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <span className="font-mono text-xs uppercase tracking-widest text-neutral-400">
+              02 // EXPERTISE
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-medium tracking-tight text-neutral-950 mt-1">
+              Disciplines
+            </h2>
+          </div>
+          <div className="font-mono text-xs text-neutral-500">
+            Strategy, Design & Modern Engineering
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Discipline 1 */}
+          <div className="border border-neutral-200 p-8 space-y-6 bg-white hover:border-black transition-colors">
+            <div className="font-mono text-xs text-neutral-400 uppercase tracking-widest">
+              DISCIPLINE // 01
             </div>
-            <div className="space-y-3 prose pr-4">
-              <h3 className="text-base uppercase tracking-wider font-medium text-neutral-950">
-                Private Specialist Mobile Intake
+            <h3 className="text-2xl font-bold text-neutral-950">
+              Brand & Positioning
+            </h3>
+            <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-sans">
+              We design brand identities and write clinical copy that help ambitious practices lead with distinct authority. Thoughtful typography, tranquil palettes, and persuasive messaging that reassure anxious patients.
+            </p>
+            <ul className="space-y-2 text-xs font-mono text-neutral-600 border-t border-neutral-100 pt-6">
+              <li>→ Visual Identity & Art Direction</li>
+              <li>→ Clinical & Commercial Copywriting</li>
+              <li>→ AHPRA-Aware Practice Guides</li>
+              <li>→ Brand Guidelines & Typography</li>
+            </ul>
+          </div>
+
+          {/* Discipline 2 */}
+          <div className="border border-neutral-200 p-8 space-y-6 bg-white hover:border-black transition-colors">
+            <div className="font-mono text-xs text-neutral-400 uppercase tracking-widest">
+              DISCIPLINE // 02
+            </div>
+            <h3 className="text-2xl font-bold text-neutral-950">
+              Digital Flagships
+            </h3>
+            <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-sans">
+              Fast, reliable, and functional. Custom Next.js web platforms built from concept to live deployment with sub-second page loads, fluid responsive interactions, and zero fragile template dependencies.
+            </p>
+            <ul className="space-y-2 text-xs font-mono text-neutral-600 border-t border-neutral-100 pt-6">
+              <li>→ Modern Next.js Edge Development</li>
+              <li>→ Sub-Second Mobile Interactions</li>
+              <li>→ 99.9% Uptime & Automated Backups</li>
+              <li>→ Core Web Vitals Optimization</li>
+            </ul>
+          </div>
+
+          {/* Discipline 3 */}
+          <div className="border border-neutral-200 p-8 space-y-6 bg-white hover:border-black transition-colors">
+            <div className="font-mono text-xs text-neutral-400 uppercase tracking-widest">
+              DISCIPLINE // 03
+            </div>
+            <h3 className="text-2xl font-bold text-neutral-950">
+              Clinic & Booking Systems
+            </h3>
+            <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-sans">
+              Turnkey appointment funnels that convert visitors into booked consultations. Seamless integration with Cliniko, Halaxy, Stripe, and modern clinic software without losing visitors to jarring redirects.
+            </p>
+            <ul className="space-y-2 text-xs font-mono text-neutral-600 border-t border-neutral-100 pt-6">
+              <li>→ Direct Practice Software Integration</li>
+              <li>→ Multi-Practitioner Directories</li>
+              <li>→ Secure Patient Intake Assessment</li>
+              <li>→ Ongoing Care & Support ($395/mo)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. INSTANT PRACTICE STRATEGY GUIDE (Studio Scoper) */}
+      <section id="scoper" className="container space-y-8">
+        <div className="border-b border-black pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <span className="font-mono text-xs uppercase tracking-widest text-neutral-400">
+              03 // STRATEGY GUIDE
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-medium tracking-tight text-neutral-950 mt-1">
+              Studio Scoper
+            </h2>
+          </div>
+          <div className="font-mono text-xs text-neutral-500">
+            Interactive Practice Scope & Package Recommendations
+          </div>
+        </div>
+
+        <StudioScoper />
+      </section>
+
+      {/* 5. PACKAGES & TRANSPARENT RATES (Swell Architectural Rate Card) */}
+      <section id="pricing" className="container space-y-12">
+        <div className="border-b border-black pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <span className="font-mono text-xs uppercase tracking-widest text-neutral-400">
+              04 // TRANSPARENT INVESTMENT
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-medium tracking-tight text-neutral-950 mt-1">
+              Studio Packages & Rates
+            </h2>
+          </div>
+          <div className="font-mono text-xs text-neutral-500">
+            Fixed Pricing · Clear Inclusions · No Vague Hourly Retainers
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+          {/* TIER 1 */}
+          <div className="border border-neutral-200 bg-white p-8 sm:p-10 flex flex-col justify-between hover:border-black transition-colors">
+            <div className="space-y-6">
+              <div className="flex items-center justify-between font-mono text-xs text-neutral-500">
+                <span>01. SOLO SPECIALIST</span>
+                <span>5–7 DAYS</span>
+              </div>
+              <div>
+                <div className="text-4xl font-bold text-neutral-950">
+                  $4,800 <span className="text-xs font-mono font-normal text-neutral-500">AUD</span>
+                </div>
+                <div className="text-xs text-neutral-600 mt-2 font-sans">
+                  For independent practitioners & solo specialists establishing authoritative positioning.
+                </div>
+              </div>
+              <ul className="space-y-3 text-xs text-neutral-700 font-sans border-t border-neutral-100 pt-6">
+                <li className="flex items-start gap-2">✓ <strong>Bespoke single-page luxury flagship</strong> crafted for your discipline</li>
+                <li className="flex items-start gap-2">✓ <strong>Clinical copywriting</strong> written to position your authority</li>
+                <li className="flex items-start gap-2">✓ <strong>Consultation booking flow</strong> integrated directly with your calendar</li>
+                <li className="flex items-start gap-2">✓ <strong>Mobile-first polish</strong> flawless on iOS and Android</li>
+                <li className="flex items-start gap-2">✓ <strong>Rapid 5–7 day turnaround</strong> from kickoff to live launch</li>
+              </ul>
+            </div>
+            <div className="pt-8 mt-8 border-t border-neutral-100">
+              <PackageSelectButton
+                packageTier="01. Solo Specialist Launch ($4,800 AUD)"
+                className="w-full block text-center py-3.5 border border-black text-black text-xs font-mono uppercase hover:bg-black hover:text-white transition-colors"
+              >
+                Inquire About Solo Launch →
+              </PackageSelectButton>
+            </div>
+          </div>
+
+          {/* TIER 2 - FLAGSHIP */}
+          <div className="border-2 border-black bg-white p-8 sm:p-10 flex flex-col justify-between relative shadow-lg">
+            <div className="absolute -top-3 left-8 px-3 py-0.5 bg-black text-[#f0ff50] text-[10px] font-mono tracking-widest uppercase font-semibold">
+              The Flagship Build
+            </div>
+            <div className="space-y-6">
+              <div className="flex items-center justify-between font-mono text-xs text-neutral-500">
+                <span>02. BOUTIQUE CLINIC</span>
+                <span>10–14 DAYS</span>
+              </div>
+              <div>
+                <div className="text-4xl font-bold text-neutral-950">
+                  $8,800 <span className="text-xs font-mono font-normal text-neutral-500">AUD</span>
+                </div>
+                <div className="text-xs text-neutral-600 mt-2 font-sans">
+                  Our premier engagement. Exactly what we designed and deployed for Dr. Jayne (Hali).
+                </div>
+              </div>
+              <ul className="space-y-3 text-xs text-neutral-700 font-sans border-t border-neutral-100 pt-6">
+                <li className="flex items-start gap-2">✓ <strong>Full multi-page editorial website</strong> for all clinical services</li>
+                <li className="flex items-start gap-2">✓ <strong>Complete clinical copywriting</strong> addressing patient inquiries</li>
+                <li className="flex items-start gap-2">✓ <strong>Bespoke visual identity & typography</strong> tailored to your rooms</li>
+                <li className="flex items-start gap-2">✓ <strong>Interactive patient assessment</strong> and qualification flow</li>
+                <li className="flex items-start gap-2">✓ <strong>Google Search Console & local presence</strong> verified</li>
+                <li className="flex items-start gap-2">✓ <strong>Turnkey delivery in 10–14 days</strong> with full collaborative sign-off</li>
+              </ul>
+            </div>
+            <div className="pt-8 mt-8 border-t border-neutral-100">
+              <PackageSelectButton
+                packageTier="02. Boutique Clinic Studio Build ($8,800 AUD)"
+                className="w-full block text-center py-3.5 bg-black text-[#f0ff50] text-xs font-mono uppercase hover:bg-neutral-800 transition-colors font-semibold"
+              >
+                Choose Boutique Clinic →
+              </PackageSelectButton>
+            </div>
+          </div>
+
+          {/* TIER 3 */}
+          <div className="border border-neutral-200 bg-white p-8 sm:p-10 flex flex-col justify-between hover:border-black transition-colors">
+            <div className="space-y-6">
+              <div className="flex items-center justify-between font-mono text-xs text-neutral-500">
+                <span>03. FULL PRACTICE TRANSFORMATION</span>
+                <span>3–4 WEEKS</span>
+              </div>
+              <div>
+                <div className="text-4xl font-bold text-neutral-950">
+                  $16,500+ <span className="text-xs font-mono font-normal text-neutral-500">AUD</span>
+                </div>
+                <div className="text-xs text-neutral-600 mt-2 font-sans">
+                  For multi-doctor clinics, scaling groups, and multi-location medical facilities.
+                </div>
+              </div>
+              <ul className="space-y-3 text-xs text-neutral-700 font-sans border-t border-neutral-100 pt-6">
+                <li className="flex items-start gap-2">✓ <strong>Multi-practitioner architecture</strong> with individual specialist profiles</li>
+                <li className="flex items-start gap-2">✓ <strong>Direct practice management integration</strong> (Cliniko, Halaxy, Stripe)</li>
+                <li className="flex items-start gap-2">✓ <strong>Dedicated procedural landing pages</strong> for referral & search traffic</li>
+                <li className="flex items-start gap-2">✓ <strong>Multi-location practice pages</strong> tailored for regional search</li>
+                <li className="flex items-start gap-2">✓ <strong>Staff-friendly content studio</strong> to manage practitioner bios & news</li>
+              </ul>
+            </div>
+            <div className="pt-8 mt-8 border-t border-neutral-100">
+              <PackageSelectButton
+                packageTier="03. Complete Practice Transformation ($16,500+ AUD)"
+                className="w-full block text-center py-3.5 border border-black text-black text-xs font-mono uppercase hover:bg-black hover:text-white transition-colors"
+              >
+                Inquire About Transformation →
+              </PackageSelectButton>
+            </div>
+          </div>
+        </div>
+
+        {/* ONGOING CARE BANNER */}
+        <div className="border border-neutral-200 bg-neutral-50 p-8 sm:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="space-y-2 max-w-2xl">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#f0ff50]"></span>
+              <span className="font-mono text-xs uppercase font-semibold text-neutral-800">Studio Care & Support</span>
+            </div>
+            <h3 className="text-xl font-bold text-neutral-950">
+              $395 AUD / month · Complete Hands-Off Protection
+            </h3>
+            <p className="text-xs text-neutral-600 leading-relaxed font-sans">
+              We look after your website infrastructure so you can focus 100% on patient care. Includes fast managed edge hosting, regular automated backups, security monitoring, and 2 hours per month of priority text, doctor, or treatment updates.
+            </p>
+          </div>
+          <PackageSelectButton
+            packageTier="Studio Care & Peace of Mind ($395/mo)"
+            className="px-6 py-3.5 border border-black text-xs font-mono uppercase text-black hover:bg-black hover:text-white transition-colors whitespace-nowrap"
+          >
+            Inquire About Studio Care →
+          </PackageSelectButton>
+        </div>
+      </section>
+
+      {/* 6. STUDIO PHILOSOPHY (Direct Collaboration vs Agency Drag) */}
+      <section id="philosophy" className="container space-y-12">
+        <div className="border-b border-black pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <span className="font-mono text-xs uppercase tracking-widest text-neutral-400">
+              05 // PHILOSOPHY
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-medium tracking-tight text-neutral-950 mt-1">
+              Direct Partnership vs Conventional Agency Drag
+            </h2>
+          </div>
+          <div className="font-mono text-xs text-neutral-500">
+            Disciplined Craft · Senior Leads
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+          {/* Legacy Agency Column */}
+          <div className="p-8 sm:p-10 border border-neutral-200 bg-neutral-50 space-y-6 flex flex-col justify-between">
+            <div className="space-y-4">
+              <div className="font-mono text-xs uppercase tracking-widest text-neutral-400">
+                THE TRADITIONAL AGENCY APPROACH
+              </div>
+              <h3 className="text-xl font-bold text-neutral-950 leading-snug">
+                Account Layers, Disconnected Writing, and Prolonged Delays
               </h3>
-              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-sans">
-                Developing an intuitive mobile intake and scheduling architecture for Canberra specialist consulting rooms. Standardising typography, iconography, and booking handoffs to eliminate patient friction.
+              <p className="text-xs text-neutral-600 leading-relaxed font-sans">
+                Conventional agencies often dilute attention across account managers, coordinators, and junior freelancers without healthcare experience.
               </p>
-              <p>
-                <a
-                  href="#contact"
-                  className="text-xs font-mono uppercase tracking-wider text-neutral-900 underline hover:text-neutral-500 transition-colors"
-                >
-                  Read Architecture Note →
-                </a>
+              <ul className="space-y-3 text-xs text-neutral-700 pt-2 font-sans">
+                <li>• <strong>Communication Layers:</strong> Clinical nuances are lost in translation between account managers and outsourced teams.</li>
+                <li>• <strong>Excessive Homework:</strong> Lengthy questionnaires that expect doctors to write their own procedural copy from scratch.</li>
+                <li>• <strong>Fragile Templates:</strong> Sites built on generic WordPress themes with dozens of third-party plugins that break upon updating.</li>
+              </ul>
+            </div>
+            <div className="pt-4 border-t border-neutral-200 text-[11px] font-mono text-neutral-500 uppercase">
+              Typical Timeline: 3–6 Months · High Administrative Drag
+            </div>
+          </div>
+
+          {/* MVMNT Studio Standard Column */}
+          <div className="p-8 sm:p-10 border-2 border-black bg-white space-y-6 flex flex-col justify-between">
+            <div className="space-y-4">
+              <div className="font-mono text-xs uppercase tracking-widest text-black font-semibold">
+                THE MVMNT STUDIO STANDARD
+              </div>
+              <h3 className="text-xl font-bold text-neutral-950 leading-snug">
+                Direct Dialogue, Turnkey Clinical Writing, and Proven Reliability
+              </h3>
+              <p className="text-xs text-neutral-600 leading-relaxed font-sans">
+                We operate as a focused, disciplined boutique studio. You collaborate directly with senior designers and developers who understand the standards expected of high-end private rooms.
               </p>
+              <ul className="space-y-3 text-xs text-neutral-700 pt-2 font-sans">
+                <li>• <strong>Direct Partner Collaboration:</strong> Direct access to the creative and technical leads who build your site.</li>
+                <li>• <strong>Structured Clinical Review:</strong> We lead the writing process through a focused 45-minute intake discussion.</li>
+                <li>• <strong>Modern Edge Engineering:</strong> Built with Next.js on managed global infrastructure with 99.9% uptime and sub-second page loads.</li>
+              </ul>
             </div>
-          </article>
-        </div>
-      </section>
-
-      {/* 4. EXPLORE (Swell's Giant Typographic Discipline List) */}
-      <nav id="disciplines" className="container py-8 border-t border-neutral-200">
-        <div className="space-y-6">
-          <h2 className="text-xs uppercase font-mono tracking-widest text-neutral-400">
-            Explore
-          </h2>
-          <div className="flex flex-col space-y-4">
-            <Link
-              href="#contact"
-              className="group block text-4xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-neutral-950 hover:text-neutral-400 transition-colors duration-300"
-            >
-              <div className="flex items-baseline justify-between">
-                <span>Brand</span>
-                <span className="text-xs font-mono uppercase tracking-widest text-neutral-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                  Identities & Clinical Copywriting →
-                </span>
-              </div>
-            </Link>
-            <Link
-              href="#contact"
-              className="group block text-4xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-neutral-950 hover:text-neutral-400 transition-colors duration-300"
-            >
-              <div className="flex items-baseline justify-between">
-                <span>Digital</span>
-                <span className="text-xs font-mono uppercase tracking-widest text-neutral-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                  Next.js Edge Flagships & Speed →
-                </span>
-              </div>
-            </Link>
-            <Link
-              href="#contact"
-              className="group block text-4xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-neutral-950 hover:text-neutral-400 transition-colors duration-300"
-            >
-              <div className="flex items-baseline justify-between">
-                <span>Spatial & Clinical</span>
-                <span className="text-xs font-mono uppercase tracking-widest text-neutral-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                  Turnkey Private Practice Platforms →
-                </span>
-              </div>
-            </Link>
-            <Link
-              href="#studio"
-              className="group block text-4xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-neutral-950 hover:text-neutral-400 transition-colors duration-300"
-            >
-              <div className="flex items-baseline justify-between">
-                <span>Studio</span>
-                <span className="text-xs font-mono uppercase tracking-widest text-neutral-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                  Canberra · Sydney · Ethos →
-                </span>
-              </div>
-            </Link>
-          </div>
-        </div>
-      </nav>
-
-      {/* 5. STUDIO ETHOS (Swell's "Simple, yet significant" Manifesto) */}
-      <section id="studio" className="container border-t border-neutral-200 pt-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <div className="lg:col-span-4">
-            <span className="text-xs uppercase font-mono tracking-widest text-neutral-400">
-              Studio
-            </span>
-          </div>
-          <div className="lg:col-span-8 space-y-8">
-            <p className="text-xl sm:text-3xl font-normal text-neutral-900 leading-snug">
-              MVMNT brings brand identity, digital engineering, and clinical strategy together to move hearts and inspire minds. Our ethos continues to centre on <span className="font-medium text-black">simple, yet significant</span>.
-            </p>
-            <p className="text-sm sm:text-base text-neutral-600 leading-relaxed font-sans max-w-2xl">
-              Based in Australia, we partner with ambitious private practitioners, medical specialists, and organisations across every stage of growth. We believe in direct collaboration with senior creatives, modern Next.js edge engineering, and rapid 5–14 day turnkey delivery without traditional agency drag.
-            </p>
+            <div className="pt-4 border-t border-neutral-200 text-[11px] font-mono text-black font-semibold uppercase">
+              Target Delivery: 7–14 Business Days · Clear Milestones
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 6. STUDIO SCOPER & RATES (Clean Architectural Tooling) */}
-      <section className="container border-t border-neutral-200 pt-16">
-        <details className="group border border-neutral-200 rounded-none bg-neutral-50 p-6 sm:p-8 cursor-pointer">
-          <summary className="flex items-center justify-between font-mono text-xs uppercase tracking-widest text-neutral-950 font-semibold list-none select-none">
-            <span>+ Open Studio Scoper & Practice Calculator</span>
-            <span className="text-neutral-400 group-open:rotate-45 transition-transform duration-200 text-base">
-              +
+      {/* 7. FAQ SECTION */}
+      <FaqSection />
+
+      {/* 8. CONTACT & INTAKE (Swell 2-Column Minimalist Format) */}
+      <section id="contact" className="container space-y-12">
+        <div className="border-b border-black pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <span className="font-mono text-xs uppercase tracking-widest text-neutral-400">
+              06 // INITIATE A PROJECT
             </span>
-          </summary>
-          <div className="mt-8 pt-6 border-t border-neutral-200 cursor-auto">
-            <StudioScoper />
+            <h2 className="text-3xl sm:text-5xl font-medium tracking-tight text-neutral-950 mt-1">
+              Contact & Strategy Call
+            </h2>
           </div>
-        </details>
-      </section>
-
-      {/* 7. CONTACT (Swell's 2-Column Minimalist Layout) */}
-      <section id="contact" className="container border-t border-neutral-200 pt-16" data-block="contact">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <div className="lg:col-span-4 space-y-4">
-            <span className="text-xs uppercase font-mono tracking-widest text-neutral-400">
-              Contact
-            </span>
-            <p className="text-xl sm:text-2xl font-normal text-neutral-900 leading-relaxed">
-              Let’s work together to build lasting value for your business. We’d love to hear from you.
-            </p>
-          </div>
-
-          <div className="lg:col-span-8 space-y-12">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 font-sans">
-              <div className="space-y-2">
-                <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-400 font-semibold">
-                  New Business
-                </h3>
-                <p className="text-sm text-neutral-900">
-                  <a
-                    href="mailto:hello@mvmnt-designs.vercel.app"
-                    className="underline hover:text-neutral-500 transition-colors"
-                  >
-                    hello@mvmnt-designs.vercel.app
-                  </a>
-                </p>
-              </div>
-
-              <div className="space-y-2">
-                <h3 className="font-mono text-xs uppercase tracking-wider text-neutral-400 font-semibold">
-                  Studio Locations
-                </h3>
-                <p className="text-sm text-neutral-900">
-                  Canberra, ACT · Australia<br />
-                  Sydney, NSW · Australia
-                </p>
-              </div>
-            </div>
-
-            {/* Direct Consultation Request Form */}
-            <div className="pt-8 border-t border-neutral-100">
-              <BookingForm />
-            </div>
+          <div className="font-mono text-xs text-neutral-500">
+            hello@mvmnt-designs.vercel.app · Canberra ACT
           </div>
         </div>
+
+        <BookingForm />
       </section>
     </div>
   );

@@ -3,51 +3,35 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
-interface Slide {
+interface ShowreelSlide {
   id: string;
-  type: 'image' | 'specimen';
-  src?: string;
-  alt?: string;
-  tag?: string;
-  headline?: string;
-  sub?: string;
-  bg?: string;
+  src: string;
+  alt: string;
+  caption: string;
+  discipline: string;
 }
 
-const SLIDES: Slide[] = [
+const SHOWREEL_SLIDES: ShowreelSlide[] = [
   {
-    id: 'hali',
-    type: 'image',
+    id: 'hali-cover',
     src: '/images/hali_case_study_cover.png',
-    alt: 'Hali Institute Restorative Medicine Canberra',
-  },
-  {
-    id: 'mvmnt-specimen',
-    type: 'specimen',
-    tag: 'MVMNT STUDIO // CBR',
-    headline: 'Simple, yet significant.',
-    sub: 'Brand identities and digital flagships that accelerate growth.',
-    bg: '#0a0a0a',
+    alt: 'Hali Institute of Restorative Medicine Canberra',
+    caption: 'Hali Institute · Restorative Medicine Consulting Rooms',
+    discipline: 'Brand Identity & Editorial Web Architecture',
   },
   {
     id: 'hali-desktop',
-    type: 'image',
     src: '/images/hali_case_study_hero.png',
-    alt: 'Hali Institute Desktop Experience',
+    alt: 'Desktop Experience Preview',
+    caption: 'Clinical Service Directories & Procedure Guides',
+    discipline: 'High-Trust Clinical Copywriting & Layout',
   },
   {
-    id: 'club-specimen',
-    type: 'specimen',
-    tag: 'HIGH-PERFORMANCE DIGITAL',
-    headline: 'Modern Next.js Engineering',
-    sub: 'Sub-second speeds. Headless commerce. 99.9% edge uptime.',
-    bg: '#141414',
-  },
-  {
-    id: 'hali-mobile',
-    type: 'image',
+    id: 'hali-menu',
     src: '/images/hali_case_study_menu.png',
-    alt: 'Mobile Clinical Experience',
+    alt: 'Mobile Experience Preview',
+    caption: 'Frictionless Mobile Patient Booking Journeys',
+    discipline: 'Modern Edge Engineering · Sub-Second Speed',
   },
 ];
 
@@ -56,81 +40,69 @@ export default function HeroShowreel() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % SLIDES.length);
-    }, 2800);
+      setCurrent((prev) => (prev + 1) % SHOWREEL_SLIDES.length);
+    }, 3500);
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <header className="relative w-full overflow-hidden" data-block="hero">
-      <div className="relative aspect-square md:h-[82vh] lg:h-[88vh] flex items-center justify-center selection:bg-transparent">
-        <div className="container grid grid-cols-12 gap-x-4 lg:gap-x-8 items-center h-full w-full">
-          <div className="col-span-full lg:col-span-8 lg:col-start-3 h-full flex items-center justify-center">
-            <div className="relative w-full aspect-[1.5] max-h-[calc(100svh-140px)] overflow-hidden rounded-none">
-              {SLIDES.map((slide, idx) => {
-                const isActive = idx === current;
-                return (
-                  <div
-                    key={slide.id}
-                    className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-                      isActive ? 'opacity-100 z-10 pointer-events-auto' : 'opacity-0 z-0 pointer-events-none'
-                    }`}
-                  >
-                    {slide.type === 'image' && slide.src ? (
-                      <div className="w-full h-full relative bg-neutral-100">
-                        <Image
-                          src={slide.src}
-                          alt={slide.alt || 'MVMNT Project Showcase'}
-                          fill
-                          className="object-cover"
-                          priority={idx === 0}
-                          sizes="(max-width: 1200px) 100vw, 1200px"
-                        />
-                      </div>
-                    ) : (
-                      <div
-                        className="w-full h-full flex flex-col justify-between p-8 sm:p-12 text-white"
-                        style={{ backgroundColor: slide.bg || '#0a0a0a' }}
-                      >
-                        <div className="font-mono text-[11px] uppercase tracking-widest text-neutral-400">
-                          {slide.tag}
-                        </div>
-                        <div className="space-y-4">
-                          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight leading-tight">
-                            {slide.headline}
-                          </h2>
-                          <p className="text-xs sm:text-sm text-neutral-400 font-mono max-w-lg">
-                            {slide.sub}
-                          </p>
-                        </div>
-                        <div className="flex items-center justify-between text-[10px] font-mono text-neutral-500 uppercase tracking-widest">
-                          <span>CANBERRA · SYDNEY</span>
-                          <span>EST. 2026</span>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
+    <div className="relative w-full space-y-4 select-none">
+      {/* Visual Frame (Swell-style aspect ratio with hairline border) */}
+      <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full overflow-hidden border border-black bg-neutral-100">
+        {SHOWREEL_SLIDES.map((slide, idx) => {
+          const isActive = idx === current;
+          return (
+            <div
+              key={slide.id}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+              }`}
+            >
+              <Image
+                src={slide.src}
+                alt={slide.alt}
+                fill
+                className="object-cover"
+                priority={idx === 0}
+                sizes="(max-width: 1400px) 100vw, 1400px"
+              />
             </div>
-          </div>
+          );
+        })}
+
+        {/* Live Slide Indicator Badge */}
+        <div className="absolute top-4 right-4 z-20 px-3 py-1 bg-black/80 backdrop-blur-md text-[#f0ff50] font-mono text-[10px] uppercase tracking-widest">
+          {current + 1} / {SHOWREEL_SLIDES.length}
+        </div>
+      </div>
+
+      {/* Caption & Controls */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono text-neutral-500 pt-1">
+        <div className="flex items-center gap-3">
+          <span className="text-black font-semibold uppercase">
+            {SHOWREEL_SLIDES[current].caption}
+          </span>
+          <span className="text-neutral-300">/</span>
+          <span className="text-neutral-500">
+            {SHOWREEL_SLIDES[current].discipline}
+          </span>
         </div>
 
-        {/* Minimal dot counter */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20">
-          {SLIDES.map((_, i) => (
+        {/* Minimal Progress Lines */}
+        <div className="flex items-center gap-2">
+          {SHOWREEL_SLIDES.map((_, i) => (
             <button
               key={i}
               type="button"
               onClick={() => setCurrent(i)}
-              className={`h-1 transition-all duration-300 ${
-                i === current ? 'w-8 bg-black' : 'w-2 bg-neutral-300'
+              className={`h-0.5 transition-all duration-300 ${
+                i === current ? 'w-8 bg-black' : 'w-3 bg-neutral-300 hover:bg-neutral-500'
               }`}
-              aria-label={`Slide ${i + 1}`}
+              aria-label={`Go to slide ${i + 1}`}
             />
           ))}
         </div>
       </div>
-    </header>
+    </div>
   );
 }
