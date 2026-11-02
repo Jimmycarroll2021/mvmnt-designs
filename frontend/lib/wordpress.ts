@@ -20,6 +20,18 @@ export interface WpProject {
 
 const FALLBACK_PROJECTS: WpProject[] = [
   {
+    id: 4,
+    slug: 'gear-endurance-fuel',
+    title: 'GEAR · Endurance Fuel',
+    excerpt: 'Pre-launch brand & digital experience',
+    content: 'A bold digital presence for an endurance brand built around simplicity. GEAR brings Natural and Love Buzz into a focused pre-launch experience. Distinctive typography, clear product comparison and an editorial journal give the brand room to explain its approach.',
+    location: 'Australia',
+    category: '01 / GEAR · Endurance Fuel',
+    techStack: 'Brand storytelling · Product discovery · Interactive recipe exploration',
+    imagePrimary: '/images/gear.jpg',
+    imageSecondary: '/images/gear.jpg',
+  },
+  {
     id: 5,
     slug: 'mvmnt-club-apparel',
     title: 'MVMNT Club Custom Apparel Engine',

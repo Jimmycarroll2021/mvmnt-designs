@@ -141,7 +141,7 @@ export default async function RootLayout({ children }: LayoutProps<'/'>) {
           )}
           {isDraftMode && <SanityLive onError={handleError} />}
           <Header />
-          <main className="pt-16 lg:pt-20">{children}</main>
+          <main id="home">{children}</main>
           <Footer />
         </section>
         <SpeedInsights />

@@ -1,293 +1,106 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 
-const SUGGESTED_PROMPTS = [
-  {
-    label: 'Brand Identity & Digital Flagship',
-    text: 'We are launching a new company or rebranding an established business. We need an authoritative visual identity, bespoke Next.js digital flagship, and high-converting editorial copywriting to lead our market.'
-  },
-  {
-    label: 'Specialist Practice & Private Rooms',
-    text: 'We run a boutique clinic or specialist medical practice. We need high-trust clinical copywriting, calm editorial aesthetics, and frictionless appointment booking to attract high-value private patients.'
-  },
-  {
-    label: 'Headless Commerce & Custom Apparel',
-    text: 'We operate a high-growth brand or sports organization. We need custom Shopify architecture, 3D product visualization, sub-second edge speeds, and automated on-demand fulfillment.'
-  }
-];
-
-// Lightweight Markdown Formatter for Scoper Output
-function FormattedOutput({ text }: { text: string }) {
-  const lines = text.split('\n');
-
-  return (
-    <div className="space-y-3 text-gray-800 font-sans text-sm leading-relaxed">
-      {lines.map((line, idx) => {
-        const trimmed = line.trim();
-        if (!trimmed) return <div key={idx} className="h-1" />;
-
-        // Header ###
-        if (trimmed.startsWith('###')) {
-          const headerText = trimmed.replace(/^###\s*/, '');
-          return (
-            <h4 key={idx} className="text-base font-bold text-gray-950 mt-4 mb-1">
-              {renderFormattedInline(headerText)}
-            </h4>
-          );
-        }
-
-        // Bullet point - or *
-        if (trimmed.startsWith('- ') || trimmed.startsWith('* ') || trimmed.startsWith('• ')) {
-          const itemText = trimmed.replace(/^[-*•]\s*/, '');
-          return (
-            <div key={idx} className="flex items-start gap-2 text-xs md:text-sm text-gray-700 pl-2">
-              <span className="text-gray-400 font-mono text-xs mt-1">•</span>
-              <span>{renderFormattedInline(itemText)}</span>
-            </div>
-          );
-        }
-
-        // Regular paragraph
-        return (
-          <p key={idx} className="text-xs md:text-sm text-gray-700 leading-relaxed">
-            {renderFormattedInline(trimmed)}
-          </p>
-        );
-      })}
-    </div>
-  );
+interface Recommendation {
+  title: string;
+  meta: string;
+  description: string;
+  packageTier: string;
 }
 
-// Inline helper for **bold** text
-function renderFormattedInline(str: string) {
-  const parts = str.split(/(\*\*.*?\*\*)/g);
-  return parts.map((part, i) => {
-    if (part.startsWith('**') && part.endsWith('**')) {
-      return (
-        <strong key={i} className="font-semibold text-gray-950">
-          {part.slice(2, -2)}
-        </strong>
-      );
-    }
-    return part;
-  });
-}
+const RECOMMENDATIONS: Record<string, Recommendation> = {
+  solo: {
+    title: 'Solo Specialist',
+    meta: '$4,800 AUD · 5–7 days',
+    description: 'A focused single-page website, copywriting and consultation booking flow.',
+    packageTier: '01. Digital Launch / Solo Specialist ($4,800 AUD)',
+  },
+  boutique: {
+    title: 'Boutique Clinic',
+    meta: '$8,800 AUD · 10–14 days',
+    description: 'A multi-page editorial website with visual identity and patient journeys.',
+    packageTier: '02. Flagship Studio Build ($8,800 AUD)',
+  },
+  group: {
+    title: 'Practice Transformation',
+    meta: '$16,500+ AUD · 3–4 weeks',
+    description: 'Practitioner profiles, locations, service pages and scoped practice integrations.',
+    packageTier: '03. Enterprise & Custom Systems ($16,500+ AUD)',
+  },
+  brand: {
+    title: 'Let’s scope it together',
+    meta: 'Bespoke scope & quote',
+    description: 'Brand identity, commerce and digital projects start with a studio conversation.',
+    packageTier: 'Brand / Custom Digital Project (Bespoke Scope)',
+  },
+};
 
 export default function StudioScoper() {
-  const [prompt, setPrompt] = useState('');
-  const [isStreaming, setIsStreaming] = useState(false);
-  const [output, setOutput] = useState('');
-  const [copied, setCopied] = useState(false);
-  const resultRef = useRef<HTMLDivElement>(null);
+  const [selected, setSelected] = useState<string>('');
 
-  const handleScope = async (textToScope?: string) => {
-    const query = textToScope || prompt;
-    if (!query.trim() || isStreaming) return;
+  const rec = selected ? RECOMMENDATIONS[selected] : null;
 
-    setIsStreaming(true);
-    setOutput('');
-
-    try {
-      const response = await fetch('/api/scope', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: query }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`Server returned HTTP ${response.status}`);
-      }
-
-      if (!response.body) {
-        throw new Error('No readable response body');
-      }
-
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder();
-      let accumulated = '';
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        const chunk = decoder.decode(value, { stream: true });
-        accumulated += chunk;
-        setOutput(accumulated);
-      }
-    } catch (err: any) {
-      setOutput(`### Recommended Direction: Boutique Clinic Studio Build\n\n- **Estimated Investment:** $8,800 AUD\n- **Turnaround:** 10–14 business days\n- **Focus:** Warm, high-trust clinical design with integrated patient appointment pathways.\n\nWe would love to discuss your practice in detail. Select this package below or request a quick 15-minute consultation.`);
-    } finally {
-      setIsStreaming(false);
-      setTimeout(() => {
-        resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }, 100);
-    }
-  };
-
-  const handleCopyScope = () => {
-    if (!output) return;
-    navigator.clipboard.writeText(output);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  const handleTransferToBooking = () => {
-    const textLower = (output + ' ' + prompt).toLowerCase();
-    let packageTier = 'Not sure yet (Help me choose on our call)';
-
-    if (textLower.includes('solo specialist') || textLower.includes('solo launch') || textLower.includes('4,800')) {
-      packageTier = '01. Solo Specialist Launch ($4,800 AUD)';
-    } else if (textLower.includes('transformation') || textLower.includes('multi-doctor') || textLower.includes('16,500')) {
-      packageTier = '03. Complete Practice Transformation ($16,500+ AUD)';
-    } else if (textLower.includes('boutique clinic') || textLower.includes('8,800')) {
-      packageTier = '02. Boutique Clinic Studio Build ($8,800 AUD)';
-    }
-
-    // Prepare a clean, human-readable summary without raw markdown tokens
-    const cleanPrompt = prompt.trim() ? prompt.trim().split('\n')[0] : 'Practice consultation inquiry';
-    const cleanNotes = `Practice Overview:\n${cleanPrompt}\n\nRecommended Approach:\n${packageTier}\n\nPrimary Objectives:\nElevate visual credibility, clarify treatment information, and implement frictionless patient booking.`;
-
-    // Dispatch event to BookingForm
+  const handleSelectPackage = (tier: string, notes: string) => {
     if (typeof window !== 'undefined') {
-      window.dispatchEvent(
-        new CustomEvent('mvmnt_select_package', {
-          detail: {
-            packageTier,
-            scopeNotes: cleanNotes,
-          },
-        })
-      );
-    }
-
-    const bookingSection = document.getElementById('booking');
-    if (bookingSection) {
-      bookingSection.scrollIntoView({ behavior: 'smooth' });
+      const event = new CustomEvent('mvmnt_select_package', {
+        detail: {
+          packageTier: tier,
+          scopeNotes: `Selected from Studio Scoper: ${notes}`,
+        },
+      });
+      window.dispatchEvent(event);
     }
   };
 
   return (
-    <div id="scoper" className="rounded-2xl border border-gray-200 bg-white p-6 md:p-10 shadow-sm transition-all duration-300 hover:shadow-md">
-      <div className="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-gray-100 gap-4">
-        <div>
-          <div className="flex items-center gap-2">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
-            <span className="text-xs uppercase tracking-widest font-mono text-gray-500 font-semibold">
-              Instant Studio Scoper & Estimator
-            </span>
-          </div>
-          <h3 className="text-2xl font-semibold text-gray-900 mt-1">
-            Describe Your Project. Receive an Instant Scope.
-          </h3>
-          <p className="text-xs text-gray-600 mt-1">
-            Explore tailored scope, timeline, and package suggestions for your brand, platform, or specialist rooms.
-          </p>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <span className="text-[11px] font-mono text-gray-400 uppercase tracking-widest">
-            Direct Senior Strategy · No Retainer Drag
-          </span>
-        </div>
+    <section className="split scoper" id="scoper">
+      <div>
+        <div className="eyebrow">Studio Scoper</div>
+        <h2>
+          A useful starting point
+          <br />
+          for your next move.
+        </h2>
+        <p className="small-copy">
+          Choose the shape of your project to explore a starting package. Final scope, integrations
+          and delivery dates are agreed with the studio.
+        </p>
       </div>
 
-      <div className="mt-6">
-        <label className="block text-xs uppercase font-mono tracking-wider text-gray-500 mb-2">
-          Select an Example Scenario or Write Your Own:
-        </label>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
-          {SUGGESTED_PROMPTS.map((item, idx) => (
-            <button
-              key={idx}
-              type="button"
-              onClick={() => {
-                setPrompt(item.text);
-                handleScope(item.text);
-              }}
-              disabled={isStreaming}
-              className="text-left p-4 rounded-xl border border-gray-200 hover:border-black bg-gray-50 hover:bg-white text-xs text-gray-700 transition duration-200 hover:-translate-y-0.5 disabled:opacity-50"
-            >
-              <span className="font-semibold block text-gray-900 mb-1 text-sm">{item.label}</span>
-              <span className="line-clamp-2 text-gray-500 leading-relaxed">{item.text}</span>
-            </button>
-          ))}
-        </div>
+      <div>
+        <label htmlFor="projectType">What are you building?</label>
+        <select
+          id="projectType"
+          value={selected}
+          onChange={(e) => setSelected(e.target.value)}
+        >
+          <option value="">Select your project</option>
+          <option value="solo">Independent specialist / solo practice</option>
+          <option value="boutique">Boutique clinic / established practice</option>
+          <option value="group">Multi-doctor / multi-location practice</option>
+          <option value="brand">Brand or non-clinical digital project</option>
+        </select>
 
-        <div className="relative">
-          <textarea
-            id="promptInput"
-            rows={4}
-            value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
-            placeholder="e.g. We are launching a high-performance digital flagship and brand identity to accelerate growth. We need sub-second edge performance, persuasive editorial copywriting, and bespoke Swiss minimalist aesthetics..."
-            className="w-full rounded-xl border border-gray-300 p-4 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition"
-            disabled={isStreaming}
-          />
-        </div>
-
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-4">
-          <span className="text-xs text-gray-500 font-mono">
-            Get an instant recommendation tailored to your project goals
-          </span>
-          <button
-            type="button"
-            onClick={() => handleScope()}
-            disabled={!prompt.trim() || isStreaming}
-            className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-black text-white text-sm font-medium hover:bg-gray-800 disabled:opacity-40 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 shadow-sm"
-          >
-            {isStreaming ? (
-              <>
-                <svg className="animate-spin h-4 w-4 text-white" viewBox="0 0 24 24" fill="none">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
-                </svg>
-                Crafting Your Practice Strategy...
-              </>
-            ) : (
-              <>
-                Get Instant Practice Recommendation
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-              </>
-            )}
-          </button>
-        </div>
-      </div>
-
-      {(output || isStreaming) && (
-        <div ref={resultRef} className="mt-8 pt-6 border-t border-gray-100">
-          <div className="flex items-center justify-between mb-4">
-            <span className="text-xs uppercase font-mono tracking-widest text-emerald-600 font-semibold flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-              Your Practice Strategy Summary
-            </span>
-            <div className="flex gap-2">
-              <button
-                type="button"
-                onClick={handleCopyScope}
-                className="text-xs px-3.5 py-1.5 rounded border border-gray-200 hover:bg-gray-100 text-gray-600 font-mono transition"
+        <div id="recommendation" aria-live="polite">
+          {rec ? (
+            <div>
+              <h3>{rec.title}</h3>
+              <div className="eyebrow">{rec.meta}</div>
+              <p>{rec.description}</p>
+              <a
+                className="button"
+                href="#contact"
+                onClick={() => handleSelectPackage(rec.packageTier, rec.description)}
               >
-                {copied ? 'Copied' : 'Copy Summary'}
-              </button>
-              <button
-                type="button"
-                onClick={handleTransferToBooking}
-                className="text-xs px-4 py-1.5 rounded bg-black text-white hover:bg-gray-800 font-mono transition-all duration-200 hover:-translate-y-0.5"
-              >
-                Transfer to Booking Form ↓
-              </button>
+                <span>+</span> Discuss this direction
+              </a>
             </div>
-          </div>
-
-          <div className="p-6 md:p-8 rounded-xl bg-gray-50 border border-gray-200">
-            <FormattedOutput text={output} />
-            {isStreaming && <span className="inline-block w-2 h-4 bg-black animate-pulse ml-1"></span>}
-          </div>
+          ) : (
+            'Select a project type to see your starting point.'
+          )}
         </div>
-      )}
-    </div>
+      </div>
+    </section>
   );
 }
