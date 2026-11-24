@@ -2,9 +2,9 @@ import './globals.css';
 
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { Inter, IBM_Plex_Mono } from 'next/font/google';
 import { draftMode } from 'next/headers';
-import { toPlainText } from 'next-sanity';
 import { VisualEditing } from 'next-sanity/visual-editing';
 import { Toaster } from 'sonner';
 
@@ -13,97 +13,58 @@ import Footer from '@/app/components/Footer';
 import Header from '@/app/components/Header';
 import JsonLd from '@/app/components/JsonLd';
 import * as demo from '@/sanity/lib/demo';
-import { sanityFetch, SanityLive } from '@/sanity/lib/live';
-import { settingsQuery } from '@/sanity/lib/queries';
-import { resolveOpenGraphImage } from '@/sanity/lib/utils';
+import { SanityLive } from '@/sanity/lib/live';
 import { handleError } from '@/app/client-utils';
+import { HOME_DESCRIPTION, HOME_TITLE } from '@/app/content/home';
+import { DEFAULT_OG_IMAGE, GA4_ID, isIndexable, SITE_LOCALE, SITE_NAME, SITE_URL } from '@/lib/site';
 
 /**
- * Generate metadata for the page.
- * Enhanced for Australian search engines and local clinical intent.
+ * Sitewide metadata defaults. Pages set their own self-canonical, title, description
+ * and Open Graph via pageMetadata() (lib/metadata.ts); the root layout must never set
+ * alternates.canonical, or every page that forgets to override it canonicalises to /.
  */
 export async function generateMetadata(): Promise<Metadata> {
-  const { data: settings } = await sanityFetch({
-    query: settingsQuery,
-    stega: false,
-  });
-
-  const defaultTitle = 'MVMNT STUDIO | Independent Design & Digital Studio Australia';
-  const defaultDesc =
-    'We create enduring brand identities, digital flagships, and high-performance platforms for ambitious brands, innovative companies, and specialist leaders. Canberra & Sydney.';
-
-  const title = settings?.title || defaultTitle;
-  const description = settings?.description ? toPlainText(settings.description) : defaultDesc;
-
-  const ogImage = resolveOpenGraphImage(settings?.ogImage);
-  const images = ogImage
-    ? [ogImage]
-    : [
-        {
-          url: '/images/hali_case_study_cover.png',
-          width: 1200,
-          height: 630,
-          alt: 'MVMNT Studio — Medical & Practice Web Design Australia',
-        },
-      ];
-
+  const indexable = isIndexable();
   return {
-    metadataBase: new URL('https://mvmnt-designs.vercel.app'),
+    metadataBase: new URL(SITE_URL),
     title: {
-      template: `%s | ${title}`,
-      default: title,
+      template: `%s | ${SITE_NAME}`,
+      default: HOME_TITLE,
     },
-    description,
-    keywords: [
-      'medical website design australia',
-      'clinic website design',
-      'private practice website design',
-      'doctor website design australia',
-      'medical specialist branding',
-      'cosmetic clinic web design',
-      'healthcare web design australia',
-      'ahpra compliant medical web design',
-      'patient booking website integration',
-      'boutique clinic digital design',
-    ],
-    authors: [{ name: 'MVMNT Studio' }],
-    creator: 'MVMNT Studio',
-    publisher: 'MVMNT Studio',
+    description: HOME_DESCRIPTION,
+    applicationName: SITE_NAME,
+    authors: [{ name: 'Jimmy Carroll' }],
+    creator: SITE_NAME,
+    publisher: SITE_NAME,
     formatDetection: {
       email: false,
       address: false,
       telephone: false,
     },
-    alternates: {
-      canonical: 'https://mvmnt-designs.vercel.app',
-    },
     openGraph: {
-      title,
-      description,
-      url: 'https://mvmnt-designs.vercel.app',
-      siteName: 'MVMNT Studio',
-      locale: 'en_AU',
+      siteName: SITE_NAME,
+      locale: SITE_LOCALE,
       type: 'website',
-      images,
+      images: [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: SITE_NAME }],
     },
     twitter: {
       card: 'summary_large_image',
-      title,
-      description,
-      images: ['/images/hali_case_study_cover.png'],
     },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
-      },
-    },
+    robots: indexable
+      ? {
+          index: true,
+          follow: true,
+          googleBot: {
+            index: true,
+            follow: true,
+            'max-video-preview': -1,
+            'max-image-preview': 'large',
+            'max-snippet': -1,
+          },
+        }
+      : { index: false, follow: false },
     verification: {
+      // Belongs to the current Search Console property (vercel.app host). Replace at domain cutover.
       google: '8lrCgZDiITHc_HBdQmzBrc-JKwjHJk_2N6B7hNJeJJU',
     },
   };
@@ -145,6 +106,17 @@ export default async function RootLayout({ children }: LayoutProps<'/'>) {
           <Footer />
         </section>
         <SpeedInsights />
+        {GA4_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(GA4_ID)}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config',${JSON.stringify(GA4_ID)});`}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   );

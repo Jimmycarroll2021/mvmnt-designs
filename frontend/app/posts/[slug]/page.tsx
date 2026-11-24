@@ -55,7 +55,9 @@ export async function generateMetadata(
         : [],
     title: post?.title,
     description: post?.excerpt,
+    alternates: {canonical: `/posts/${params.slug}`},
     openGraph: {
+      url: `/posts/${params.slug}`,
       images: ogImage ? [ogImage, ...previousImages] : previousImages,
     },
   } satisfies Metadata

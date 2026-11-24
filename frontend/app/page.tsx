@@ -6,7 +6,24 @@ import PackagesSection from '@/app/components/PackagesSection';
 import StudioScoper from '@/app/components/StudioScoper';
 import FaqSection from '@/app/components/FaqSection';
 import BookingForm from '@/app/components/BookingForm';
+import JsonLd from '@/app/components/JsonLd';
+import { HOME_DESCRIPTION, HOME_FAQS, HOME_TITLE, PACKAGES } from '@/app/content/home';
+import { pageMetadata } from '@/lib/metadata';
+import { faqPageNode, graph, packageServiceNode, studioCareServiceNode } from '@/lib/schema';
 import { getWpProjects } from '@/lib/wordpress';
+
+export const metadata = pageMetadata({
+  title: HOME_TITLE,
+  absoluteTitle: true,
+  description: HOME_DESCRIPTION,
+  path: '/',
+});
+
+const homeJsonLd = graph([
+  ...PACKAGES.map((pkg) => packageServiceNode(pkg, '/')),
+  studioCareServiceNode('/'),
+  faqPageNode(HOME_FAQS, '/'),
+]);
 
 export default async function Home() {
   const projects = await getWpProjects();
@@ -15,6 +32,7 @@ export default async function Home() {
 
   return (
     <>
+      <JsonLd data={homeJsonLd} />
       {/* 1. HERO SECTION (100svh, Dynamic Gradient & Word Cycling, Monumental Wordmark) */}
       <HeroSection />
 

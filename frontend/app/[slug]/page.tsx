@@ -1,11 +1,13 @@
 import type {Metadata} from 'next'
-import Head from 'next/head'
+import {notFound} from 'next/navigation'
 
 import PageBuilderPage from '@/app/components/PageBuilder'
 import {sanityFetch} from '@/sanity/lib/live'
 import {getPageQuery, pagesSlugs} from '@/sanity/lib/queries'
 import {GetPageQueryResult} from '@/sanity.types'
-import {PageOnboarding} from '@/app/components/Onboarding'
+import JsonLd from '@/app/components/JsonLd'
+import {pageMetadata} from '@/lib/metadata'
+import {breadcrumbNode, graph} from '@/lib/schema'
 
 /**
  * Generate the static params for the page.
@@ -39,10 +41,13 @@ export async function generateMetadata(props: PageProps<'/[slug]'>): Promise<Met
     stega: false,
   })
 
-  return {
-    title: page?.name,
-    description: page?.heading,
-  } satisfies Metadata
+  if (!page?._id) return {title: 'Page not found', robots: {index: false, follow: false}}
+
+  return pageMetadata({
+    title: page.name || page.heading || 'MVMNT Design',
+    description: page.subheading || page.heading || '',
+    path: `/${params.slug}`,
+  }) satisfies Metadata
 }
 
 export default async function Page(props: PageProps<'/[slug]'>) {
@@ -50,18 +55,19 @@ export default async function Page(props: PageProps<'/[slug]'>) {
   const [{data: page}] = await Promise.all([sanityFetch({query: getPageQuery, params})])
 
   if (!page?._id) {
-    return (
-      <div className="py-40">
-        <PageOnboarding />
-      </div>
-    )
+    notFound()
   }
 
   return (
     <div className="my-12 lg:my-24">
-      <Head>
-        <title>{page.heading}</title>
-      </Head>
+      <JsonLd
+        data={graph([
+          breadcrumbNode([
+            {name: 'Home', path: '/'},
+            {name: page.name || page.heading || params.slug, path: `/${params.slug}`},
+          ]),
+        ])}
+      />
       <div className="">
         <div className="container">
           <div className="pb-6 border-b border-gray-100">

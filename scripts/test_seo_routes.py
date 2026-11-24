@@ -1,0 +1,155 @@
+"""
+SEO route checks for the Next.js app (frontend/). Standard library only.
+
+Run against a running server, for example:
+    npm run build && npm run start          (in frontend/, with NEXT_PUBLIC_SITE_URL set)
+    python scripts/test_seo_routes.py --base http://127.0.0.1:3000 --site-url https://mvmnt-designs.vercel.app
+
+Checks:
+  1. Every route in ROUTES returns 200 with a self-canonical (canonical == SITE_URL + path).
+  2. An unknown slug returns 404 and is noindex.
+  3. /robots.txt references SITE_URL in its Sitemap line (production) or disallows all (preview).
+  4. /sitemap.xml lists only SITE_URL hosts and includes every route in ROUTES.
+  5. The homepage FAQPage JSON-LD matches the visible FAQ questions and answers exactly.
+Exit code 0 on pass, 1 on any failure.
+"""
+
+import argparse
+import html
+import json
+import re
+import sys
+import urllib.error
+import urllib.request
+
+# Add each planned page here when its route ships.
+ROUTES = ["/"]
+UNKNOWN = "/does-not-exist-xyz"
+
+
+def fetch(url: str) -> tuple[int, str]:
+    req = urllib.request.Request(url, headers={"User-Agent": "seo-route-check"})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return r.status, r.read().decode("utf-8", "replace")
+    except urllib.error.HTTPError as e:
+        return e.code, e.read().decode("utf-8", "replace")
+
+
+def canonical_of(doc: str) -> str | None:
+    for tag in re.findall(r"<link[^>]+>", doc):
+        if re.search(r'rel="canonical"', tag):
+            m = re.search(r'href="([^"]+)"', tag)
+            return html.unescape(m.group(1)) if m else None
+    return None
+
+
+def norm(u: str) -> str:
+    return u.rstrip("/") or u
+
+
+def jsonld_nodes(doc: str) -> list[dict]:
+    nodes: list[dict] = []
+    for raw in re.findall(
+        r'<script type="application/ld\+json"[^>]*>(.*?)</script>', doc, re.S
+    ):
+        data = json.loads(raw)
+        nodes.extend(data.get("@graph", [data]) if isinstance(data, dict) else data)
+    return nodes
+
+
+def visible_faqs(doc: str) -> list[tuple[str, str]]:
+    section = re.search(r'<section[^>]*id="questions".*?</section>', doc, re.S)
+    if not section:
+        return []
+    pairs = re.findall(
+        r"<summary[^>]*>(.*?)</summary>\s*<p[^>]*>(.*?)</p>", section.group(0), re.S
+    )
+    strip = lambda s: html.unescape(re.sub(r"<[^>]+>|<!-- -->", "", s)).strip()
+    return [(strip(q), strip(a)) for q, a in pairs]
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--base", default="http://127.0.0.1:3000")
+    ap.add_argument("--site-url", default="https://mvmnt-designs.vercel.app")
+    args = ap.parse_args()
+    base, site = args.base.rstrip("/"), args.site_url.rstrip("/")
+    failures: list[str] = []
+
+    def check(ok: bool, msg: str) -> None:
+        print(f"  [{'PASS' if ok else 'FAIL'}] {msg}")
+        if not ok:
+            failures.append(msg)
+
+    print("1. Routes return 200 with a self-canonical")
+    home_doc = ""
+    for path in ROUTES:
+        status, doc = fetch(base + path)
+        if path == "/":
+            home_doc = doc
+        canon = canonical_of(doc)
+        check(status == 200, f"{path} status {status}")
+        check(
+            canon is not None and norm(canon) == norm(site + path),
+            f"{path} canonical {canon}",
+        )
+
+    print("2. Unknown slug is a real 404")
+    status, doc = fetch(base + UNKNOWN)
+    check(status == 404, f"{UNKNOWN} status {status}")
+    check(
+        re.search(r'<meta name="robots" content="noindex', doc) is not None,
+        f"{UNKNOWN} is noindex",
+    )
+
+    print("3. robots.txt")
+    status, robots = fetch(base + "/robots.txt")
+    check(status == 200, f"/robots.txt status {status}")
+    preview = (
+        re.search(r"^Disallow: /\s*$", robots, re.M) is not None
+        and "Allow: /\n" not in robots
+    )
+    if preview:
+        print(
+            "  [INFO] non-production robots (disallow all); Sitemap line not expected"
+        )
+    else:
+        check(f"Sitemap: {site}/sitemap.xml" in robots, "robots Sitemap uses SITE_URL")
+        check(
+            "Disallow: /api/" in robots and "Disallow: /studio/" in robots,
+            "robots disallows /api/ and /studio/",
+        )
+
+    print("4. sitemap.xml")
+    status, sm = fetch(base + "/sitemap.xml")
+    locs = re.findall(r"<loc>(.*?)</loc>", sm)
+    check(
+        status == 200 and len(locs) > 0,
+        f"/sitemap.xml status {status}, {len(locs)} URLs",
+    )
+    check(all(loc.startswith(site) for loc in locs), "every sitemap URL uses SITE_URL")
+    for path in ROUTES:
+        check(
+            any(norm(loc) == norm(site + path) for loc in locs), f"sitemap lists {path}"
+        )
+
+    print("5. FAQ JSON-LD matches the visible FAQ")
+    faq_nodes = [n for n in jsonld_nodes(home_doc) if n.get("@type") == "FAQPage"]
+    check(
+        len(faq_nodes) == 1, f"homepage has one FAQPage node (found {len(faq_nodes)})"
+    )
+    if faq_nodes:
+        ld = [
+            (q["name"], q["acceptedAnswer"]["text"]) for q in faq_nodes[0]["mainEntity"]
+        ]
+        vis = visible_faqs(home_doc)
+        check(len(vis) > 0, f"visible FAQ found ({len(vis)} items)")
+        check(ld == vis, "FAQPage questions/answers equal the visible FAQ")
+
+    print(f"\n{'PASS' if not failures else 'FAIL'}: {len(failures)} failure(s)")
+    return 0 if not failures else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

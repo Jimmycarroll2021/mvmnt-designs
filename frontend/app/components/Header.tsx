@@ -3,14 +3,16 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
+// Root-relative so the links still work from any subpage. Swap to /work, /pricing etc.
+// only once those routes exist.
 const NAV_LINKS = [
-  { label: 'Home', href: '#home' },
-  { label: 'Studio', href: '#studio' },
-  { label: 'Selected Work', href: '#work' },
-  { label: 'Disciplines', href: '#disciplines' },
-  { label: 'Packages', href: '#pricing' },
-  { label: 'Studio Scoper', href: '#scoper' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '/' },
+  { label: 'Studio', href: '/#studio' },
+  { label: 'Selected Work', href: '/#work' },
+  { label: 'Disciplines', href: '/#disciplines' },
+  { label: 'Packages', href: '/#pricing' },
+  { label: 'Studio Scoper', href: '/#scoper' },
+  { label: 'Contact', href: '/#contact' },
 ];
 
 export default function Header() {
@@ -55,11 +57,11 @@ export default function Header() {
   return (
     <>
       <header className={`topbar ${scrolled ? 'scrolled' : ''}`}>
-        <a className="tag" href="#home">
+        <a className="tag" href="/">
           Simple, yet significant.
         </a>
         <div>
-          <a className="contact" href="#contact">
+          <a className="contact" href="/#contact">
             Let’s talk
           </a>
           <button
@@ -104,7 +106,7 @@ export default function Header() {
               </a>
             ))}
           </nav>
-          <a className="linkedin" href="#contact" onClick={handleLinkClick}>
+          <a className="linkedin" href="/#contact" onClick={handleLinkClick}>
             Make your next move ↗
           </a>
         </div>
