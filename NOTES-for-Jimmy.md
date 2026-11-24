@@ -18,3 +18,13 @@ SEO foundations branch `seo/pages-20261125`. Items that need a decision or a fac
 - TODO (GST): prices are shown as published ("$4,800 AUD" etc.) with no GST statement. Confirm whether they include GST.
 - TODO (Hali link): Hali Institute is named on the new pages exactly as on the homepage, with no outbound link. Confirm whether a link to its site is wanted.
 - Note: related-links blocks and the footer "Services" list read `frontend/app/content/service-links.ts`. Packages and work currently link to `/#pricing` and `/#work`; switch them to `/pricing` and `/work` when those routes ship.
+
+## Page slice 2 (/shopify-developer, /pricing)
+
+- TODO (website care plan): `/website-care-plan` was NOT built, because the plan gates it on facts only you can supply. Studio Care is a `#studio-care` section on `/pricing` instead (footer and related links say "Website care plan" and point to `/pricing#studio-care`). To justify a standalone page, confirm: which sites are eligible (only sites you built, or existing WordPress/Shopify sites too), minimum term, what happens to unused hours, and response times.
+- TODO (Shopify Partner): `/shopify-developer` makes no "Shopify Partner" or "Shopify Expert" claim. Confirm whether you hold a Partner account (and want a Partner Directory listing); if so, it can be added to the copy.
+- TODO (Shopify pricing): no Shopify price is published, so the page says Shopify work is scoped individually. Supply a starting price for store starters if you want one shown.
+- TODO (Shopify and Studio Care): the page does not say whether Studio Care covers Shopify stores (managed hosting does not apply to Shopify). Confirm if it does.
+- TODO (GST): `/pricing` shows prices as published ("$4,800 AUD") with no GST statement. Confirm GST treatment and it will be added to the pricing table and FAQ.
+- Note: the Shopify copy on `/shopify-developer` is ported from the "Custom Shopify Architecture" section of the static mvmntdesign.com (fetched 2026-11-25), so it survives the domain cutover. GEAR is described there only as brand and digital work, not as a Shopify build, because the published copy does not say it runs on Shopify.
+- Header and footer "Packages" now link to `/pricing`; the footer Services list adds Shopify development, Pricing and Website care plan. "Selected Work" still links to `/#work` until slice 3 ships `/work`.

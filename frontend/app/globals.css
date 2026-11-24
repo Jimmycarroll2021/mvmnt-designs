@@ -1063,6 +1063,41 @@ footer nav a:hover {
 .related-links li p {
   margin: 8px 0 0;
 }
+.price-table-wrap {
+  overflow-x: auto;
+}
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  line-height: 1.4;
+  color: #59635f;
+}
+.price-table caption {
+  text-align: left;
+  margin-bottom: 12px;
+}
+.price-table th,
+.price-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 12px 14px 12px 0;
+  border-top: 1px solid #b7c2bd;
+}
+.price-table thead th {
+  font: 12px 'Courier New', Courier, monospace;
+  text-transform: uppercase;
+  color: #6c7373;
+}
+.price-table tbody th {
+  color: #111;
+  font-weight: 500;
+}
+.price-table tbody th .small-copy {
+  display: block;
+  margin-top: 4px;
+  font-weight: 400;
+}
 .footer-services {
   display: flex;
   flex-wrap: wrap;

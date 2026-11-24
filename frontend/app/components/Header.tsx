@@ -3,14 +3,14 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-// Root-relative so the links still work from any subpage. Swap to /work, /pricing etc.
+// Root-relative so the links still work from any subpage. Swap to /work etc.
 // only once those routes exist.
 const NAV_LINKS = [
   { label: 'Home', href: '/' },
   { label: 'Studio', href: '/#studio' },
   { label: 'Selected Work', href: '/#work' },
   { label: 'Disciplines', href: '/#disciplines' },
-  { label: 'Packages', href: '/#pricing' },
+  { label: 'Packages', href: '/pricing' },
   { label: 'Studio Scoper', href: '/#scoper' },
   { label: 'Contact', href: '/#contact' },
 ];

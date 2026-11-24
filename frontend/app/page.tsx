@@ -197,6 +197,9 @@ export default async function Home() {
             A headless commerce platform for Australian cycling clubs, combining kit visualisation
             and Shopify fulfilment workflows.
           </p>
+          <p className="small-copy">
+            <Link href="/shopify-developer">Shopify development: themes, apps and automation</Link>
+          </p>
           <a
             className="button"
             href="https://mvmnt.club"

@@ -28,7 +28,7 @@ export default function NotFound() {
         <Link className="button" href="/medical-practice-website-design">
           <span>+</span> Practice websites
         </Link>{' '}
-        <Link className="button" href="/#pricing">
+        <Link className="button" href="/pricing">
           <span>+</span> View packages
         </Link>{' '}
         <Link className="button" href="/#contact">

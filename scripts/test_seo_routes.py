@@ -29,6 +29,8 @@ ROUTES = [
     "/web-design-canberra",
     "/medical-practice-website-design",
     "/branding-canberra",
+    "/shopify-developer",
+    "/pricing",
 ]
 UNKNOWN = "/does-not-exist-xyz"
 
