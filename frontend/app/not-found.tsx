@@ -31,6 +31,9 @@ export default function NotFound() {
         <Link className="button" href="/pricing">
           <span>+</span> View packages
         </Link>{' '}
+        <Link className="button" href="/work">
+          <span>+</span> Selected work
+        </Link>{' '}
         <Link className="button" href="/#contact">
           <span>+</span> Let’s talk
         </Link>

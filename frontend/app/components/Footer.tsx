@@ -3,12 +3,11 @@ import Link from 'next/link';
 
 import { PRICING_LINKS, SERVICE_LINKS } from '@/app/content/service-links';
 
-// Root-relative so the links still work from any subpage. Swap to /work etc.
-// only once those routes exist.
+// Root-relative so the links still work from any subpage. Link a route only once it exists.
 const NAV_LINKS = [
   { label: 'Home', href: '/' },
   { label: 'Studio', href: '/#studio' },
-  { label: 'Selected Work', href: '/#work' },
+  { label: 'Selected Work', href: '/work' },
   { label: 'Disciplines', href: '/#disciplines' },
   { label: 'Packages', href: '/pricing' },
   { label: 'Studio Scoper', href: '/#scoper' },
@@ -67,6 +66,7 @@ export default function Footer() {
 
       <div className="legal">
         <span>© 2026 MVMNT DESIGN</span>
+        <Link href="/privacy">Privacy policy</Link>
         <span>Brand · Digital · Clinic Platforms</span>
       </div>
     </footer>

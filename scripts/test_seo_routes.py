@@ -31,7 +31,11 @@ ROUTES = [
     "/branding-canberra",
     "/shopify-developer",
     "/pricing",
+    "/work",
+    "/privacy",
 ]
+# Routes with no FAQ by design (portfolio and compliance pages): they must carry no FAQPage node.
+NO_FAQ_ROUTES = {"/work", "/privacy"}
 UNKNOWN = "/does-not-exist-xyz"
 
 
@@ -144,6 +148,9 @@ def main() -> int:
     print("5. FAQ JSON-LD matches the visible FAQ")
     for path, doc in docs.items():
         faq_nodes = [n for n in jsonld_nodes(doc) if n.get("@type") == "FAQPage"]
+        if path in NO_FAQ_ROUTES:
+            check(len(faq_nodes) == 0, f"{path} has no FAQPage node (found {len(faq_nodes)})")
+            continue
         check(
             len(faq_nodes) == 1, f"{path} has one FAQPage node (found {len(faq_nodes)})"
         )

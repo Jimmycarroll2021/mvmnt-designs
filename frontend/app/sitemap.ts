@@ -6,7 +6,7 @@ import {absoluteUrl} from '@/lib/site'
 
 /**
  * Static routes that exist in the app router. Add each planned page here when it ships
- * (for example /pricing, /work); never list a route that does not render.
+ (/dental-website-design only if it is built); never list a route that does not render.
  */
 const STATIC_ROUTES: {path: string; priority: number; changeFrequency: 'weekly' | 'monthly'}[] = [
   {path: '/', priority: 1, changeFrequency: 'weekly'},
@@ -15,6 +15,8 @@ const STATIC_ROUTES: {path: string; priority: number; changeFrequency: 'weekly' 
   {path: '/branding-canberra', priority: 0.9, changeFrequency: 'monthly'},
   {path: '/shopify-developer', priority: 0.9, changeFrequency: 'monthly'},
   {path: '/pricing', priority: 0.9, changeFrequency: 'monthly'},
+  {path: '/work', priority: 0.8, changeFrequency: 'monthly'},
+  {path: '/privacy', priority: 0.3, changeFrequency: 'monthly'},
 ]
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

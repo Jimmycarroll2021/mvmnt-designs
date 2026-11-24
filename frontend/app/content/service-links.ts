@@ -49,7 +49,7 @@ export function relatedLinks(currentHref: string): ServiceLink[] {
     ...PRICING_LINKS,
     {
       label: 'Selected work',
-      href: '/#work',
+      href: '/work',
       blurb: 'GEAR Endurance Fuel, the Hali Institute of Restorative Medicine and MVMNT Club.',
     },
   ].filter((l) => l.href.split('#')[0] !== currentHref);

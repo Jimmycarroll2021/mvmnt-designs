@@ -88,6 +88,9 @@ export default async function Home() {
             <p className="small-copy">
               Brand storytelling · Product discovery · Interactive recipe exploration
             </p>
+            <p className="small-copy">
+              <Link href="/work">See all selected work</Link>
+            </p>
             <a
               className="button"
               href="https://fuelwithgear.com/"

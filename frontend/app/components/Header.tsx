@@ -8,7 +8,7 @@ import Link from 'next/link';
 const NAV_LINKS = [
   { label: 'Home', href: '/' },
   { label: 'Studio', href: '/#studio' },
-  { label: 'Selected Work', href: '/#work' },
+  { label: 'Selected Work', href: '/work' },
   { label: 'Disciplines', href: '/#disciplines' },
   { label: 'Packages', href: '/pricing' },
   { label: 'Studio Scoper', href: '/#scoper' },
