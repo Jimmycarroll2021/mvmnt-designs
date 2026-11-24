@@ -10,7 +10,8 @@ Checks:
   2. An unknown slug returns 404 and is noindex.
   3. /robots.txt references SITE_URL in its Sitemap line (production) or disallows all (preview).
   4. /sitemap.xml lists only SITE_URL hosts and includes every route in ROUTES.
-  5. The homepage FAQPage JSON-LD matches the visible FAQ questions and answers exactly.
+  5. Every route's FAQPage JSON-LD matches its visible FAQ exactly (homepage must have one).
+  6. Every route has exactly one H1 and a unique <title> and meta description.
 Exit code 0 on pass, 1 on any failure.
 """
 
@@ -23,7 +24,12 @@ import urllib.error
 import urllib.request
 
 # Add each planned page here when its route ships.
-ROUTES = ["/"]
+ROUTES = [
+    "/",
+    "/web-design-canberra",
+    "/medical-practice-website-design",
+    "/branding-canberra",
+]
 UNKNOWN = "/does-not-exist-xyz"
 
 
@@ -83,11 +89,10 @@ def main() -> int:
             failures.append(msg)
 
     print("1. Routes return 200 with a self-canonical")
-    home_doc = ""
+    docs: dict[str, str] = {}
     for path in ROUTES:
         status, doc = fetch(base + path)
-        if path == "/":
-            home_doc = doc
+        docs[path] = doc
         canon = canonical_of(doc)
         check(status == 200, f"{path} status {status}")
         check(
@@ -135,17 +140,36 @@ def main() -> int:
         )
 
     print("5. FAQ JSON-LD matches the visible FAQ")
-    faq_nodes = [n for n in jsonld_nodes(home_doc) if n.get("@type") == "FAQPage"]
-    check(
-        len(faq_nodes) == 1, f"homepage has one FAQPage node (found {len(faq_nodes)})"
-    )
-    if faq_nodes:
-        ld = [
-            (q["name"], q["acceptedAnswer"]["text"]) for q in faq_nodes[0]["mainEntity"]
-        ]
-        vis = visible_faqs(home_doc)
-        check(len(vis) > 0, f"visible FAQ found ({len(vis)} items)")
-        check(ld == vis, "FAQPage questions/answers equal the visible FAQ")
+    for path, doc in docs.items():
+        faq_nodes = [n for n in jsonld_nodes(doc) if n.get("@type") == "FAQPage"]
+        check(
+            len(faq_nodes) == 1, f"{path} has one FAQPage node (found {len(faq_nodes)})"
+        )
+        if faq_nodes:
+            ld = [
+                (q["name"], q["acceptedAnswer"]["text"])
+                for q in faq_nodes[0]["mainEntity"]
+            ]
+            vis = visible_faqs(doc)
+            check(len(vis) > 0, f"{path} visible FAQ found ({len(vis)} items)")
+            check(ld == vis, f"{path} FAQPage questions/answers equal the visible FAQ")
+
+    print("6. One H1, unique title and description")
+    titles: dict[str, str] = {}
+    descs: dict[str, str] = {}
+    for path, doc in docs.items():
+        h1s = re.findall(r"<h1[\s>]", doc)
+        check(len(h1s) == 1, f"{path} has one H1 (found {len(h1s)})")
+        t = re.search(r"<title>(.*?)</title>", doc, re.S)
+        d = re.search(r'<meta name="description" content="([^"]*)"', doc)
+        check(t is not None, f"{path} has a <title>")
+        check(d is not None, f"{path} has a meta description")
+        if t:
+            titles.setdefault(html.unescape(t.group(1)), path)
+        if d:
+            descs.setdefault(html.unescape(d.group(1)), path)
+    check(len(titles) == len(docs), f"titles unique ({len(titles)}/{len(docs)})")
+    check(len(descs) == len(docs), f"descriptions unique ({len(descs)}/{len(docs)})")
 
     print(f"\n{'PASS' if not failures else 'FAIL'}: {len(failures)} failure(s)")
     return 0 if not failures else 1

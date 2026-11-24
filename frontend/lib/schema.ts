@@ -85,6 +85,43 @@ export function studioCareServiceNode(pagePath = '/'): JsonLdNode {
   };
 }
 
+/** schema.org Offer for a published package price ("+" tiers become a minimum price). */
+export function packageOffer(pkg: Package): JsonLdNode {
+  return {
+    '@type': 'Offer',
+    name: pkg.name,
+    priceCurrency: 'AUD',
+    ...(pkg.priceIsMinimum
+      ? { priceSpecification: { '@type': 'PriceSpecification', minPrice: pkg.priceValue, priceCurrency: 'AUD' } }
+      : { price: pkg.priceValue }),
+  };
+}
+
+type ServiceNodeInput = {
+  name: string;
+  serviceType: string;
+  description: string;
+  /** Route path of the service page. */
+  path: string;
+  areaServed: JsonLdNode | JsonLdNode[];
+  offers?: JsonLdNode[];
+};
+
+/** Per-page Service node; every field must match the visible page copy. */
+export function serviceNode({ name, serviceType, description, path, areaServed, offers }: ServiceNodeInput): JsonLdNode {
+  return {
+    '@type': 'Service',
+    '@id': `${absoluteUrl(path)}#service`,
+    name,
+    serviceType,
+    description,
+    provider: { '@id': ORG_ID },
+    areaServed,
+    url: absoluteUrl(path),
+    ...(offers && offers.length ? { offers } : {}),
+  };
+}
+
 export function faqPageNode(faqs: Faq[], pagePath: string): JsonLdNode {
   return {
     '@type': 'FAQPage',

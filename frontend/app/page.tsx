@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import HeroSection from '@/app/components/HeroSection';
 import DisciplinesCarousel from '@/app/components/DisciplinesCarousel';
 import PackagesSection from '@/app/components/PackagesSection';
@@ -52,6 +53,11 @@ export default async function Home() {
             Work directly with the people designing and building your site. From the first
             conversation to the final details, we bring strategy, writing and modern engineering
             together.
+          </p>
+          <p className="small-copy">
+            Explore <Link href="/web-design-canberra">web design in Canberra</Link>,{' '}
+            <Link href="/medical-practice-website-design">medical and allied health practice websites</Link>{' '}
+            and <Link href="/branding-canberra">branding</Link>.
           </p>
           <a className="button" href="#disciplines">
             <span>+</span> Explore our disciplines
@@ -122,9 +128,9 @@ export default async function Home() {
             clinical hierarchy create a calm introduction to the consulting rooms. Direct patient
             intake and a mobile-first booking journey bring clarity to the next step.
           </p>
-          <a className="button" href="#contact">
+          <Link className="button" href="/medical-practice-website-design">
             <span>+</span> Enquire about clinic flagships
-          </a>
+          </Link>
         </div>
 
         <figure>

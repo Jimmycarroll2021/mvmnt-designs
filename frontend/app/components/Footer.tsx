@@ -1,4 +1,7 @@
 import React from 'react';
+import Link from 'next/link';
+
+import { SERVICE_LINKS } from '@/app/content/service-links';
 
 // Root-relative so the links still work from any subpage. Swap to /work, /pricing etc.
 // only once those routes exist.
@@ -38,6 +41,14 @@ export default function Footer() {
           <a key={link.href} href={link.href}>
             {link.label}
           </a>
+        ))}
+      </nav>
+
+      <nav className="footer-services" aria-label="Services">
+        {SERVICE_LINKS.map((link) => (
+          <Link key={link.href} href={link.href}>
+            {link.label}
+          </Link>
         ))}
       </nav>
 

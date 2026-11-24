@@ -10,6 +10,9 @@ import {absoluteUrl} from '@/lib/site'
  */
 const STATIC_ROUTES: {path: string; priority: number; changeFrequency: 'weekly' | 'monthly'}[] = [
   {path: '/', priority: 1, changeFrequency: 'weekly'},
+  {path: '/web-design-canberra', priority: 0.9, changeFrequency: 'monthly'},
+  {path: '/medical-practice-website-design', priority: 0.9, changeFrequency: 'monthly'},
+  {path: '/branding-canberra', priority: 0.9, changeFrequency: 'monthly'},
 ]
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
