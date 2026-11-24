@@ -56,7 +56,7 @@ export default async function Home() {
           </p>
           <p className="small-copy">
             Explore <Link href="/web-design-canberra">web design in Canberra</Link>,{' '}
-            <Link href="/medical-practice-website-design">medical and allied health practice websites</Link>{' '}
+            <Link href="/medical-practice-website-design">medical practice websites</Link>{' '}
             and <Link href="/branding-canberra">branding</Link>.
           </p>
           <a className="button" href="#disciplines">

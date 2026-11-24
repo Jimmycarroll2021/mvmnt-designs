@@ -64,7 +64,7 @@ export default function BookingForm() {
       setReceipt(data.receiptId || 'MVMNT-CONFIRMED');
       setFeedback(
         data.message ||
-          'Thank you. We have received your inquiry. We will review your practice and email you a direct scheduling link within 24 business hours.'
+          'Thank you. Your enquiry has been received.'
       );
     } catch (err: any) {
       setStatus('error');

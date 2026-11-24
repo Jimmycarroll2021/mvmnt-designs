@@ -87,8 +87,8 @@ export default function PrivacyPage() {
           <p className="small-copy">
             We use these details to review your enquiry and contact you about it. When you submit the
             form, the enquiry is checked for a name and a valid email address and recorded in the
-            application logs of our hosting provider, Vercel, where it is reviewed. The form also
-            contains a hidden field used only to filter automated spam.
+            application logs of our hosting provider, Vercel. The form also contains a hidden field
+            used only to filter automated spam.
           </p>
         </div>
       </section>

@@ -10,6 +10,7 @@ import Image from '@/app/components/SanityImage'
 import {sanityFetch} from '@/sanity/lib/live'
 import {postPagesSlugs, postQuery} from '@/sanity/lib/queries'
 import {resolveOpenGraphImage} from '@/sanity/lib/utils'
+import {SITE_LOCALE, SITE_NAME} from '@/lib/site'
 
 /**
  * Generate the static params for the page.
@@ -56,7 +57,13 @@ export async function generateMetadata(
     title: post?.title,
     description: post?.excerpt,
     alternates: {canonical: `/posts/${params.slug}`},
+    // openGraph replaces the parent object rather than merging, so restate the site fields.
     openGraph: {
+      title: post?.title,
+      description: post?.excerpt ?? undefined,
+      siteName: SITE_NAME,
+      locale: SITE_LOCALE,
+      type: 'article',
       url: `/posts/${params.slug}`,
       images: ogImage ? [ogImage, ...previousImages] : previousImages,
     },

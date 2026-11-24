@@ -12,7 +12,7 @@ export const SERVICE_LINKS: ServiceLink[] = [
     blurb: 'Bespoke websites, copywriting and booking journeys from a Canberra and Sydney studio.',
   },
   {
-    label: 'Medical & allied health websites',
+    label: 'Medical practice websites',
     href: '/medical-practice-website-design',
     blurb: 'Practice websites with clinical copywriting, patient intake and booking integrations.',
   },

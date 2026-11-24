@@ -11,7 +11,7 @@ import { pageMetadata } from '@/lib/metadata';
 import { breadcrumbNode, type Crumb, faqPageNode, graph, serviceNode } from '@/lib/schema';
 
 const PATH = '/shopify-developer';
-const TITLE = 'Shopify Developer Australia: Themes, Apps & Automation | MVMNT Design';
+const TITLE = 'Shopify Developer Australia | MVMNT Design';
 const DESCRIPTION =
   'Shopify store starters, bespoke theme development and purpose-built apps and automation for orders, inventory and fulfilment. Canberra and Sydney.';
 
@@ -73,12 +73,12 @@ const FAQS: Faq[] = [
     a: 'Yes. Purpose-built apps and automation connect orders, inventory and fulfilment, streamline repetitive tasks and consolidate overlapping features to reduce reliance on multiple third-party apps.',
   },
   {
-    q: 'Have you built headless commerce on Shopify?',
-    a: 'Yes. MVMNT Club is a headless commerce platform for Australian cycling clubs, combining kit visualisation and Shopify fulfilment workflows, and it brings custom cycling kit, sizing and club orders into one connected experience on web and mobile.',
+    q: 'Have you built headless commerce with Shopify?',
+    a: 'MVMNT Club is a headless commerce platform for Australian cycling clubs, combining kit visualisation and Shopify fulfilment workflows. It brings custom cycling kit, sizing and club orders into one connected experience on web and mobile.',
   },
   {
     q: 'How much does Shopify development cost?',
-    a: 'Shopify and other commerce projects are scoped individually, so there is no fixed Shopify package. They start with a studio conversation, and final scope, integrations and delivery dates are agreed with the studio.',
+    a: 'Shopify and other commerce projects are scoped individually, so there is no Shopify package. They start with a studio conversation, and final scope, integrations and delivery dates are agreed with the studio.',
   },
   {
     q: 'Where are you based?',
@@ -114,7 +114,7 @@ export default function ShopifyDeveloperPage() {
             Australia.
           </>
         }
-        lead="We build custom Shopify apps, bespoke themes and automated workflows that turn complex commercial processes into revenue."
+        lead="We build custom Shopify apps, bespoke themes and automated workflows."
       >
         <p className="small-copy">
           MVMNT Design is a brand and web design studio working across Canberra and Sydney. When you
@@ -171,7 +171,7 @@ export default function ShopifyDeveloperPage() {
           <p>Commerce projects start with a studio conversation.</p>
           <ul>
             <li>A focused 45-minute intake conversation about your business, customers and goals</li>
-            <li>A bespoke scope and quote, because Shopify work is not sold as a fixed package</li>
+            <li>A bespoke scope and quote, because Shopify work is not sold as a package</li>
             <li>Design, writing and the technical build, led by the studio</li>
             <li>Your review at agreed milestones and your final sign-off before launch</li>
           </ul>

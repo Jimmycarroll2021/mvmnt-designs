@@ -76,20 +76,8 @@ const FAQS: Faq[] = [
     a: 'Indicative delivery is 5 to 7 days for Solo Specialist, 10 to 14 days for Boutique Clinic and 3 to 4 weeks for Practice Transformation.',
   },
   {
-    q: 'How much time will I need to commit?',
-    a: 'We start with a focused 45-minute intake conversation to understand your business, audience and goals. We lead the design and writing process, with your input at agreed review points and final sign-off.',
-  },
-  {
-    q: 'Do I have to write my own website copy?',
-    a: 'No. Copywriting is part of the studio offering. We develop the content with you, reflecting your approach, services and voice. Clinical information on practice websites requires your review and approval.',
-  },
-  {
     q: 'Can you build an online store?',
     a: 'Commerce projects are scoped individually. Our work includes MVMNT Club, a headless commerce platform for Australian cycling clubs that combines kit visualisation with Shopify fulfilment workflows.',
-  },
-  {
-    q: 'Can our team update the site after launch?',
-    a: 'Content management is scoped to your needs. The Practice Transformation package includes a staff-friendly content studio, and Studio Care & Support ($395 AUD a month) covers managed hosting, automated backups, security monitoring and two hours a month of priority content updates.',
   },
 ];
 
@@ -157,7 +145,7 @@ export default function WebDesignCanberraPage() {
             Booking and practice-system integrations are scoped around your existing tools,
             including Cliniko, Halaxy and Stripe where appropriate, and we confirm feasibility before
             agreeing the project. Building for a clinic?{' '}
-            <Link href="/medical-practice-website-design">See our medical and allied health practice websites</Link>.
+            <Link href="/medical-practice-website-design">See our medical practice websites</Link>.
           </p>
         </div>
       </section>
@@ -172,7 +160,7 @@ export default function WebDesignCanberraPage() {
             <br />
             Restorative Medicine
           </h2>
-          <p>A digital experience that reflects the care behind the practice.</p>
+          <p>A website and digital experience for a specialist practice in Canberra.</p>
           <p className="small-copy">
             For a specialist practice in Canberra, editorial typography, tranquil tones and clear
             clinical hierarchy create a calm introduction to the consulting rooms. Direct patient

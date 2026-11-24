@@ -110,8 +110,7 @@ export default function WorkPage() {
       >
         <p className="small-copy">
           Three projects: a pre-launch endurance fuel brand, a specialist practice in Canberra and a
-          custom apparel platform for Australian cycling clubs. In each, strategy, writing and
-          engineering were done together, by the people who design and build the work.
+          custom apparel platform for Australian cycling clubs.
         </p>
       </ServiceHero>
 
@@ -140,7 +139,7 @@ export default function WorkPage() {
           <figure>
             <Image
               src="/images/gear.jpg"
-              alt="GEAR Natural and Love Buzz packaging concepts"
+              alt="GEAR Natural and Love Buzz endurance fuel pouches"
               width={1200}
               height={800}
               priority
@@ -159,14 +158,14 @@ export default function WorkPage() {
             <br />
             Restorative Medicine
           </h2>
-          <p>A digital experience that reflects the care behind the practice.</p>
+          <p>A website and digital experience for a specialist practice in Canberra.</p>
           <p className="small-copy">
             For a specialist practice in Canberra, editorial typography, tranquil tones and clear
             clinical hierarchy create a calm introduction to the consulting rooms. Direct patient
             intake and a mobile-first booking journey bring clarity to the next step.
           </p>
           <p className="small-copy">
-            Related: <Link href="/medical-practice-website-design">medical and allied health practice websites</Link>{' '}
+            Related: <Link href="/medical-practice-website-design">medical practice websites</Link>{' '}
             and <Link href="/web-design-canberra">web design in Canberra</Link>.
           </p>
           <Link className="button" href="/medical-practice-website-design">

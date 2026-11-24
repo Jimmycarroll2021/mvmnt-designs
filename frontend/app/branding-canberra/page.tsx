@@ -26,7 +26,7 @@ export const metadata = pageMetadata({
   absoluteTitle: true,
   description: DESCRIPTION,
   path: PATH,
-  image: { url: '/images/gear.jpg', width: 1200, height: 800, alt: 'GEAR Natural and Love Buzz packaging concepts' },
+  image: { url: '/images/gear.jpg', width: 1200, height: 800, alt: 'GEAR Natural and Love Buzz endurance fuel pouches' },
 });
 
 const CRUMBS: Crumb[] = [
@@ -69,15 +69,11 @@ const FAQS: Faq[] = [
   },
   {
     q: 'How much does branding cost?',
-    a: 'Visual identity and typography are included in the Boutique Clinic package at $8,800 AUD. Brand projects outside the packages are scoped individually, starting with a studio conversation.',
+    a: 'There is no standalone branding price. Brand identity projects are scoped and quoted individually, starting with a studio conversation. If you also need a practice website, the Boutique Clinic website package ($8,800 AUD) includes visual identity and typography alongside the website.',
   },
   {
     q: 'Do you work on clinic and medical practice branding?',
     a: 'Yes. Practice branding includes clinical and commercial copywriting and AHPRA-aware practice guides. Clinical information requires your review and approval, and the final content and any regulatory advice should be reviewed by the practice and its advisers.',
-  },
-  {
-    q: 'How does a branding project start?',
-    a: 'With a focused 45-minute intake conversation to understand your practice or brand, audience and goals. We lead the design and writing, with your input at agreed review points and final sign-off.',
   },
 ];
 
@@ -144,7 +140,7 @@ export default function BrandingCanberraPage() {
           <figure>
             <Image
               src="/images/gear.jpg"
-              alt="GEAR Natural and Love Buzz packaging concepts"
+              alt="GEAR Natural and Love Buzz endurance fuel pouches"
               width={1200}
               height={800}
               priority
@@ -162,17 +158,16 @@ export default function BrandingCanberraPage() {
           practice branding.
         </h2>
         <div>
-          <p>Calm, clear identities for practices.</p>
+          <p>Identity and messaging for private practices.</p>
           <p className="small-copy">
-            For the Hali Institute of Restorative Medicine, a specialist practice in Canberra,
-            editorial typography, tranquil tones and clear clinical hierarchy create a calm
-            introduction to the consulting rooms. Practice branding brings together visual identity,
-            typography and messaging with AHPRA-aware copywriting and practice guides; the final
-            content and any regulatory advice should be reviewed by the practice and its advisers.
+            Practice branding brings together visual identity, typography and messaging with
+            AHPRA-aware copywriting and practice guides. Clinical information requires your review and
+            approval, and the final content and any regulatory advice should be reviewed by the
+            practice and its advisers.
           </p>
           <p className="small-copy">
-            See how identity carries into the site in{' '}
-            <Link href="/medical-practice-website-design">medical and allied health practice websites</Link>.
+            Need the practice website as well? See{' '}
+            <Link href="/medical-practice-website-design">medical practice websites</Link>.
           </p>
         </div>
       </section>
@@ -184,13 +179,14 @@ export default function BrandingCanberraPage() {
           investment.
         </h2>
         <div>
-          <p>Identity as part of a package, or scoped on its own.</p>
+          <p>Scoped on its own, or with a practice website.</p>
           <ul>
+            <li>Brand identity projects: a bespoke scope and quote, starting with a studio conversation</li>
             <li>
-              Boutique Clinic, {BOUTIQUE?.price ?? '$8,800'} AUD: visual identity and typography with a
-              multi-page website and clinical copywriting
+              With a practice website: the Boutique Clinic website package, {BOUTIQUE?.price ?? '$8,800'}{' '}
+              AUD, includes visual identity and typography with a multi-page website and clinical
+              copywriting
             </li>
-            <li>Bespoke scope for brand, commerce and digital projects, starting with a studio conversation</li>
             <li>A focused 45-minute intake conversation, review at agreed milestones, and final sign-off</li>
           </ul>
           <p className="small-copy">

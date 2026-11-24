@@ -19,9 +19,9 @@ import { breadcrumbNode, type Crumb, faqPageNode, graph, packageOffer, serviceNo
  */
 
 const PATH = '/medical-practice-website-design';
-const TITLE = 'Medical & Allied Health Practice Website Design | MVMNT Design';
+const TITLE = 'Medical Practice Website Design | MVMNT Design';
 const DESCRIPTION =
-  'Websites for medical specialists, clinics and allied health practices: clinical copywriting, patient intake and booking integrations (Cliniko, Halaxy, Stripe). Fixed packages from $4,800 AUD.';
+  'Websites for private practices, solo specialists and multi-location clinics: clinical copywriting, patient intake and booking integrations. Packages from $4,800 AUD.';
 
 export const metadata = pageMetadata({
   title: TITLE,
@@ -99,7 +99,7 @@ const FAQS: Faq[] = [
 
 const jsonLd = graph([
   serviceNode({
-    name: 'Medical and allied health practice website design',
+    name: 'Medical practice website design',
     serviceType: 'Medical practice website design',
     description:
       'Websites for private practices with clinical copywriting, patient intake and booking integrations scoped around existing tools such as Cliniko, Halaxy and Stripe.',
@@ -121,9 +121,9 @@ export default function MedicalPracticeWebsiteDesignPage() {
         eyebrow="Clinic & practice websites · Australia"
         title={
           <>
-            Medical &amp; allied health
+            Medical practice
             <br />
-            practice website design.
+            website design.
           </>
         }
         lead="High-trust websites and effortless booking journeys for private practices."
@@ -193,7 +193,7 @@ export default function MedicalPracticeWebsiteDesignPage() {
             <br />
             Restorative Medicine
           </h2>
-          <p>A digital experience that reflects the care behind the practice.</p>
+          <p>A website and digital experience for a specialist practice in Canberra.</p>
           <p className="small-copy">
             For a specialist practice in Canberra, editorial typography, tranquil tones and clear
             clinical hierarchy create a calm introduction to the consulting rooms. Direct patient

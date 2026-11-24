@@ -19,7 +19,7 @@ import {
 } from '@/lib/schema';
 
 const PATH = '/pricing';
-const TITLE = 'Website Design Cost in Australia: Fixed Packages | MVMNT Design';
+const TITLE = 'Website Design Cost in Australia | MVMNT Design';
 const DESCRIPTION =
   'Published pricing: Solo Specialist $4,800, Boutique Clinic $8,800, Practice Transformation from $16,500, Studio Care $395 a month (AUD).';
 
@@ -67,11 +67,11 @@ const FAQS: Faq[] = [
   },
   {
     q: 'Do I have to write my own website copy?',
-    a: 'No. Copywriting is part of every package. We develop the content with you, reflecting your approach, services and voice. Clinical information on practice websites requires your review and approval.',
+    a: 'Clinical copywriting is included in the Solo Specialist and Boutique Clinic packages, and clinical and commercial copywriting is part of the studio offering. We develop the content with you, reflecting your approach, services and voice. Clinical information on practice websites requires your review and approval.',
   },
   {
     q: 'How are brand and Shopify projects priced?',
-    a: 'Brand identity, commerce and other digital projects are not sold as fixed packages. They start with a studio conversation and receive a bespoke scope and quote.',
+    a: 'Brand identity, commerce and other digital projects are not sold as packages. They start with a studio conversation and receive a bespoke scope and quote.',
   },
 ];
 
@@ -97,12 +97,12 @@ export default function PricingPage() {
             in Australia.
           </>
         }
-        lead="Clear scope and considered investment: three fixed website packages with published prices, plus ongoing Studio Care."
+        lead="Clear scope and considered investment: three website packages with published prices, plus ongoing Studio Care."
       >
         <p className="small-copy">
-          Every package includes copywriting, so you are not left to fill empty pages, and you work
-          directly with the people designing and building your site. Final scope, integrations and
-          delivery dates are agreed with the studio.
+          Solo Specialist and Boutique Clinic include clinical copywriting, and you work directly with
+          the people designing and building your site. Final scope, integrations and delivery dates
+          are agreed with the studio.
         </p>
       </ServiceHero>
 
@@ -187,7 +187,7 @@ export default function PricingPage() {
           </ul>
           <p className="small-copy">
             Building for a clinic? See{' '}
-            <Link href="/medical-practice-website-design">medical and allied health practice websites</Link>. Selling
+            <Link href="/medical-practice-website-design">medical practice websites</Link>. Selling
             online? See <Link href="/shopify-developer">Shopify development</Link>. Need the identity first? See{' '}
             <Link href="/branding-canberra">branding</Link>.
           </p>
