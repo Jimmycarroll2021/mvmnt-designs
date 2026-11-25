@@ -26,12 +26,13 @@ export default function BookingForm() {
   const [receipt, setReceipt] = useState<string>('');
 
   useEffect(() => {
-    const handlePackageSelect = (e: any) => {
-      if (e.detail) {
+    const handlePackageSelect = (e: Event) => {
+      const detail = (e as CustomEvent<{ packageTier?: string; scopeNotes?: string }>).detail;
+      if (detail) {
         setFormData((prev) => ({
           ...prev,
-          packageTier: e.detail.packageTier || prev.packageTier,
-          scopeNotes: e.detail.scopeNotes !== undefined ? e.detail.scopeNotes : prev.scopeNotes,
+          packageTier: detail.packageTier || prev.packageTier,
+          scopeNotes: detail.scopeNotes !== undefined ? detail.scopeNotes : prev.scopeNotes,
         }));
       }
     };
@@ -66,9 +67,9 @@ export default function BookingForm() {
         data.message ||
           'Thank you. Your enquiry has been received.'
       );
-    } catch (err: any) {
+    } catch (err: unknown) {
       setStatus('error');
-      setFeedback(err.message || 'An unexpected error occurred. Please reach out directly.');
+      setFeedback((err instanceof Error && err.message) || 'An unexpected error occurred. Please reach out directly.');
     }
   };
 

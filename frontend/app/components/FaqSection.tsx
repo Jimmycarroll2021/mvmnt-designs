@@ -12,7 +12,7 @@ export default function FaqSection() {
       </div>
       <div className="faq-list">
         {FAQS.map((faq, idx) => (
-          <details key={idx} defaultOpen={faq.defaultOpen ?? false}>
+          <details key={idx} open={faq.defaultOpen ?? false}>
             <summary>{faq.q}</summary>
             <p>{faq.a}</p>
           </details>

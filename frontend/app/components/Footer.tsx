@@ -19,9 +19,9 @@ export default function Footer() {
     <footer>
       <div className="footer-top">
         <div>
-          <a className="linkedin" href="/#contact">
+          <Link className="linkedin" href="/#contact">
             MVMNT DESIGN · Canberra &amp; Sydney
-          </a>
+          </Link>
           <p className="footer-description">
             Brand identities. Digital flagships.
             <br />

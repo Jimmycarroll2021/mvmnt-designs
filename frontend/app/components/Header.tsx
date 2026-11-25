@@ -57,13 +57,13 @@ export default function Header() {
   return (
     <>
       <header className={`topbar ${scrolled ? 'scrolled' : ''}`}>
-        <a className="tag" href="/">
+        <Link className="tag" href="/">
           Simple, yet significant.
-        </a>
+        </Link>
         <div>
-          <a className="contact" href="/#contact">
+          <Link className="contact" href="/#contact">
             Let’s talk
-          </a>
+          </Link>
           <button
             id="menuButton"
             aria-expanded={menuOpen}
@@ -106,9 +106,9 @@ export default function Header() {
               </a>
             ))}
           </nav>
-          <a className="linkedin" href="/#contact" onClick={handleLinkClick}>
+          <Link className="linkedin" href="/#contact" onClick={handleLinkClick}>
             Make your next move ↗
-          </a>
+          </Link>
         </div>
       </div>
     </>
