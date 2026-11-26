@@ -1,13 +1,17 @@
 import React from 'react';
+import Link from 'next/link';
 
+import { PRICING_LINKS, SERVICE_LINKS } from '@/app/content/service-links';
+
+// Root-relative so the links still work from any subpage. Link a route only once it exists.
 const NAV_LINKS = [
-  { label: 'Home', href: '#home' },
-  { label: 'Studio', href: '#studio' },
-  { label: 'Selected Work', href: '#work' },
-  { label: 'Disciplines', href: '#disciplines' },
-  { label: 'Packages', href: '#pricing' },
-  { label: 'Studio Scoper', href: '#scoper' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '/' },
+  { label: 'Studio', href: '/#studio' },
+  { label: 'Selected Work', href: '/work' },
+  { label: 'Disciplines', href: '/#disciplines' },
+  { label: 'Packages', href: '/pricing' },
+  { label: 'Studio Scoper', href: '/#scoper' },
+  { label: 'Contact', href: '/#contact' },
 ];
 
 export default function Footer() {
@@ -15,9 +19,9 @@ export default function Footer() {
     <footer>
       <div className="footer-top">
         <div>
-          <a className="linkedin" href="#contact">
+          <Link className="linkedin" href="/#contact">
             MVMNT DESIGN · Canberra &amp; Sydney
-          </a>
+          </Link>
           <p className="footer-description">
             Brand identities. Digital flagships.
             <br />
@@ -39,13 +43,30 @@ export default function Footer() {
         ))}
       </nav>
 
+      <nav className="footer-services" aria-label="Services">
+        {[...SERVICE_LINKS, ...PRICING_LINKS].map((link) => (
+          <Link key={link.href} href={link.href}>
+            {link.label}
+          </Link>
+        ))}
+      </nav>
+
       <div className="footer-wordmark">
         MVMNT DESIGN
         <span aria-hidden="true">✳</span>
       </div>
 
+      <p className="footer-description">
+        Looking for AI systems and automation? Visit our sister studio{' '}
+        <a href="https://www.digitalmvmnt.com.au/" target="_blank" rel="noopener">
+          Digital MVMNT
+        </a>
+        .
+      </p>
+
       <div className="legal">
         <span>© 2026 MVMNT DESIGN</span>
+        <Link href="/privacy">Privacy policy</Link>
         <span>Brand · Digital · Clinic Platforms</span>
       </div>
     </footer>

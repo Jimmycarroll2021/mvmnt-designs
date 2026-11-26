@@ -122,10 +122,14 @@
 .headline h1 {
   font: inherit;
   margin: 0;
-  max-width: 22ch;
   font-weight: 500;
 }
+.headline-lead {
+  display: block;
+  max-width: 22ch;
+}
 .caption {
+  display: block;
   transition: opacity 0.4s ease, transform 0.4s ease;
   min-height: 1.2em;
   font-weight: 500;
@@ -971,5 +975,144 @@ footer nav a:hover {
   *:after {
     animation: none !important;
     transition: none !important;
+  }
+}
+
+/* Service pages (web design, medical practice websites, branding) */
+.page-hero {
+  padding-top: 150px;
+  border-bottom: 1px solid #d1d5d4;
+}
+.page-hero h1 {
+  font-size: clamp(40px, 5vw, 78px);
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  margin: 0 0 32px;
+}
+.page-hero .eyebrow {
+  margin-bottom: 30px;
+}
+.breadcrumbs ol {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font: 12px 'Courier New', Courier, monospace;
+  text-transform: uppercase;
+  color: #6c7373;
+}
+.breadcrumbs li + li:before {
+  content: '/';
+  margin-right: 8px;
+}
+.breadcrumbs a:hover {
+  color: #111;
+}
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  padding: 0 3.8%;
+}
+.service-grid .card {
+  min-height: 0;
+}
+.service-grid .card:hover {
+  background: #e9edeb;
+}
+.service-grid .card:nth-child(3n + 2):hover {
+  background: #e0e5de;
+}
+.service-grid .card:nth-child(3n):hover {
+  background: #d7e1e7;
+}
+.service-copy {
+  border-bottom: 1px solid #d1d5d4;
+}
+.service-copy ul {
+  padding: 0;
+  list-style: none;
+  margin: 0 0 30px;
+  font-size: 17px;
+  line-height: 1.4;
+  color: #59635f;
+}
+.service-copy li {
+  padding: 9px 0;
+  border-top: 1px solid #b7c2bd;
+}
+.service-copy li:before {
+  content: '↗';
+  margin-right: 10px;
+}
+.related-links {
+  border-bottom: 1px solid #d1d5d4;
+}
+.related-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.related-links li {
+  padding: 18px 0;
+  border-top: 1px solid #d1d5d4;
+}
+.related-links li a {
+  font-size: 26px;
+  letter-spacing: -0.025em;
+}
+.related-links li p {
+  margin: 8px 0 0;
+}
+.price-table-wrap {
+  overflow-x: auto;
+}
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  line-height: 1.4;
+  color: #59635f;
+}
+.price-table caption {
+  text-align: left;
+  margin-bottom: 12px;
+}
+.price-table th,
+.price-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 12px 14px 12px 0;
+  border-top: 1px solid #b7c2bd;
+}
+.price-table thead th {
+  font: 12px 'Courier New', Courier, monospace;
+  text-transform: uppercase;
+  color: #6c7373;
+}
+.price-table tbody th {
+  color: #111;
+  font-weight: 500;
+}
+.price-table tbody th .small-copy {
+  display: block;
+  margin-top: 4px;
+  font-weight: 400;
+}
+.footer-services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  font-size: 13px;
+}
+@media (max-width: 900px) {
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+  .page-hero {
+    padding-top: 120px;
   }
 }

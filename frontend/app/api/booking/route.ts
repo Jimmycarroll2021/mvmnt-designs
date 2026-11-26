@@ -36,7 +36,7 @@ export async function POST(req: Request) {
     return NextResponse.json({
       success: true,
       receiptId,
-      message: 'Discovery consultation request confirmed. Jimmy will reach out within 24 hours to confirm calendar times.',
+      message: 'Thank you. Your enquiry has been received.',
       details: {
         name,
         email,

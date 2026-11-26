@@ -3,14 +3,16 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
+// Root-relative so the links still work from any subpage. Swap to /work etc.
+// only once those routes exist.
 const NAV_LINKS = [
-  { label: 'Home', href: '#home' },
-  { label: 'Studio', href: '#studio' },
-  { label: 'Selected Work', href: '#work' },
-  { label: 'Disciplines', href: '#disciplines' },
-  { label: 'Packages', href: '#pricing' },
-  { label: 'Studio Scoper', href: '#scoper' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '/' },
+  { label: 'Studio', href: '/#studio' },
+  { label: 'Selected Work', href: '/work' },
+  { label: 'Disciplines', href: '/#disciplines' },
+  { label: 'Packages', href: '/pricing' },
+  { label: 'Studio Scoper', href: '/#scoper' },
+  { label: 'Contact', href: '/#contact' },
 ];
 
 export default function Header() {
@@ -55,13 +57,13 @@ export default function Header() {
   return (
     <>
       <header className={`topbar ${scrolled ? 'scrolled' : ''}`}>
-        <a className="tag" href="#home">
+        <Link className="tag" href="/">
           Simple, yet significant.
-        </a>
+        </Link>
         <div>
-          <a className="contact" href="#contact">
+          <Link className="contact" href="/#contact">
             Let’s talk
-          </a>
+          </Link>
           <button
             id="menuButton"
             aria-expanded={menuOpen}
@@ -104,9 +106,9 @@ export default function Header() {
               </a>
             ))}
           </nav>
-          <a className="linkedin" href="#contact" onClick={handleLinkClick}>
+          <Link className="linkedin" href="/#contact" onClick={handleLinkClick}>
             Make your next move ↗
-          </a>
+          </Link>
         </div>
       </div>
     </>

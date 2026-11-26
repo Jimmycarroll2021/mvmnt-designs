@@ -1,12 +1,30 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import HeroSection from '@/app/components/HeroSection';
 import DisciplinesCarousel from '@/app/components/DisciplinesCarousel';
 import PackagesSection from '@/app/components/PackagesSection';
 import StudioScoper from '@/app/components/StudioScoper';
 import FaqSection from '@/app/components/FaqSection';
 import BookingForm from '@/app/components/BookingForm';
+import JsonLd from '@/app/components/JsonLd';
+import { HOME_DESCRIPTION, HOME_FAQS, HOME_TITLE, PACKAGES } from '@/app/content/home';
+import { pageMetadata } from '@/lib/metadata';
+import { faqPageNode, graph, packageServiceNode, studioCareServiceNode } from '@/lib/schema';
 import { getWpProjects } from '@/lib/wordpress';
+
+export const metadata = pageMetadata({
+  title: HOME_TITLE,
+  absoluteTitle: true,
+  description: HOME_DESCRIPTION,
+  path: '/',
+});
+
+const homeJsonLd = graph([
+  ...PACKAGES.map((pkg) => packageServiceNode(pkg, '/')),
+  studioCareServiceNode('/'),
+  faqPageNode(HOME_FAQS, '/'),
+]);
 
 export default async function Home() {
   const projects = await getWpProjects();
@@ -15,6 +33,7 @@ export default async function Home() {
 
   return (
     <>
+      <JsonLd data={homeJsonLd} />
       {/* 1. HERO SECTION (100svh, Dynamic Gradient & Word Cycling, Monumental Wordmark) */}
       <HeroSection />
 
@@ -34,6 +53,11 @@ export default async function Home() {
             Work directly with the people designing and building your site. From the first
             conversation to the final details, we bring strategy, writing and modern engineering
             together.
+          </p>
+          <p className="small-copy">
+            Explore <Link href="/web-design-canberra">web design in Canberra</Link>,{' '}
+            <Link href="/medical-practice-website-design">medical practice websites</Link>{' '}
+            and <Link href="/branding-canberra">branding</Link>.
           </p>
           <a className="button" href="#disciplines">
             <span>+</span> Explore our disciplines
@@ -63,6 +87,9 @@ export default async function Home() {
             </p>
             <p className="small-copy">
               Brand storytelling · Product discovery · Interactive recipe exploration
+            </p>
+            <p className="small-copy">
+              <Link href="/work">See all selected work</Link>
             </p>
             <a
               className="button"
@@ -104,9 +131,9 @@ export default async function Home() {
             clinical hierarchy create a calm introduction to the consulting rooms. Direct patient
             intake and a mobile-first booking journey bring clarity to the next step.
           </p>
-          <a className="button" href="#contact">
+          <Link className="button" href="/medical-practice-website-design">
             <span>+</span> Enquire about clinic flagships
-          </a>
+          </Link>
         </div>
 
         <figure>
@@ -172,6 +199,9 @@ export default async function Home() {
           <p className="small-copy">
             A headless commerce platform for Australian cycling clubs, combining kit visualisation
             and Shopify fulfilment workflows.
+          </p>
+          <p className="small-copy">
+            <Link href="/shopify-developer">Shopify development: themes, apps and automation</Link>
           </p>
           <a
             className="button"
