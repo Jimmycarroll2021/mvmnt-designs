@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import { absoluteUrl, DEFAULT_OG_IMAGE, SITE_LOCALE, SITE_NAME } from '@/lib/site';
+import { absoluteUrl, DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_SIZE, SITE_LOCALE, SITE_NAME } from '@/lib/site';
 
 type PageMetaInput = {
   /** Page title without the brand suffix; the root template appends " | MVMNT Design". */
@@ -15,7 +15,7 @@ type PageMetaInput = {
 
 /** Per-page metadata with a self-canonical and matching Open Graph / Twitter cards. */
 export function pageMetadata({ title, description, path, image, absoluteTitle }: PageMetaInput): Metadata {
-  const img = image ?? { url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: SITE_NAME };
+  const img = image ?? { url: DEFAULT_OG_IMAGE, ...DEFAULT_OG_IMAGE_SIZE, alt: SITE_NAME };
   const fullTitle = absoluteTitle ? title : `${title} | ${SITE_NAME}`;
   return {
     title: absoluteTitle ? { absolute: title } : title,

@@ -26,7 +26,7 @@ export const metadata = pageMetadata({
   absoluteTitle: true,
   description: DESCRIPTION,
   path: PATH,
-  image: { url: '/images/gear.jpg', width: 1200, height: 800, alt: 'GEAR Natural and Love Buzz endurance fuel pouches' },
+  image: { url: '/images/gear.jpg', width: 1536, height: 1024, alt: 'GEAR Natural and Love Buzz endurance fuel pouches' },
 });
 
 const CRUMBS: Crumb[] = [

@@ -13,6 +13,9 @@ export const SITE_LOCALE = 'en_AU';
 
 export const DEFAULT_OG_IMAGE = '/images/hali_case_study_cover.png';
 
+/** Pixel size of DEFAULT_OG_IMAGE as stored in public/images; keep in step with the file. */
+export const DEFAULT_OG_IMAGE_SIZE = { width: 1440, height: 960 };
+
 export const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID || '';
 
 /** Absolute URL for a site path, e.g. absoluteUrl('/pricing'). */

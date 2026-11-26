@@ -18,7 +18,7 @@ import { breadcrumbNode, type Crumb, graph, ORG_ID, WEBSITE_ID } from '@/lib/sch
 const PATH = '/work';
 const TITLE = 'Selected Work: Brand, Web & Shopify | MVMNT Design';
 const DESCRIPTION =
-  'Selected work: GEAR Endurance Fuel, Hali Institute of Restorative Medicine and MVMNT Club.';
+  'Selected work: GEAR Endurance Fuel, Hali Institute of Restorative Medicine and MVMNT Club, a custom apparel platform for Australian cycling clubs.';
 
 export const metadata = pageMetadata({
   title: TITLE,

@@ -21,14 +21,14 @@ import { breadcrumbNode, type Crumb, faqPageNode, graph, packageOffer, serviceNo
 const PATH = '/medical-practice-website-design';
 const TITLE = 'Medical Practice Website Design | MVMNT Design';
 const DESCRIPTION =
-  'Websites for private practices, solo specialists and multi-location clinics: clinical copywriting, patient intake and booking integrations. Packages from $4,800 AUD.';
+  'Websites for private practices, solo specialists and multi-location clinics. Clinical copywriting, patient intake, booking integrations. From $4,800 AUD.';
 
 export const metadata = pageMetadata({
   title: TITLE,
   absoluteTitle: true,
   description: DESCRIPTION,
   path: PATH,
-  image: { url: '/images/hali_case_study_cover.png', width: 1200, height: 800, alt: 'Hali Institute website design presentation' },
+  image: { url: '/images/hali_case_study_cover.png', width: 1440, height: 960, alt: 'Hali Institute website design presentation' },
 });
 
 const CRUMBS: Crumb[] = [

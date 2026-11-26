@@ -16,7 +16,15 @@ import * as demo from '@/sanity/lib/demo';
 import { SanityLive } from '@/sanity/lib/live';
 import { handleError } from '@/app/client-utils';
 import { HOME_DESCRIPTION, HOME_TITLE } from '@/app/content/home';
-import { DEFAULT_OG_IMAGE, GA4_ID, isIndexable, SITE_LOCALE, SITE_NAME, SITE_URL } from '@/lib/site';
+import {
+  DEFAULT_OG_IMAGE,
+  DEFAULT_OG_IMAGE_SIZE,
+  GA4_ID,
+  isIndexable,
+  SITE_LOCALE,
+  SITE_NAME,
+  SITE_URL,
+} from '@/lib/site';
 
 /**
  * Sitewide metadata defaults. Pages set their own self-canonical, title, description
@@ -45,7 +53,7 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: SITE_NAME,
       locale: SITE_LOCALE,
       type: 'website',
-      images: [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: SITE_NAME }],
+      images: [{ url: DEFAULT_OG_IMAGE, ...DEFAULT_OG_IMAGE_SIZE, alt: SITE_NAME }],
     },
     twitter: {
       card: 'summary_large_image',

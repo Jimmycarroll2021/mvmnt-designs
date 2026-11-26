@@ -12,6 +12,7 @@ Checks:
   4. /sitemap.xml lists only SITE_URL hosts and includes every route in ROUTES.
   5. Every route's FAQPage JSON-LD matches its visible FAQ exactly (homepage must have one).
   6. Every route has exactly one H1 and a unique <title> and meta description.
+  7. Every title is at most 60 characters, every description at most 155, and no H1 ends on a dangling word.
 Exit code 0 on pass, 1 on any failure.
 """
 
@@ -37,6 +38,10 @@ ROUTES = [
 # Routes with no FAQ by design (portfolio and compliance pages): they must carry no FAQPage node.
 NO_FAQ_ROUTES = {"/work", "/privacy"}
 UNKNOWN = "/does-not-exist-xyz"
+TITLE_MAX = 60
+DESC_MAX = 155
+# An H1 that ends on one of these words is an unfinished phrase (for example "Bespoke design for").
+DANGLING = {"for", "of", "to", "with", "and", "the", "a"}
 
 
 def fetch(url: str) -> tuple[int, str]:
@@ -179,6 +184,26 @@ def main() -> int:
             descs.setdefault(html.unescape(d.group(1)), path)
     check(len(titles) == len(docs), f"titles unique ({len(titles)}/{len(docs)})")
     check(len(descs) == len(docs), f"descriptions unique ({len(descs)}/{len(docs)})")
+
+    print("7. Title and description length, complete H1")
+    for path, doc in docs.items():
+        t = re.search(r"<title>(.*?)</title>", doc, re.S)
+        d = re.search(r'<meta name="description" content="([^"]*)"', doc)
+        tl = len(html.unescape(t.group(1))) if t else 0
+        dl = len(html.unescape(d.group(1))) if d else 0
+        check(0 < tl <= TITLE_MAX, f"{path} title is {tl} characters (max {TITLE_MAX})")
+        check(
+            0 < dl <= DESC_MAX,
+            f"{path} description is {dl} characters (max {DESC_MAX})",
+        )
+        h1 = re.search(r"<h1[^>]*>(.*?)</h1>", doc, re.S)
+        text = re.sub(r"<!-- -->|<[^>]+>", " ", h1.group(1)) if h1 else ""
+        text = " ".join(html.unescape(text).split())
+        last = text.lower().rstrip(".").rsplit(" ", 1)[-1] if text else ""
+        check(
+            bool(text) and last not in DANGLING,
+            f"{path} H1 is a complete phrase: {text!r}",
+        )
 
     print(f"\n{'PASS' if not failures else 'FAIL'}: {len(failures)} failure(s)")
     return 0 if not failures else 1

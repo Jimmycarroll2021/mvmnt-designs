@@ -122,10 +122,14 @@
 .headline h1 {
   font: inherit;
   margin: 0;
-  max-width: 22ch;
   font-weight: 500;
 }
+.headline-lead {
+  display: block;
+  max-width: 22ch;
+}
 .caption {
+  display: block;
   transition: opacity 0.4s ease, transform 0.4s ease;
   min-height: 1.2em;
   font-weight: 500;

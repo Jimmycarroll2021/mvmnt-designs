@@ -56,10 +56,13 @@ export default function HeroSection() {
     >
       <div className="grain" />
       <div className="headline">
-        <h1>Bespoke design for</h1>
-        <div className={`caption ${isChanging ? 'changing' : ''}`} aria-live="polite">
-          {CAPTIONS[index]}
-        </div>
+        {/* One H1 holding the whole phrase; the rotating caption used to sit outside it. */}
+        <h1>
+          <span className="headline-lead">Bespoke design for</span>{' '}
+          <span className={`caption ${isChanging ? 'changing' : ''}`} aria-live="polite">
+            {CAPTIONS[index]}
+          </span>
+        </h1>
       </div>
       <div className="wordmark" ref={wordmarkRef}>
         MVMNT DESIGN
