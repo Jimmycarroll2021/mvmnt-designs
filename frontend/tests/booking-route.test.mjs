@@ -170,6 +170,89 @@ test('send times out or network fails: 5xx, no success, key not logged', async (
   assert.ok(!logLines[0].includes('physiotherapy'))
 })
 
+test('network error that is not a timeout: 5xx, no success', async () => {
+  globalThis.fetch = async (url, init) => {
+    calls.push({url: String(url), init})
+    throw new TypeError('fetch failed')
+  }
+  const res = await post(enquiry())
+  const data = await res.json()
+
+  assert.equal(calls.length, 1)
+  assert.ok(res.status >= 500 && res.status <= 599, `status ${res.status} is 5xx`)
+  assert.notEqual(data.success, true)
+  assert.equal(typeof data.error, 'string')
+  assert.equal(logLines.length, 1, 'one log line')
+  assert.match(logLines[0], /delivery failed/i)
+})
+
+test('provider 302 redirect: 5xx, no success', async () => {
+  providerReply = () => new Response(null, {status: 302, headers: {Location: 'https://example.test/elsewhere'}})
+  const res = await post(enquiry())
+  const data = await res.json()
+
+  assert.equal(calls.length, 1)
+  assert.ok(res.status >= 500 && res.status <= 599, `status ${res.status} is 5xx`)
+  assert.notEqual(data.success, true)
+  assert.equal(typeof data.error, 'string')
+})
+
+for (const [name, value, label] of [
+  ['RESEND_API_KEY', '', 'empty'],
+  ['RESEND_API_KEY', '   ', 'spaces only'],
+  ['ENQUIRY_TO_EMAIL', '', 'empty'],
+  ['ENQUIRY_TO_EMAIL', ' \t\n', 'whitespace only'],
+]) {
+  test(`${name} set but ${label}: 503, nothing sent, no success`, async () => {
+    process.env[name] = value
+    const res = await post(enquiry())
+    const data = await res.json()
+
+    assert.equal(res.status, 503)
+    assert.notEqual(data.success, true)
+    assert.equal(typeof data.error, 'string')
+    assert.equal(calls.length, 0, 'nothing sent to the mail provider')
+  })
+}
+
+test('timeout: the single log line omits the visitor email, name and message text', async () => {
+  globalThis.fetch = async (url, init) => {
+    calls.push({url: String(url), init})
+    throw new DOMException('The operation was aborted due to timeout', 'TimeoutError')
+  }
+  const res = await post(enquiry())
+
+  assert.ok(res.status >= 500 && res.status <= 599, `status ${res.status} is 5xx`)
+  assert.equal(logLines.length, 1, 'one log line')
+  assert.match(logLines[0], /delivery failed/i)
+  assert.ok(!logLines[0].includes('jane@practice.example'), 'log line omits the visitor email')
+  assert.ok(!logLines[0].includes('Jane Smith'), 'log line omits the visitor name')
+  for (const fragment of ['physiotherapy', 'Detail about the rebuild', 'END-OF-NOTES']) {
+    assert.ok(!logLines[0].includes(fragment), `log line omits the message text: ${fragment}`)
+  }
+})
+
+for (const [label, status] of [
+  ['NaN', Number.NaN],
+  ['undefined', undefined],
+  ["the string '200'", '200'],
+  ['the non-integer 200.5', 200.5],
+]) {
+  test(`provider status ${label}: treated as a failure, 5xx, no success`, async () => {
+    globalThis.fetch = async (url, init) => {
+      calls.push({url: String(url), init})
+      return {status}
+    }
+    const res = await post(enquiry())
+    const data = await res.json()
+
+    assert.equal(calls.length, 1)
+    assert.ok(res.status >= 500 && res.status <= 599, `status ${res.status} is 5xx`)
+    assert.notEqual(data.success, true)
+    assert.equal(typeof data.error, 'string')
+  })
+}
+
 test('honeypot filled: normal-looking success, nothing sent', async () => {
   const res = await post(enquiry({honeypot: 'http://spam.example'}))
   const data = await res.json()

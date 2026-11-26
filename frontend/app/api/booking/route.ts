@@ -156,7 +156,9 @@ export async function POST(req: Request): Promise<Response> {
       : deliveryFailed(receiptId, 'network_error', 502)
   }
 
-  if (providerStatus < 200 || providerStatus > 299) {
+  // Fail closed: only an integer 2xx status counts as accepted. A missing or non-numeric status is a failure.
+  const accepted = Number.isInteger(providerStatus) && providerStatus >= 200 && providerStatus <= 299
+  if (!accepted) {
     return deliveryFailed(receiptId, `provider_http_${providerStatus}`, 502)
   }
 
