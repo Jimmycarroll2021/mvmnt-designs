@@ -59,3 +59,19 @@ SEO foundations branch `seo/pages-20261125`. Items that need a decision or a fac
 - TODO (mvmntdesign.com host, at cutover): `www.mvmntdesign.com` does not resolve; `http://` redirects with a 302, not a 301; the Cloudflare bot challenge returned 403 to a browser-style user agent on 2026-11-26. Add the www record with a 301 to the apex, make the http redirect a 301, and check in Search Console that Googlebot is not challenged.
 - Note: `sitemap.xml` stamps every static route with the build time as `lastmod`. Harmless, but switch to real edit dates if Google starts ignoring it.
 - Checks: `scripts/test_seo_routes.py` now also fails on a title over 60 characters, a description over 155, or an H1 that ends on a dangling word.
+
+## Enquiry form delivery (branch `fix/enquiry-delivery`)
+
+The form now emails each enquiry through Resend and shows "Request Received" only when Resend accepts the message. Until the variables below are set, every submission shows "Sorry, your enquiry was not sent", so set them BEFORE merging.
+
+- Set in Vercel: Project, Settings, Environment Variables, environment **Production** (add Preview too if you want to test on a preview URL). Redeploy after changing them.
+  - `RESEND_API_KEY` (server only): API key from resend.com. A "Sending access" key is enough.
+  - `ENQUIRY_TO_EMAIL` (server only): the inbox that should receive enquiries.
+  - `ENQUIRY_FROM_EMAIL` (server only, optional): sender, for example `MVMNT Design <enquiries@mvmntdesign.com>`. If unset it is `MVMNT Design <onboarding@resend.dev>`.
+  - `NEXT_PUBLIC_CONTACT_EMAIL` (public, optional): shown as a mailto link under the form and in the "not sent" message. It is baked in at build time, so redeploy after setting it. If unset, the form names no direct contact route.
+- Resend sender limit: the default sender `onboarding@resend.dev` can deliver ONLY to the email address that owns the Resend account. To send to any other inbox, add your domain in Resend (Domains), create the DNS records it lists (SPF, DKIM) at your DNS host, wait for "Verified", then set `ENQUIRY_FROM_EMAIL` to an address on that domain. An unverified sender makes Resend answer 403 and the visitor sees "not sent".
+- Test: after the deploy, submit the form once with your own details. Expect "Request Received" with a receipt ID and an email in the `ENQUIRY_TO_EMAIL` inbox whose subject carries the same receipt ID; replying to it goes to the address typed into the form. If the form says "not sent", open the Vercel function logs for `/api/booking` and read the line `[booking] delivery failed receipt=... status=...` (`not_configured` = a variable is missing, `provider_http_401` or `provider_http_403` = bad API key, sender domain not verified, or a recipient the test sender may not reach, `timeout` = Resend did not answer in 8 seconds).
+- Enquiries are no longer written to the Vercel logs (only the failure line above, with no personal data). A 2xx from Resend means accepted for sending, not that it reached the inbox: check the Resend dashboard (Emails) if one goes missing.
+- TODO (privacy, still open, not changed on this branch): `/privacy` still says enquiries are "recorded in the application logs of our hosting provider, Vercel". After this change they are sent by email through Resend instead, so that paragraph must be updated to name Resend, and a contact email published (S11 above is otherwise resolved by this branch).
+- TODO (env example): add the four variables to `frontend/.env.example` by hand (the agent's permission rules block `.env*` edits).
+- Tests: `npm test --workspace=frontend` (Node's built-in runner, mocked `fetch`, sends nothing).
