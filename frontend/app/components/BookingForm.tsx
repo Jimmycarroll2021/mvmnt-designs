@@ -11,6 +11,12 @@ const PACKAGES = [
   { value: 'Brand / Custom Digital Project (Bespoke Scope)', label: 'Brand / Custom Digital Project (Bespoke Scope)' },
 ];
 
+// Optional public contact address (inlined at build time). Shown only when it is set and looks like an email.
+const CONTACT_EMAIL_VALUE = (process.env.NEXT_PUBLIC_CONTACT_EMAIL || '').trim();
+const CONTACT_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(CONTACT_EMAIL_VALUE) ? CONTACT_EMAIL_VALUE : '';
+
+const NOT_SENT_MESSAGE = 'Sorry, your enquiry was not sent. Please try again in a few minutes.';
+
 export default function BookingForm() {
   const [formData, setFormData] = useState({
     name: '',
@@ -24,6 +30,8 @@ export default function BookingForm() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [feedback, setFeedback] = useState<string>('');
   const [receipt, setReceipt] = useState<string>('');
+  // True when the enquiry was not delivered (server or network failure), as opposed to a field error.
+  const [notDelivered, setNotDelivered] = useState(false);
 
   useEffect(() => {
     const handlePackageSelect = (e: Event) => {
@@ -47,6 +55,7 @@ export default function BookingForm() {
     e.preventDefault();
     setStatus('loading');
     setFeedback('');
+    setNotDelivered(false);
 
     try {
       const res = await fetch('/api/booking', {
@@ -55,10 +64,28 @@ export default function BookingForm() {
         body: JSON.stringify(formData),
       });
 
-      const data = await res.json();
+      // A failed delivery may not carry a JSON body (for example a platform timeout page).
+      const data = await res.json().catch(() => null);
+
+      if (res.status >= 500) {
+        setStatus('error');
+        setNotDelivered(true);
+        setFeedback(NOT_SENT_MESSAGE);
+        return;
+      }
 
       if (!res.ok) {
-        throw new Error(data.error || 'Failed to submit inquiry');
+        setStatus('error');
+        setFeedback((data && data.error) || 'Please check the form and try again.');
+        return;
+      }
+
+      // Success is shown only when the server confirms the enquiry was delivered.
+      if (!data || data.success !== true) {
+        setStatus('error');
+        setNotDelivered(true);
+        setFeedback(NOT_SENT_MESSAGE);
+        return;
       }
 
       setStatus('success');
@@ -67,9 +94,10 @@ export default function BookingForm() {
         data.message ||
           'Thank you. Your enquiry has been received.'
       );
-    } catch (err: unknown) {
+    } catch {
       setStatus('error');
-      setFeedback((err instanceof Error && err.message) || 'An unexpected error occurred. Please reach out directly.');
+      setNotDelivered(true);
+      setFeedback(NOT_SENT_MESSAGE);
     }
   };
 
@@ -188,6 +216,16 @@ export default function BookingForm() {
       {status === 'error' && (
         <div className="p-3 bg-red-100 text-red-900 text-xs rounded border border-red-200">
           {feedback}
+          {notDelivered && CONTACT_EMAIL && (
+            <>
+              {' '}
+              You can also email{' '}
+              <a href={`mailto:${CONTACT_EMAIL}`} className="underline">
+                {CONTACT_EMAIL}
+              </a>
+              .
+            </>
+          )}
         </div>
       )}
 
@@ -200,6 +238,14 @@ export default function BookingForm() {
           <span>↗</span> {status === 'loading' ? 'Sending Request...' : 'Request 15-Minute Strategy Call'}
         </button>
         <div className="contact-note">Direct review by Jimmy within 24 business hours</div>
+        {CONTACT_EMAIL && (
+          <div className="contact-note">
+            Or email{' '}
+            <a href={`mailto:${CONTACT_EMAIL}`} className="underline normal-case">
+              {CONTACT_EMAIL}
+            </a>
+          </div>
+        )}
       </div>
     </form>
   );
